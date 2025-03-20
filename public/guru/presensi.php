@@ -42,7 +42,7 @@ foreach ($guru as $g) {
     <!-- endscanner -->
      <!-- siswa -->
         <div class="w-full md:max-w-screen-sm">
-            <p class="text-base font-semibold dark:text-slate-400">Siswa Belum Presensi</p>
+            <p class="text-base font-semibold dark:text-slate-400">Siswa Yang Belum Presensi</p>
             <hr class="border-t-2 border-gray-200 mt-1 mb-2 dark:border-slate-600">
             <div id="siswa_list" class="w-full"></div>
         </div>

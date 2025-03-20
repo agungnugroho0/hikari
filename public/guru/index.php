@@ -51,7 +51,7 @@ if(isset($_GET['sukses'])){
         <div class="container mx-auto flex p-1 flex-col max-w-md">
             <?php $i=1;
             foreach ($siswa as $s) : ?>
-                <div class="flex p-1 hover:bg-gray-100 justify-between">
+                <div class="flex p-1 hover:bg-gray-100 justify-between dark:hover:bg-gray-600">
                     <?php if($s['id_job'] !== null):?>
                         <div class="bg-green-900 w-1 dark:bg-yellow-600"></div>
                     <?php else:?>
