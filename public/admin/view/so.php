@@ -16,6 +16,8 @@ if(isset($_GET['sukses'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SO</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="../../image/asset/logo.png">
+
 </head>
 <body>
 <button type="button" class="mt-3 ml-2 text-white bg-gradient-to-r from-red-600 via-red-700 to-red-900 hover:bg-gradient-to-br focus:ring-1 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xl px-3 py-1 text-center me-2 mb-2 transition-all" onclick="window.location.href='<?= BASE_URL?>admin/form/tambah_so.php';"><p class="-translate-y-0.5">+</p></button>

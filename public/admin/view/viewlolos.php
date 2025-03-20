@@ -12,6 +12,8 @@ admin();
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
     <title>View Lolos</title>
+    <link rel="icon" type="image/png" href="../../image/asset/logo.png">
+
 </head>
 <button
   class="bg-white text-center w-48 rounded-xl h-8 relative text-black text-sm font-semibold group mt-2 sm:hidden"

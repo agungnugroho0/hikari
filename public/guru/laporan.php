@@ -19,6 +19,8 @@ $laporan = tampil("SELECT a.*, s.nis, s.nama FROM absen a JOIN siswa s ON a.nis 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <title>LAPORAN</title>
+    <link rel="icon" type="image/png" href="../image/asset/logo.png">
+
 </head>
 <body class="dark:bg-gray-800 bg-gray-100">
 <?php include 'header.html' ?>

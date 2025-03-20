@@ -27,6 +27,8 @@ $tagihan = tampil("SELECT id_tagihan,status_tagihan,sisa_tagihan,jenis_tagihan F
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>SISWA</title>
+    <link rel="icon" type="image/png" href="../image/asset/logo.png">
+
 </head>
 <body>
 <button

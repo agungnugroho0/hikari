@@ -9,6 +9,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="icon" type="image/png" href="../../image/asset/logo.png">
 
     </head>
     <body>

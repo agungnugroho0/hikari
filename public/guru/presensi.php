@@ -23,7 +23,7 @@ foreach ($guru as $g) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-
+    <link rel="icon" type="image/png" href="../image/asset/logo.png">
     
 </head>
 <body class="dark:bg-slate-800">

@@ -30,6 +30,8 @@ if(isset($_GET['sukses'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $nama; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="../image/asset/logo.png">
+
 </head>
 <body class="dark:bg-slate-800">
 <?php include 'header.html' ?>

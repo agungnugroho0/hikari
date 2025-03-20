@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="public/image/asset/logo.png">
 
     <style>
         @layer utilities {
@@ -28,17 +29,17 @@
         }
     </style>
 </head>
-<body>
-    <div class="relative w-full min-h-screen md:flex items-center justify-center bg-white md:bg-black">
-        <div class="hidden md:block absolute inset-0 bg-[url('https://png.pngtree.com/thumb_back/fh260/background/20230426/pngtree-woman-holding-a-wooden-board-with-japanese-calligraphy-image_2520973.jpg')] bg-cover bg-center blur-lg"></div>
+<body >
+    <div class="relative w-full min-h-screen md:flex items-center justify-center dark:bg-black">
+        <!-- <div class="bg-white"></div> -->
         <div class="md:container mx-auto md:grid bg-white md:max-w-screen-md md:grid-cols-[16rem_auto] md:rounded-xl overflow-hidden">
             <div class="relative">
-                <div class="h-[27rem] md:h-[27rem] md:w-64 bg-cover bg-left-top md:bg-center bg-no-repeat" style="background-image:url(public/image/asset/cover.jpeg);">
+                <div class="h-[27rem] md:h-[27rem] md:w-64 bg-cover bg-left-top md:bg-center bg-no-repeat" style="background-image:url(public/image/asset/cover.avif);">
                 </div>
                 <p class="absolute top-5 right-4 writing-vertical-rl text-upright text-4xl font-DF">光学校</p>
             </div>
             <div class="relative flex">
-                <div class="flex-grow flex flex-col bg-white justify-center items-center">
+                <div class="flex-grow flex flex-col bg-white justify-center items-center dark:bg-gray-200">
                     <img src="public/image/asset/logo.png" alt="hikari logo" class="hidden md:block w-28 drop-shadow mb-3">
                     <p class="hidden md:block text-3xl font-semibold">LOGIN</p>
                     <form action="app/config/login.php" method="post" class="mt-7 flex flex-col space-y-4 w-full">
