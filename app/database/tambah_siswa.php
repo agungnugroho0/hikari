@@ -37,8 +37,8 @@ $data = [
     ':darah' => $_POST['darah'],
     ':bb' => $_POST['bb'],
     ':tb' => $_POST['tb'],
-    ':merokok' => "TIDAK",
-    ':alkohol' => "TIDAK",
+    ':merokok' => $_POST['rokok'],
+    ':alkohol' => $_POST['alkohol'],
     ':tangan' => "TIDAK",
     ':hobi' => "",
     ':tujuan' => "",
@@ -47,10 +47,5 @@ $data = [
     ':foto' => $foto,
     ':no_rumah' => $_POST['no_rumah']
 ];
-// $aktif = [
-//     ':nis' => $nis,
-//     ':aktifasi' => 'aktif'
-// ];
 masukan('siswa',$data);
-// masukan('keaktifan',$aktif);
 header('Location:../../siswa.php?sk&sukses');

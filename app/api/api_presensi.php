@@ -86,7 +86,7 @@ foreach ($presensi as $row) {
                     }
                 endforeach;
                 ?>
-                <tr class="odd:bg-white border-b border-gray-200 divide-x divide-gray-300">
+                <tr class="dark:bg-slate-100 odd:bg-white border-b border-gray-200 divide-x divide-gray-300">
                     <td class="px-3 py-1"><?= $no++ ?></td>
                     <td class="px-3 py-1"><?= $nis ?></td>
                     <td class="px-3 py-1 "><?= $data['nama'] ?></td>

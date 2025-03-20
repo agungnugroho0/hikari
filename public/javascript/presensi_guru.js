@@ -96,16 +96,16 @@ try {
     if (siswaData.length > 0) {
         siswaData.forEach((siswa) => {
             siswaHtml += `
-                <div class="border p-2 mb-2 rounded shadow">
-                    <p class="font-semibold pb-2">${siswa.nama}</p>
-                    <button onclick="updateStatus('${siswa.nis}', 'I')" class="rounded px-2 bg-blue-700 text-white font-semibold">IZIN</button>
-                    <button onclick="updateStatus('${siswa.nis}', 'A')" class="rounded px-2 bg-red-700 text-white font-semibold">ALPHA</button>
-                    <button onclick="updateStatus('${siswa.nis}', 'M')" class="rounded px-2 bg-green-700 text-white font-semibold">MENSETSU</button>
-                    <button onclick="updateStatus('${siswa.nis}', 'S')" class="rounded px-2 bg-orange-700 text-white font-semibold">SAKIT</button>
+                <div class="border p-2 mb-2 rounded shadow dark:bg-slate-300">
+                    <p class="font-semibold pb-2 dark:text-white">${siswa.nama}</p>
+                    <button onclick="updateStatus('${siswa.nis}', 'I')" class="rounded px-2 bg-blue-700 text-white font-semibold mt-2">IZIN</button>
+                    <button onclick="updateStatus('${siswa.nis}', 'A')" class="rounded px-2 bg-red-700 text-white font-semibold mt-2">ALPHA</button>
+                    <button onclick="updateStatus('${siswa.nis}', 'M')" class="rounded px-2 bg-green-700 text-white font-semibold mt-2">MENSETSU</button>
+                    <button onclick="updateStatus('${siswa.nis}', 'S')" class="rounded px-2 bg-orange-700 text-white font-semibold mt-2">SAKIT</button>
                 </div>`;
         });
     } else {
-        siswaHtml = '<p class="text-gray-500">Semua siswa sudah melakukan absensi.</p>';
+        siswaHtml = '<p class="text-gray-700 dark:text-gray-300">Semua siswa sudah melakukan absensi.</p>';
     }
     siswaList.innerHTML = siswaHtml;
 } catch (error) {

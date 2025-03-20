@@ -13,6 +13,8 @@ if (isset($_GET['lolos'])== true){
 }
 
 $siswa = tampil("SELECT * FROM $ket WHERE nis = '$nis'");
+$kk = tampil("SELECT * FROM kk WHERE nis = '$nis'");
+$pendidikan = tampil("SELECT * FROM pendidikan WHERE nis = '$nis'");
 $sekarang = new DateTime();
 $tx = tampil("SELECT * FROM log_pembayaran WHERE nis = '".$nis."'");
 $tagihan = tampil("SELECT id_tagihan,status_tagihan,sisa_tagihan,jenis_tagihan FROM tagihan WHERE nis = '".$nis."'");
@@ -84,11 +86,55 @@ $tagihan = tampil("SELECT id_tagihan,status_tagihan,sisa_tagihan,jenis_tagihan F
                             ];
                             foreach ($data as $label => $value) { ?>
                                 <div class="mb-3 mt-1">
-                                    <p class="text-gray-500 font-sm"><?=$label?></p>
+                                    <p class="text-gray-400 font-sm"><?=$label?></p>
                                     <p class="text-xl font-semibold"><?=$value?></p>
                                 </div>
                             <?php }
                         }?>
+                        <!-- kk -->
+                        <div class="md:col-span-3">
+                            <hr class="py-1">
+                            <div class="text-gray-500 text-xl pb-2 font-medium flex gap-1">Keluarga 
+                                <!-- <a href="form/tambah_kk.php?nis=<? //=$nis?>" class="text-red-800">+</a> -->
+                            </div>
+                            <div class="grid md:grid-cols-2 *:bg-slate-50 *:rounded-lg *:p-2 gap-2 hover:*:shadow-md hover:*:shadow-red-400 *:translate-y-2 hover:*:translate-y-0 *:transition">
+                                <!-- kolom per keluarga -->
+                                 <?php foreach ($kk as $kel) { ?>
+                                    <div class="*:p-0.5">
+                                        <p class="text-gray-500 font-sm"><?= $kel['hubungan']?></p>
+                                        <p class="text-lg"><?= $kel['nama']?></p>
+                                        <div class="flex text-gray-500">
+                                            <p class="text-base"><?= umur($kel['thn_kelahiran'])?> 歳</p>
+                                            <p class="px-2">-</p>
+                                            <p class="text-base"><?= $kel['pekerjaan']?></p>
+                                        </div>
+                                    </div>
+                                <?php }; ?>
+                            </div>
+                        </div>
+                        <!-- end kolom per keluarga -->
+                        <!-- pendidikan -->
+                        <div class="md:col-span-3 mt-7">
+                            <hr class="py-1">
+                            <div class="text-gray-500 text-xl pb-2 font-medium flex gap-1">Pendidikan 
+                                <!-- <a href="form/tambah_pendidikan.php?nis=<? //=$nis?>" class="text-red-800">+</a> -->
+                            </div>
+                            <div class="grid md:grid-cols-2 *:bg-slate-50 *:rounded-lg *:p-2 gap-2 hover:*:shadow-md hover:*:shadow-red-400 *:translate-y-2 hover:*:translate-y-0 *:transition">
+                                <!-- kolom per pendidikan -->
+                                 <?php foreach ($pendidikan as $pdd) { ?>
+                                    <div class="*:p-0.5">
+                                        <p class="text-lg font-semibold"><?= $pdd['sekolah']?></p>
+                                        <div class="flex text-gray-500">
+                                            <p class="text-base"><?= $pdd['masuk']?></p>
+                                            <p class="px-2"> sampai </p>
+                                            <p class="text-base"><?= $pdd['lulus']?></p>
+                                        </div>
+                                        <p class="text-gray-500 font-sm"><?= $pdd['jurusan']?></p>
+                                    </div>
+                                <?php }; ?>
+                            </div>
+                        </div>
+                        <!-- end kolom per pendidikan -->
                     </div>
                     <div>
                         <div class="bg-white rounded-lg mt-3 md:mt-0 max-h-fit w-full md:w-60 p-2 flex flex-row">

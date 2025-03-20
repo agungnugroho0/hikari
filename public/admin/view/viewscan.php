@@ -25,19 +25,26 @@ admin();
     
 </head>
 <body>
-    <div class="flex justify-center mt-4">
-        <button id="startButton" class="bg-green-800 text-white px-4 py-2 rounded mr-2">Start Scanner</button>
-        <button id="stopButton" class="bg-red-500 text-white px-4 py-2 rounded">Stop Scanner</button>
-    </div>
-    <div class="container mx-auto max-w-md mt-3 ">
-        <div id="reader" class="rounded-lg overflow-hidden m-2 md:m-0 "></div>
-    </div>
-
+<main class="flex mx-auto sm:p-5 p-3 flex-wrap">
+    <!-- scanner -->
+        <div class="w-full md:max-w-screen-sm">
+            <div class="flex justify-center mt-4">
+                <button id="startButton" class="bg-green-800 text-white px-4 py-2 rounded mr-2">Start Scanner</button>
+                <button id="stopButton" class="bg-red-500 text-white px-4 py-2 rounded">Stop Scanner</button>
+            </div>
+            <div class="container mx-auto max-w-md mt-3 ">
+            <div id="reader" class="rounded-lg overflow-hidden m-2 md:m-0 "></div>
+            </div>
+        </div>
+    <!-- endscanner -->
+    </main>
 </body>
 
 
-<script>
-const html5QrCode = new Html5Qrcode("reader");
+
+<script src="../../javascript/presensi_guru.js"></script>
+    
+<!-- const html5QrCode = new Html5Qrcode("reader");
 
 function startScanner() {
         html5QrCode.start(
@@ -51,7 +58,7 @@ function startScanner() {
                 html5QrCode.stop().then(() => {
                     $.ajax({
                     type: 'POST',
-                    url: '<?= BASE_URL2?>app/api/absen_proses.php',
+                    url: '<?//= BASE_URL2?>app/api/absen_proses.php',
                     data: { "nis": decodedText},
                     success: function(data) {
                         // Tampilkan SweetAlert2 dan restart scanner setelah ditutup
@@ -94,6 +101,6 @@ function startScanner() {
 // Mulai scanner pertama kali
 startScanner();
 document.getElementById("startButton").addEventListener("click", startScanner);
-document.getElementById("stopButton").addEventListener("click", stopScanner);
-</script>
+document.getElementById("stopButton").addEventListener("click", stopScanner); -->
+
 </html>

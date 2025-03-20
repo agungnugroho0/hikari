@@ -20,7 +20,7 @@ $laporan = tampil("SELECT a.*, s.nis, s.nama FROM absen a JOIN siswa s ON a.nis 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <title>LAPORAN</title>
 </head>
-<body>
+<body class="dark:bg-gray-800 bg-gray-100">
 <?php include 'header.html' ?>
 <div class="mx-2 flex flex-col sm:flex-row gap-3 mt-3">
         <input type="month" class="py-1 px-2 rounded focus:outline-none shadow-sm" id="bulan" >

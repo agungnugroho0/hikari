@@ -136,20 +136,32 @@ if (!isset($_GET['sk'])){
             <option value="CERAI">Cerai</option>
         </select>
         <div class="grid md:grid-cols-2 md:gap-6">
-        <select id="gol" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-11 mb-5" name="darah" required>
-            <option value="">Pilih Golongan Darah</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="AB">AB</option>
-            <option value="O">O</option>
-            <option value="TIDAK TAU">Tidak Tau</option>
-        </select>
-        <select id="tangan" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-11 mb-5" name="tangan" required>
-            <option value="">Pilih Tangan Dominan</option>
-            <option value="KANAN">KANAN</option>
-            <option value="KIDAL">KIDAL / KIRI</option>
-        </select>
-    </div>
+            <select id="gol" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-11 mb-5" name="darah" required>
+                <option value="">Pilih Golongan Darah</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="AB">AB</option>
+                <option value="O">O</option>
+                <option value="TIDAK TAU">Tidak Tau</option>
+            </select>
+            <select id="tangan" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-11 mb-5" name="tangan" required>
+                <option value="">Pilih Tangan Dominan</option>
+                <option value="KANAN">KANAN</option>
+                <option value="KIDAL">KIDAL / KIRI</option>
+            </select>
+        </div>
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <select id="rokok" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-11 mb-5" name="rokok" required>
+                <option value="">Merokok</option>
+                <option value="YA">YA</option>
+                <option value="TIDAK">TIDAK</option>
+            </select>
+            <select id="alkohol" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-11 mb-5" name="alkohol" required>
+                <option value="">Minuman Keras</option>
+                <option value="YA">YA</option>
+                <option value="TIDAK">TIDAK</option>
+            </select>
+        </div>  
         <hr>
         <div class="flex gap-2 ">
             <input type="file" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900  hover:bg-gray-50" name="foto" id="fileInput"/>
