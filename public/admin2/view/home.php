@@ -128,11 +128,10 @@ fetch('../../../app/api/api_jadwal_mensetsu.php')
         bar: {
           horizontal: true,
           barHeight: '50%',
-          rangeBarGroupRows: true,
-          borderRadius: 10,
+          // rangeBarGroupRows: true,
+          borderRadius: 2,
         }
       },
-      // colors: ['#8B0000', '#000000'], // merah buat yang udah, abu buat yang belum
       colors: data.map(item => item.fillColor), // warna unik berdasarkan nama SO
       xaxis: {
         type: 'datetime'

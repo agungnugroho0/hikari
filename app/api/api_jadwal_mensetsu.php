@@ -30,14 +30,14 @@ foreach ($wawancara as $row) {
         $now = time() * 1000;
         $dummy_end = $now + 18000000; // Tambah 1 menit
         $data_chart[] = [
-            "x" => $row['nama_so'],
+            "x" => substr($row['nama_so'], 0, 10), // ambil 10 karakter pertama dari nama_so
             "y" => [$now, $dummy_end],
             "fillColor" => '#000000', // warna abu-abu
             "jumlah_job" => 'Belum Dijadwalkan'
         ];
     } else {
         $data_chart[] = [
-            "x" => $row['nama_so'],
+            "x" => substr($row['nama_so'], 0, 10),
             "y" => [
                 strtotime($row['start_datetime']) * 1000,
                 strtotime($row['end_datetime']) * 1000
