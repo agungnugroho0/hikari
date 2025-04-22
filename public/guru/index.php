@@ -63,72 +63,26 @@ foreach ($guru as $g) {
             </div>
             <canvas id="chartLolos" class="dark:bg-white pt-3"></canvas>
         </div>
-        <a href="#" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-black active:bg-black active:border-red-600 transition">
+        <a href="siswa.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
             <img src="../image/asset/staff.png" alt="siswa" class="h-14 group-hover:scale-0 transition duration-200">
             <p class="text-3xl font-bold group-hover:scale-150 sm:group-hover:scale-100 group-hover:translate-x-6 sm:group-hover:translate-x-0 group-hover:-translate-y-7 duration-500 pt-6 group-hover:pt-0 group-hover:text-slate-50 font-[Lato] ">SISWA</p> 
-        <a href="presensi.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-black active:bg-black active:border-red-600 transition">
+        <a href="presensi.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
             <img src="../image/asset/qr.png" alt="qr" class="h-14 group-hover:scale-0 transition duration-200">
             <p class="text-3xl font-bold group-hover:-translate-x-1 sm:group-hover:translate-x-0 group-hover:-translate-y-7 duration-500 pt-6 group-hover:pt-0 group-hover:text-slate-50 font-[Lato] ">PRESENSI</p> 
         </a>
-        <a href="laporan.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-black active:bg-black active:border-red-600 transition">
+        <a href="laporan.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
             <img src="../image/asset/report.png" alt="laporan" class="h-14 group-hover:scale-0 transition duration-200">
             <p class="text-3xl font-bold group-hover:-translate-x-1 sm:group-hover:translate-x-0 group-hover:-translate-y-7 duration-500 pt-6 group-hover:pt-0 group-hover:text-slate-50 font-[Lato] ">LAPORAN</p> 
         </a>
-        <a href="#" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-black active:bg-black active:border-red-600 transition">
+        <a href="#" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
             <img src="../image/asset/gear.png" alt="setting" class="h-14 group-hover:scale-0 transition duration-200">
             <p class="text-3xl font-bold group-hover:-translate-x-1 sm:group-hover:translate-x-0 group-hover:-translate-y-7 duration-500 pt-6 group-hover:pt-0 group-hover:text-slate-50 font-[Lato] ">SETTINGS</p> 
         </a>
         
     </main>
 </body>
+<script src="../javascript/grafik_lolos.js"></script>
 <script>
-     const ctx = document.getElementById('chartLolos').getContext('2d');
-     let chart; // Simpan referensi ke grafik
-     function loadChart(tahun) {
-        fetch(`../../app/api/api_jumlah_lolos.php?tahun=${tahun}`)
-        .then(response => response.json())  // Mengambil data dari server dan mengubahnya ke format JSON
-            .then(data =>{
-                const bulan = data.map(item => item.bulan); // Mengambil bulan dari data
-                const jumlah = data.map(item => item.jumlah_lolos); // Mengambil jumlah siswa lolos dari data
-                if (chart) {
-                        chart.destroy(); // Hapus grafik lama sebelum membuat yang baru
-                    }
-                    chart = new Chart(ctx, {
-                    type: 'line',  // Grafik jenis batang
-                    data: {
-                        labels: bulan,  // Label sumbu X (bulan)
-                        datasets: [{
-                            label: `Jumlah Lolos ${tahun}`,
-                            data: jumlah,  // Data jumlah siswa lolos
-                            backgroundColor: '#69140e',
-                            borderColor: '#69140e',
-                            borderWidth: 3,
-                            tension: 0.5, // Mengatur kelengkungan garis
-                        }]
-                    },
-                    options: {
-                        animation: {
-                            duration: 2000, // Durasi animasi dalam milidetik
-                            easing: 'easeInOutQuart' // Efek animasi yang halus
-                        },
-                        plugins: {
-                            legend: {
-                                display: false // Sembunyikan legend
-                            }
-                        },
-                        scales: {
-                            y: { beginAtZero: true } // Pastikan sumbu Y dimulai dari 0
-                        }
-                    }
-                });
-
-            })
-     }
-     document.getElementById('tahun').addEventListener('change', function() {
-        const tahun = this.value; // Ambil tahun dari dropdown
-        loadChart(tahun); // Panggil fungsi untuk memuat grafik dengan tahun yang dipilih
-     });
-        // Panggil fungsi untuk memuat grafik pertama kali dengan tahun default
-        loadChart(new Date().getFullYear()); // Load data tahun ini saat pertama kali dibuka
+     
 </script>
 </html>
