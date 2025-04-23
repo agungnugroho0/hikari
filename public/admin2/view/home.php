@@ -1,6 +1,7 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
-  
+$kelas = tampil("SELECT id_kelas, kelas FROM kelas");
+
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +15,8 @@ require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
 </head>
 <body>
    <h2 class="font-semibold text-2xl mb-2 font-[Lato]">DASHBOARD</h2>
-    <input type="month" class="border-2 border-gray-200 rounded p-1 outline-none" id="month" name="month" value="<?php echo date('Y-m'); ?>">
-    <div class="sm:grid sm:grid-cols-2 sm:gap-2 mt-2">
+    <input type="month" class="border-2 border-gray-200 rounded p-1 outline-none " id="month" name="month" value="<?php echo date('Y-m'); ?>">
+    <div class="sm:grid sm:grid-cols-2 gap-2 mt-2">
         <div class="border-2 p-2 rounded border-gray-200 bg-white shadow-sm">
             <h2 class="font-semibold text-base font-[Lato]">Jumlah Siswa Lolos Bulan <span id="bln"></span></h2>
             <div id="chartLolos"></div>
@@ -27,6 +28,15 @@ require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
         </div>
         
     </div>
+    <div class="grid md:grid-cols-3 gap-2 grid-cols-1 mt-2">
+      <?php foreach ($kelas as $kls) : ?>
+        <div class="border-2 p-2 rounded border-gray-200 bg-white shadow-sm">
+          <h2 class="font-semibold text-base font-[Lato]">Presensi Kelas <?php echo $kls['kelas']; ?></h2>
+          <div id="chartKelas<?php echo $kls['id_kelas']; ?>"></div>
+        </div>
+      <?php endforeach; ?>
+      
+    </div>
 </body>
 
 
@@ -34,17 +44,18 @@ require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
   const chartlolos = document.querySelector("#chartLolos");
   const monthInput = document.querySelector("#month");
   const bln = document.querySelector("#bln");
-  
+  const chartMensetsu = document.querySelector("#chartMensetsu");
+  const semuaKelas = <?php echo json_encode(array_column($kelas, 'id_kelas')); ?>; // Ambil semua id_kelas dari array $kelas
+  const chartMapKelas = {}; // Peta untuk menyimpan chart berdasarkan id_kelas
   // console.log(chartlolos); // Buat debugging
   let chart;
 
+
+  // chart jumlah_lolos
   async function fetchdata(bulan) {
     try {
       const res = await fetch(`../../../app/api/api_jmllolos_perbulan.php?bulan=${bulan}`);
       const data = await res.json();
-
-      // console.log("DATA DARI API:", data); // Buat debugging
-
       const tanggal = data.map(item => item.tgl);
       const jumlah = data.map(item => parseInt(item.jumlah_lolos,10)); // Pastikan jumlah_lolos adalah angka
 
@@ -93,26 +104,67 @@ require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
     }
   }
 
-  
-  // Load pertama kali
-  fetchdata(monthInput.value);
-  bln.innerHTML = formatBulan(monthInput.value);
 
+// chart absen kelas
+const chartKelas = document.querySelectorAll("[id^='chartKelas']"); // Ambil semua elemen yang id-nya diawali dengan 'chartKelas'
+async function fetchdataKelas(bulan,kelasId){
+  const response = await fetch(`../../../app/api/api_grafikabsen.php?bulan=${bulan}&kelas=${kelasId}`);
+  const data = await response.json();
+  // Process the data to update the chart or handle it as needed
+  // console.log(data); // Buat debugging
+  const tgl = data.map(item => item.tgl);
+    const hadir = data.map(item => parseInt(item.hadir));
+    const izin = data.map(item => parseInt(item.izin));
+    const alpha = data.map(item => parseInt(item.alpha));
+    const mensetsu = data.map(item => parseInt(item.mensetsu));
 
-  monthInput.addEventListener('change', () => {
-    fetchdata(monthInput.value);
-    bln.innerHTML = formatBulan(monthInput.value);
-  });
+    const options = {
+      chart: {
+        type: 'area',
+        height: 300,
+        zoom: {
+          enabled: false
+        },
+        toolbar: {
+          show: false
+        }
+      },
+      xaxis: {
+        categories: tgl
+      },
+      yaxis: {
+        min: 0
+      },
+      series: [
+        { name: 'Hadir', data: hadir },
+        { name: 'Izin', data: izin },
+        { name: 'Alpha', data: alpha },
+        { name: 'Mensetsu', data: mensetsu },
+      ],
+      colors: [ '#3b82f6','#10b981', '#ef4444', '#facc15'],
+      tooltip: {
+        shared: true,
+        intersect: false,
+      },
+      dataLabels: {
+        enabled: false
 
-  function formatBulan(bulan) {
-  const bulanBaru = new Date(`${bulan}-01`);
-  const formatter = new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' });
-  return formatter.format(bulanBaru);
+      },
+    };
+    // 🧼 Hapus chart lama kalau ada
+    if (chartMapKelas[kelasId]) {
+      chartMapKelas[kelasId].destroy();
+    }
+    const target = document.querySelector(`#chartKelas${kelasId}`);
+    const chart = new ApexCharts(target, options);
+    chart.render();
+    chartMapKelas[kelasId] = chart; // Simpan chart ke dalam peta berdasarkan id_kelas
 }
 
 
-const chartMensetsu = document.querySelector("#chartMensetsu");
 
+
+// chart jadwal mensetsu
 fetch('../../../app/api/api_jadwal_mensetsu.php')
   .then(res => res.json())
   .then(data => {
@@ -129,7 +181,7 @@ fetch('../../../app/api/api_jadwal_mensetsu.php')
           horizontal: true,
           barHeight: '50%',
           // rangeBarGroupRows: true,
-          borderRadius: 2,
+          borderRadius: 10,
         }
       },
       colors: data.map(item => item.fillColor), // warna unik berdasarkan nama SO
@@ -157,5 +209,33 @@ fetch('../../../app/api/api_jadwal_mensetsu.php')
     chart.render();
   });
 
+  
+// event bulan diganti
+monthInput.addEventListener('change', () => {
+    loadSemuaGrafikKelas(monthInput.value); // Load semua grafik kelas saat bulan diubah
+    fetchdata(monthInput.value);
+    bln.innerHTML = formatBulan(monthInput.value);
+
+  });
+
+  // fungsi untuk format bulan
+  function formatBulan(bulan) {
+  const bulanBaru = new Date(`${bulan}-01`);
+  const formatter = new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' });
+  return formatter.format(bulanBaru);
+}
+  // 🔥 Load semua grafik kelas waktu halaman pertama kali load
+  function loadSemuaGrafikKelas(bulan) {
+    semuaKelas.forEach(idKelas => {
+      fetchdataKelas(bulan, idKelas);
+    });
+  }
+
+  // Load pertama kali
+  loadSemuaGrafikKelas(monthInput.value);
+  fetchdata(monthInput.value);
+  bln.innerHTML = formatBulan(monthInput.value);
+ 
+  
 </script>
 </html>

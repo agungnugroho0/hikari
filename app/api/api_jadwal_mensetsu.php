@@ -17,7 +17,7 @@ $wawancara = tampil ("SELECT
     ELSE 'Sudah Dijadwalkan'
   END AS status
 FROM job
-JOIN so ON job.id_so = so.id_so GROUP BY job.tgl_job
+JOIN so ON job.id_so = so.id_so GROUP BY so.so, job.tgl_job
 ORDER BY FIELD(status, 'Belum Dijadwalkan', 'Sudah Dijadwalkan'), job.tgl_job");
 
 $data_chart = [];
