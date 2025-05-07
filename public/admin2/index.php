@@ -69,8 +69,8 @@
 
         </header>
         <div class="flex gap-2 mt-1 md:flex-row flex-col">
-            <nav class="">
-                <ul class="flex md:flex-col justify-center">
+            <nav class="bg-[#F5F5F5] h-full">
+                <ul class="flex md:flex-col justify-center ">
                     <li class=" md:rounded-r-xl bg-[#F5F5F5] relative"> <a class="" onclick="loadPage(event,'home.php')" data-menu-id="1" >
                     <!-- <span class="absolute translate-x-10 mb-2 bg-white text-sm px-2 py-1 rounded opacity-0 font-medium group-hover:opacity-100 transition shadow-md">
                     Dashboard
@@ -247,67 +247,107 @@
     <!-- Load the content dynamically using JavaScript -->
     </body>
     <script>
-    function loadPage(event, page) {
-  fetch(page)
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('content-area').innerHTML = html;
-      if (event) {
-        document.querySelectorAll('nav a').forEach(link => {
-          link.parentElement.classList.remove('bg-white');
+    // Fungsi buat load JS eksternal dari halaman yang di-fetch
+    function loadScript(src) {
+        return new Promise((resolve, reject) => {
+            if (document.querySelector(`script[src="${src}"]`)) {
+                resolve(); // Udah ke-load
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.body.appendChild(script);
         });
-        event.target.closest('li').classList.add('bg-white');
-      }
-    })
-    .catch(err => {
-      document.getElementById('content-area').innerHTML = "Oops! Gagal load konten.";
-      console.error(err);
-    });
-}
+    }
 
+    function loadPage(event, page) {
+        fetch(page)
+            .then(res => res.text())
+            .then(html => {
+                // Cari tag <script src="..."> biar bisa dieksekusi
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const scriptTag = doc.querySelector('script[src]');
+                const scriptSrc = scriptTag ? scriptTag.getAttribute('src') : null;
 
-document.addEventListener("DOMContentLoaded", () => {
+                // Hapus <script> dari HTML biar gak dobel inject
+                if (scriptTag) scriptTag.remove();
+
+                // Tampilkan isi HTML ke content-area
+                document.getElementById('content-area').innerHTML = doc.body.innerHTML;
+
+                // Load script (kalau ada)
+                if (scriptSrc) {
+                    loadScript(scriptSrc).catch(err => console.error("Script gagal dimuat:", err));
+                }
+
+                // Highlight menu yang diklik
+                if (event) {
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.parentElement.classList.remove('bg-white');
+                    });
+                    event.target.closest('li').classList.add('bg-white');
+                }
+            })
+            .catch(err => {
+                document.getElementById('content-area').innerHTML = "Oops! Gagal load konten.";
+                console.error(err);
+            });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
         const getQueryParam = (param) => {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         };
 
-        const menuId = getQueryParam("menuId");
+        const menuId = getQueryParam("menu_id");
+        const nis = getQueryParam("nis");
+        const lolos = getQueryParam("lolos");
+
         const defaultPage = "home.php";
         let found = false;
 
         if (menuId) {
             document.querySelectorAll("nav a").forEach(link => {
-            if (link.dataset.menuId === menuId) {
-                // Aktifkan menu yang sesuai
-                link.parentElement.classList.add("bg-white");
-                // Load page sesuai menu
-                const page = link.getAttribute("onclick").match(/'([^']+)'/)[1]; // ngambil isi dari onclick
-                loadPage(null, page);
-                found = true;
-            } else {
-                link.parentElement.classList.remove("bg-white");
-            }
+                if (link.dataset.menuId === menuId) {
+                    link.parentElement.classList.add("bg-white");
+                    let page = link.getAttribute("onclick").match(/'([^']+)'/)[1];
+
+                    // Tambahkan parameter ke halaman siswa
+                    if (menuId === "4" && nis) {
+                        const params = [];
+                        if (nis) params.push(`nis=${nis}`);
+                        if (lolos) params.push(`lolos=${lolos}`);
+                        if (params.length) {
+                            page += `?${params.join("&")}`;
+                        }
+                    }
+
+                    loadPage(null, page);
+                    found = true;
+                } else {
+                    link.parentElement.classList.remove("bg-white");
+                }
             });
         }
 
-        // Kalo gak ada menuId di URL atau gak ketemu id-nya, load default
         if (!menuId || !found) {
             document.querySelectorAll("nav a").forEach(link => {
-            link.parentElement.classList.remove("bg-white");
+                link.parentElement.classList.remove("bg-white");
             });
-            // Set default menu (misalnya menuId 1)
             const defaultLink = document.querySelector("nav a[data-menu-id='1']");
             if (defaultLink) {
-            defaultLink.parentElement.classList.add("bg-white");
+                defaultLink.parentElement.classList.add("bg-white");
             }
-            // Load konten awal
             loadPage(null, defaultPage);
         }
-        });
+    });
+</script>
 
-    </script>
 
     <script src="../javascript/pencarian_siswa.js"></script>
-
+    <!-- <script src="../javascript/cek.js"></script> -->
     </html>

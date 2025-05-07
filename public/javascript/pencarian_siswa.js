@@ -8,7 +8,7 @@ function cari() {
   fetch(`../../app/api/search.php?query=${encodeURIComponent(query)}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       const resultsContainer = document.getElementById("searchResults");
       resultsContainer.innerHTML = "";
       if (data.length === 0) {

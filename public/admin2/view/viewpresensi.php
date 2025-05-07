@@ -1,5 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require __DIR__.'/../../../autoloader.php';
+
 admin();
 $kelas = tampil("SELECT * FROM kelas");
 ?>

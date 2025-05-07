@@ -41,128 +41,117 @@ $kelas = tampil("SELECT id_kelas, kelas FROM kelas");
 
 
 <script>
-  const chartlolos = document.querySelector("#chartLolos");
-  const monthInput = document.querySelector("#month");
-  const bln = document.querySelector("#bln");
-  const chartMensetsu = document.querySelector("#chartMensetsu");
-  const semuaKelas = <?php echo json_encode(array_column($kelas, 'id_kelas')); ?>; // Ambil semua id_kelas dari array $kelas
-  const chartMapKelas = {}; // Peta untuk menyimpan chart berdasarkan id_kelas
-  // console.log(chartlolos); // Buat debugging
-  let chart;
+const chartlolos = document.querySelector("#chartLolos");
+const monthInput = document.querySelector("#month");
+const bln = document.querySelector("#bln");
+const chartMensetsu = document.querySelector("#chartMensetsu");
+const semuaKelas = <?php echo json_encode(array_column($kelas, 'id_kelas')); ?>; // Ambil semua id_kelas dari array $kelas
+const chartMapKelas = {}; // Peta untuk menyimpan chart berdasarkan id_kelas
+let chart;
 
+// chart jumlah_lolos
+async function fetchdata(bulan) {
+  try {
+    const res = await fetch(`../../../app/api/api_jmllolos_perbulan.php?bulan=${bulan}`);
+    const data = await res.json();
+    const tanggal = data.map(item => item.tgl);
+    const jumlah = data.map(item => parseInt(item.jumlah_lolos,10)); // Pastikan jumlah_lolos adalah angka
 
-  // chart jumlah_lolos
-  async function fetchdata(bulan) {
-    try {
-      const res = await fetch(`../../../app/api/api_jmllolos_perbulan.php?bulan=${bulan}`);
-      const data = await res.json();
-      const tanggal = data.map(item => item.tgl);
-      const jumlah = data.map(item => parseInt(item.jumlah_lolos,10)); // Pastikan jumlah_lolos adalah angka
-
-      const options = {
-        chart: {
-          type: 'bar',
-          height: 300,
-          toolbar: {
-            show: false
-          },
-          zoom: {
-            enabled: false
-          },
-          
+    const options = {
+      chart: {
+        type: 'bar',
+        height: 300,
+        toolbar: {
+          show: false
         },
-        colors: ['#8B0000'],
-        dataLabels: {
+        zoom: {
+          enabled: false
+        },
+      },
+      colors: ['#8B0000'],
+      dataLabels: {
         enabled: false
-        },
-        stroke: {
-          curve: 'smooth',
-          width: 2
-        },
-        series: [{
-          name: 'Siswa Lolos',
-          data: jumlah
-        }],
-        xaxis: {
-          categories: tanggal
-        },
-        yaxis: {
-         min: 0
-        },
-        
-      };
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 2
+      },
+      series: [{
+        name: 'Siswa Lolos',
+        data: jumlah
+      }],
+      xaxis: {
+        categories: tanggal
+      },
+      yaxis: {
+        min: 0
+      },
+    };
 
-      if (chart) {
-        chart.updateOptions(options);
-      } else {
-        chart = new ApexCharts(chartlolos, options);
-        chart.render();
-      }
-
-    } catch (err) {
-      console.error("Error Fetching Data:", err);
+    if (chart) {
+      chart.updateOptions(options);
+    } else {
+      chart = new ApexCharts(chartlolos, options);
+      chart.render();
     }
-  }
 
+  } catch (err) {
+    console.error("Error Fetching Data:", err);
+  }
+};
 
 // chart absen kelas
 const chartKelas = document.querySelectorAll("[id^='chartKelas']"); // Ambil semua elemen yang id-nya diawali dengan 'chartKelas'
 async function fetchdataKelas(bulan,kelasId){
   const response = await fetch(`../../../app/api/api_grafikabsen.php?bulan=${bulan}&kelas=${kelasId}`);
   const data = await response.json();
-  // Process the data to update the chart or handle it as needed
-  // console.log(data); // Buat debugging
   const tgl = data.map(item => item.tgl);
-    const hadir = data.map(item => parseInt(item.hadir));
-    const izin = data.map(item => parseInt(item.izin));
-    const alpha = data.map(item => parseInt(item.alpha));
-    const mensetsu = data.map(item => parseInt(item.mensetsu));
+  const hadir = data.map(item => parseInt(item.hadir));
+  const izin = data.map(item => parseInt(item.izin));
+  const alpha = data.map(item => parseInt(item.alpha));
+  const mensetsu = data.map(item => parseInt(item.mensetsu));
 
-    const options = {
-      chart: {
-        type: 'area',
-        height: 300,
-        zoom: {
-          enabled: false
-        },
-        toolbar: {
-          show: false
-        }
-      },
-      xaxis: {
-        categories: tgl
-      },
-      yaxis: {
-        min: 0
-      },
-      series: [
-        { name: 'Hadir', data: hadir },
-        { name: 'Izin', data: izin },
-        { name: 'Alpha', data: alpha },
-        { name: 'Mensetsu', data: mensetsu },
-      ],
-      colors: [ '#3b82f6','#10b981', '#ef4444', '#facc15'],
-      tooltip: {
-        shared: true,
-        intersect: false,
-      },
-      dataLabels: {
+  const options = {
+    chart: {
+      type: 'area',
+      height: 300,
+      zoom: {
         enabled: false
-
       },
-    };
-    // 🧼 Hapus chart lama kalau ada
-    if (chartMapKelas[kelasId]) {
-      chartMapKelas[kelasId].destroy();
-    }
-    const target = document.querySelector(`#chartKelas${kelasId}`);
-    const chart = new ApexCharts(target, options);
-    chart.render();
-    chartMapKelas[kelasId] = chart; // Simpan chart ke dalam peta berdasarkan id_kelas
+      toolbar: {
+        show: false
+      }
+    },
+    xaxis: {
+      categories: tgl
+    },
+    yaxis: {
+      min: 0
+    },
+    series: [
+      { name: 'Hadir', data: hadir },
+      { name: 'Izin', data: izin },
+      { name: 'Alpha', data: alpha },
+      { name: 'Mensetsu', data: mensetsu },
+    ],
+    colors: [ '#3b82f6','#10b981', '#ef4444', '#facc15'],
+    tooltip: {
+      shared: true,
+      intersect: false,
+    },
+    dataLabels: {
+      enabled: false
+    },
+  };
+  // 🧼 Hapus chart lama kalau ada
+  if (chartMapKelas[kelasId]) {
+    chartMapKelas[kelasId].destroy();
+  }
+  const target = document.querySelector(`#chartKelas${kelasId}`);
+  const chart = new ApexCharts(target, options);
+  chart.render();
+  chartMapKelas[kelasId] = chart; // Simpan chart ke dalam peta berdasarkan id_kelas
 }
-
-
-
 
 // chart jadwal mensetsu
 fetch('../../../app/api/api_jadwal_mensetsu.php')
@@ -173,14 +162,13 @@ fetch('../../../app/api/api_jadwal_mensetsu.php')
         type: 'rangeBar',
         height: 300,
         zoom: {
-            enabled: false
-          },
+          enabled: false
+        },
       },
       plotOptions: {
         bar: {
           horizontal: true,
           barHeight: '50%',
-          // rangeBarGroupRows: true,
           borderRadius: 10,
         }
       },
@@ -189,53 +177,49 @@ fetch('../../../app/api/api_jadwal_mensetsu.php')
         type: 'datetime'
       },
       tooltip: {
-          custom: function({ series, seriesIndex, dataPointIndex, w }) {
-            const d = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
-            return `<div style="padding:5px">
-                      <div class=" text-red-900 font-semibold">${d.x}</div>
-                      ${d.jumlah_job ? `Jumlah Job: ${d.jumlah_job}` : ''}<br/>
-                    </div>`;
-          }
+        custom: function({ series, seriesIndex, dataPointIndex, w }) {
+          const d = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+          return `<div style="padding:5px">
+                    <div class="text-red-900 font-semibold">${d.x}</div>
+                    ${d.jumlah_job ? `Jumlah Job: ${d.jumlah_job}` : ''}<br/>
+                  </div>`;
+        }
       },
       series: [{
         name: 'Jadwal Mensetsu',
         data: data
       }],
-      
-      
     };
 
     const chart = new ApexCharts(chartMensetsu, options);
     chart.render();
   });
 
-  
 // event bulan diganti
 monthInput.addEventListener('change', () => {
-    loadSemuaGrafikKelas(monthInput.value); // Load semua grafik kelas saat bulan diubah
-    fetchdata(monthInput.value);
-    bln.innerHTML = formatBulan(monthInput.value);
+  loadSemuaGrafikKelas(monthInput.value); // Load semua grafik kelas saat bulan diubah
+  fetchdata(monthInput.value);
+  bln.innerHTML = formatBulan(monthInput.value);
+});
 
-  });
-
-  // fungsi untuk format bulan
-  function formatBulan(bulan) {
+// fungsi untuk format bulan
+function formatBulan(bulan) {
   const bulanBaru = new Date(`${bulan}-01`);
   const formatter = new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' });
   return formatter.format(bulanBaru);
 }
-  // 🔥 Load semua grafik kelas waktu halaman pertama kali load
-  function loadSemuaGrafikKelas(bulan) {
-    semuaKelas.forEach(idKelas => {
-      fetchdataKelas(bulan, idKelas);
-    });
-  }
 
-  // Load pertama kali
-  loadSemuaGrafikKelas(monthInput.value);
-  fetchdata(monthInput.value);
-  bln.innerHTML = formatBulan(monthInput.value);
- 
-  
+// 🔥 Load semua grafik kelas waktu halaman pertama kali load
+function loadSemuaGrafikKelas(bulan) {
+  semuaKelas.forEach(idKelas => {
+    fetchdataKelas(bulan, idKelas);
+  });
+}
+
+// Load pertama kali
+loadSemuaGrafikKelas(monthInput.value);
+fetchdata(monthInput.value);
+bln.innerHTML = formatBulan(monthInput.value);
 </script>
+
 </html>
