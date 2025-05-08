@@ -109,6 +109,7 @@ async function fetchdataKelas(bulan,kelasId){
   const hadir = data.map(item => parseInt(item.hadir));
   const izin = data.map(item => parseInt(item.izin));
   const alpha = data.map(item => parseInt(item.alpha));
+  const sakit = data.map(item => parseInt(item.sakit));
   const mensetsu = data.map(item => parseInt(item.mensetsu));
 
   const options = {
@@ -132,9 +133,10 @@ async function fetchdataKelas(bulan,kelasId){
       { name: 'Hadir', data: hadir },
       { name: 'Izin', data: izin },
       { name: 'Alpha', data: alpha },
+      { name: 'Sakit', data: sakit },
       { name: 'Mensetsu', data: mensetsu },
     ],
-    colors: [ '#3b82f6','#10b981', '#ef4444', '#facc15'],
+    colors: [ '#3b82f6','#10b981', '#ef4444','#9d32a8', '#facc15'],
     tooltip: {
       shared: true,
       intersect: false,
@@ -200,6 +202,7 @@ monthInput.addEventListener('change', () => {
   loadSemuaGrafikKelas(monthInput.value); // Load semua grafik kelas saat bulan diubah
   fetchdata(monthInput.value);
   bln.innerHTML = formatBulan(monthInput.value);
+  console.log(monthInput.value);
 });
 
 // fungsi untuk format bulan

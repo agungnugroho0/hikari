@@ -40,39 +40,7 @@ foreach ($job as $data =>$data_so){
 </head>
 <body>
   
-<!-- <div class="mx-auto w-full flex items-center justify-center h-3/6 flex-col">
-  <img src="<?= BASE_URL2?>public/image/asset/maintenance.png" alt="" class="w-36 mb-4" />
-  <p>MAINTENANCE SAK RAMPUNGE</p>
-</div> -->
-<button
-  class="bg-white text-center w-48 rounded-xl h-8 relative text-black text-sm font-semibold group mt-2 sm:hidden"
-  type="button"
-  onclick="window.location.href='../index.php';"
->
-  <div
-    class="bg-red-800 rounded-2xl h-8 w-1/4 flex items-center justify-center absolute left-0 top-[0px] group-hover:w-[184px] z-10 duration-500"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1024 1024"
-      height="25px"
-      width="25px"
-    >
-      <path
-        d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
-        fill="#ffffff"
-      ></path>
-      <path
-        d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
-        fill="#ffffff"
-      ></path>
-    </svg>
-  </div>
-  <p class="translate-x-2">Go Back</p>
-</button>
-
-    </div>
-    <a href="<?= BASE_URL ?>form/tambah_job.php" class="bg-red-900 rounded-md shadow-md p-2 font-medium text-white max-w-fit mx-3 mt-2 xl:mt-0">TAMBAH JOBS</a>
+    <a href="<?= BASE_URL ?>form/tambah_job.php" class="bg-red-900 rounded-md shadow-md p-2 font-medium text-white max-w-fit mx-3 mt-2 xl:mt-0">TAMBAH TRANING ORDER</a>
     <div class="flex mt-4 ml-3 flex-wrap gap-3 mr-3">
       <?php foreach ($eksekusi as $id_so => $data_so){ 
         foreach ($data_so as $so => $data_fotoso){  ?>

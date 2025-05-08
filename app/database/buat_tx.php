@@ -4,7 +4,7 @@ admin();
 $id_tagihan = $_POST['id_tagihan'];
 $ket = $_POST['ket'];
 if($ket == 'lolos'){
-    $ket2 = '&lolos=ya';
+    $ket2 = '&lolos';
 } else {
     $ket2 = '';
 };
@@ -45,5 +45,5 @@ $d_bayar =[
 ];
 perbarui('tagihan',$d_tagihan, $where);
 masukan('log_pembayaran',$d_bayar);
-header("Location:../../public/admin/detail_siswa.php?nis=$nis$ket2");
+header("Location:../../public/admin/view/detail_siswa.php?nis=$nis$ket2");
 

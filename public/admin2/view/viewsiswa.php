@@ -11,7 +11,7 @@ $relativePath = str_replace('\\', '/', str_replace($rootPath, '', $currentPath))
 $baseUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $relativePath . '/';
 
 define('BASE_URL', $baseUrl);            // otomatis ke /hikari/public/admin/
-define('BASE_URL2', dirname($baseUrl, 2) . '/');  // naik dua folder jadi ke /hikari/
+define('BASE_URL2', dirname($baseUrl, 3) . '/');  // naik dua folder jadi ke /hikari/
 // echo BASE_URL; // untuk debug
 $kelas = tampil("SELECT * FROM kelas");
 

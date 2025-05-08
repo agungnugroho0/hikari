@@ -8,6 +8,7 @@ $kelas = $_GET['kelas'] ;
                             SUM(ket = 'H') AS hadir,
                             SUM(ket = 'I') AS izin,
                             SUM(ket = 'A') AS alpha,
+                            SUM(ket = 'S') AS sakit,
                             SUM(ket = 'M') AS mensetsu
                             FROM absen
                             JOIN siswa ON absen.nis = siswa.nis
