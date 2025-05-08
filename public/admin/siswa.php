@@ -1,6 +1,7 @@
 <?php
 require __DIR__.'/../../autoloader.php';
 admin();
+
 $nis = $_GET['nis'] ?? null;
 $lolos = $_GET['lolos'] ?? null;
 $siswa = $_GET['siswa'] ?? null;

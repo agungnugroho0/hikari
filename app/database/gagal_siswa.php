@@ -14,4 +14,4 @@ hapus('wawancara',$data);
 //         }
 //     </script>
 // ";
-header("Location:../../public/admin/index.php?menu_id=3&sukses");
+header("Location:../../public/admin/index.php?menu_Id=3&sukses");

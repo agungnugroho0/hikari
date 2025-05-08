@@ -9,6 +9,8 @@
         $nama = $g['nama'];
         $foto = $g['foto'];
     };
+
+   
     ?>
 
     <!DOCTYPE html>
@@ -18,14 +20,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dashboard</title>
         <link rel="icon" type="image/png" href="../image/asset/logo.png">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
         <style>
             @font-face{
                 font-family:'Lato';
                 src: url('../font/Lato-Regular.ttf') format('truetype');
                 font-weight: normal;
                 font-style: normal;
+            }
+            .toast {
+            opacity: 1 !important; /* bikin toast jadi full solid */
+            background-color:#3ec922 !important; /* bisa ganti warna juga kalau mau */
+            color: #fff !important; /* warna teks */
             }
         </style>
     </head>
@@ -168,7 +179,8 @@
                         
                         </a> 
                     </li>
-                    <li class="md:rounded-r-xl bg-[#F5F5F5] relative "> <a onclick="loadPage(event,'siswa.php')" data-menu-id="4">
+                    <li class="md:rounded-r-xl bg-[#F5F5F5] relative "> 
+                        <a onclick="loadPage(event,'siswa.php')" data-menu-id="4">
                     <!-- <span class="absolute translate-x-10 mb-2 bg-white text-sm px-2 py-1 rounded opacity-0 font-medium group-hover:opacity-100 transition shadow-md">
                     Siswa
                     </span> -->
@@ -246,6 +258,21 @@
         </div>
     <!-- Load the content dynamically using JavaScript -->
     </body>
+    <?php
+     if (isset($_GET['sukses'])) {
+        echo "<script>
+            $(document).ready(function() {
+                toastr.success('Berhasil');
+            });
+        </script>";
+    } elseif (isset($_GET['gagal'])) {
+        echo "<script>
+            $(document).ready(function() {
+                toastr.error('Gagal Menghapus Data ');
+            });
+        </script>";
+    }
+    ?>
     <script>
     // Fungsi buat load JS eksternal dari halaman yang di-fetch
     function loadScript(src) {
@@ -298,12 +325,20 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        toastr.options = {
+        // "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-center",
+        "timeOut": "3000"
+    };
+    // toastr.success('Berhasil');
+        
         const getQueryParam = (param) => {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         };
 
-        const menuId = getQueryParam("menu_id");
+        const menuId = getQueryParam("menu_Id");
         const nis = getQueryParam("nis");
         const lolos = getQueryParam("lolos");
 
@@ -318,6 +353,15 @@
 
                     // Tambahkan parameter ke halaman siswa
                     if (menuId === "4" && nis) {
+                        const params = [];
+                        if (nis) params.push(`nis=${nis}`);
+                        if (lolos) params.push(`lolos=${lolos}`);
+                        if (params.length) {
+                            page += `?${params.join("&")}`;
+                        }
+                    }
+
+                    if (menuId === "5" && nis) {
                         const params = [];
                         if (nis) params.push(`nis=${nis}`);
                         if (lolos) params.push(`lolos=${lolos}`);

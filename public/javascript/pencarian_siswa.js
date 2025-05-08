@@ -22,23 +22,23 @@ function cari() {
           // Tentukan tampilannya berdasarkan sumber data
           if (item.sumber == "siswa") {
             div.innerHTML = `
-                  <a href="../admin/detail_siswa.php?nis=${item.nis}" class="flex cursor-default">
+                  <div onclick="window.location.href='index.php?menu_Id=4&nis=${item.nis}'" class="flex cursor-default">
                     <div class="w-10 h-10 overflow-hidden rounded-full"><img src="../image/photos/${item.foto}"></div>
                     <div class="flex flex-col">
                       <div class="font-normal truncate pl-1.5">${item.nama}</div>
                       <div class="text-gray-500 pl-1.5">siswa</div>
                     </div>
-                  </a>
+                  </div>
                 `;
           } else if (item.sumber == "lolos") {
             div.innerHTML = `
-                    <a href="../admin/detail_siswa.php?nis=${item.nis}&lolos=ya" class="flex cursor-default">
+                  <div onclick="window.location.href='index.php?menu_Id=5&nis=${item.nis}&lolos=ya'" class="flex cursor-default">
                     <div class="w-10 h-10 overflow-hidden rounded-full"><img src="../image/photos/${item.foto}"></div>
                     <div class="flex flex-col">
                       <div class="font-normal truncate pl-1.5">${item.nama}</div>
                       <div class="text-gray-500 pl-1.5">lolos</div>
                     </div>
-                  </a>
+                  </div>
                 `;
           }
 

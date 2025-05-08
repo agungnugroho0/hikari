@@ -1,7 +1,23 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
-// $destinasi = '/hikari';
+require __DIR__.'/../../autoloader.php';
 admin();
 
+$nis = $_GET['nis'] ?? null;
+$lolos = $_GET['lolos'] ?? null;
+$siswa = $_GET['siswa'] ?? null;
+
+$params = [];
+if ($nis) $params[] = "nis=$nis";
+if ($lolos) $params[] = "lolos=ya";
+if ($siswa) $params[] = "siswa=ya";
+
+$url = "view/viewlolos.php";
+if (!empty($params)) {
+    $url = "view/detail_siswa.php?" . implode("&", $params);
+};
 ?>
-<iframe src="view/viewlolos.php" frameborder="0" class="w-full h-[82vh]"></iframe>
+
+
+<iframe src="<?= $url ?>" frameborder="0" class="w-full h-[87vh]"></iframe>
+
+<!-- <iframe src="view/viewlolos.php" frameborder="0" class="w-full h-[82vh]"></iframe> -->
