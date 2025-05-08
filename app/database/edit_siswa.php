@@ -4,6 +4,7 @@ admin();
 $nis = $_POST['nis'];
 $ket2 = $_POST['ket'];
 $_POST = toUpperCase($_POST);
+
 if ($ket2 == 'lolos') {
     $foto_siswa = tampil("SELECT foto FROM lolos WHERE nis='$nis'");
     foreach ($foto_siswa as $value){
@@ -70,8 +71,8 @@ if ($_FILES['foto']['error'] !== UPLOAD_ERR_NO_FILE) {
 error_reporting(E_ALL);
 $result = updateSiswa($data,$tabel);
 if ($result) {
-    header ("Location: ../../public/admin/detail_siswa.php?nis=$nis$dir&sukses");
+    header ("Location: ../../public/admin/view/detail_siswa.php?nis=$nis$dir&sukses");
 } else {
-    header ("Location: ../../detail_siswa.php?nis=$nis&pesan=fail");
+    header ("Location: ../../public/admin/view/detail_siswa.php?nis=$nis&pesan=fail");
 }
 ?>

@@ -21,12 +21,14 @@ $data = [
     ':lokasi' => $lokasi
 ];
 masukan('so',$data);
-echo "
-    <script>
-        if (window.innerWidth <= 768) {
-            window.location.href = '/hikari/public/view/so.php?sukses';
-        } else {
-            window.location.href = '/hikari/public/admin/index.php?menu_id=8&sukses';
-        }
-    </script>
-";
+// echo "
+//     <script>
+//         if (window.innerWidth <= 768) {
+//             window.location.href = '/hikari/public/view/so.php?sukses';
+//         } else {
+//             window.location.href = '/hikari/public/admin/index.php?menu_id=8&sukses';
+//         }
+//     </script>
+// ";
+
+header("Location:../../public/admin/index.php?menu_Id=8&sukses");
