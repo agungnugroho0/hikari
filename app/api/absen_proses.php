@@ -1,5 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require '../../autoloader.php';
+
 $nis = $_POST['nis'];
 $tgl = date('Y-m-d');
 

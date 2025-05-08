@@ -1,5 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require '../../autoloader.php';
+
 $tahun = isset($_GET['tahun']) ? intval($_GET['tahun']) : date('Y'); // Default ke tahun ini
 
 if (!is_numeric($tahun) || $tahun < 2000 || $tahun > 2100) {

@@ -1,5 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require '../../autoloader.php';
+
 
 $bulan = $_GET['bulan'];
 $kelas = isset($_GET['kelas']) ? $_GET['kelas'] : 'A';

@@ -1,5 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require '../../autoloader.php';
+
 session_start();
 $user = $_SESSION['username'];
 $level = $_SESSION['level'];

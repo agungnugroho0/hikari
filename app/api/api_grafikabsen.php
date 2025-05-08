@@ -1,5 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require '../../autoloader.php';
+
 header('Content-Type: application/json');
 $bulan = $_GET['bulan'];
 $kelas = $_GET['kelas'] ;
