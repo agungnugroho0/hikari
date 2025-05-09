@@ -171,7 +171,7 @@ fetch('../../../app/api/api_jadwal_mensetsu.php')
         bar: {
           horizontal: true,
           barHeight: '50%',
-          borderRadius: 10,
+          //borderRadius: 10,
         }
       },
       colors: data.map(item => item.fillColor), // warna unik berdasarkan nama SO

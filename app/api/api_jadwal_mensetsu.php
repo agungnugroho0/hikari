@@ -11,7 +11,7 @@ function stringToColor($str) {
 $wawancara = tampil ("SELECT
   job.id_job,
   job.tgl_job AS start_datetime,
-  IF(job.tgl_job = '0000-00-00', NULL, DATE_ADD(job.tgl_job, INTERVAL 5 HOUR)) AS end_datetime,
+  IF(job.tgl_job = '0000-00-00', NULL, DATE_ADD(job.tgl_job, INTERVAL 12 HOUR)) AS end_datetime,
   so.so AS nama_so, COUNT(job.id_job) AS jumlah_job,
   CASE
     WHEN job.tgl_job = '0000-00-00' THEN 'Belum Dijadwalkan'

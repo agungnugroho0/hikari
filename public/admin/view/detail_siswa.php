@@ -123,7 +123,7 @@ $garis = "outline outline-2 rounded px-2 py-1 outline-gray-300";
 
         <!-- bilik kanan -->
         <div class="<?= $garis ?> sm:min-w-64">
-            <div class=" my-1 bg-green-600 text-white font-semibold rounded-md px-2 py-1 text-sm text-center h-7 hover:bg-green-700 cursor-pointer"><a href="https://wa.me/<?= $nomor_wa?>">WHATSAPP</a></div>
+            <div class=" my-1 bg-green-600 text-white font-semibold rounded-md px-2 py-1 text-sm text-center h-7 hover:bg-green-700 cursor-pointer"><a href="https://wa.me/<?= $nomor_wa?>" target="_top">WHATSAPP</a></div>
             <div class=" my-1 bg-red-700 text-white font-semibold rounded-md px-2 py-1 text-sm text-center ">
             <a href="<?='../../image/photos/'.$s['foto']?>" download="<?= $s['nama']?>.jpg">DOWNLOAD FOTO</a></div>
             <hr class="my-2">
