@@ -2,17 +2,17 @@
 include __DIR__.'/../../../autoloader.php';
 
 // Dapetin base folder URL dari __DIR__
-$rootPath = realpath($_SERVER['DOCUMENT_ROOT']);
-$currentPath = realpath(__DIR__);
+// $rootPath = realpath($_SERVER['DOCUMENT_ROOT']);
+// $currentPath = realpath(__DIR__);
 
 // Hitung path relatif dari DOCUMENT_ROOT ke folder ini
-$relativePath = str_replace('\\', '/', str_replace($rootPath, '', $currentPath));
+// $relativePath = str_replace('\\', '/', str_replace($rootPath, '', $currentPath));
 
 // Buat URL dasarnya
-$baseUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $relativePath . '/';
+// $baseUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $relativePath . '/';
 
-define('BASE_URL', $baseUrl);            // otomatis ke /hikari/public/admin/
-define('BASE_URL2', dirname($baseUrl, 3) . '/');  // naik tiga folder jadi ke /hikari/
+// define('BASE_URL', $baseUrl);            // otomatis ke /hikari/public/admin/
+// define('BASE_URL2', dirname($baseUrl, 3) . '/');  // naik tiga folder jadi ke /hikari/
 
 
 $nis= $_GET['nis'] ?? null;
@@ -37,7 +37,7 @@ if ($lolos) {
 }
 
 $siswa      = tampil("SELECT a.*,kls.kelas FROM $ket a JOIN kelas kls ON a.id_kelas = kls.id_kelas WHERE nis = '$nis'");
-$kk         = tampil("SELECT * FROM kk WHERE nis = '$nis'");
+$kk         = tampil("SELECT * FROM kk WHERE nis = '$nis' ORDER BY urutan");
 $pendidikan = tampil("SELECT * FROM pendidikan WHERE nis = '$nis'");
 $tx         = tampil("SELECT * FROM log_pembayaran WHERE nis = '$nis'");
 $tagihan    = tampil("SELECT id_tagihan, status_tagihan, sisa_tagihan, jenis_tagihan FROM tagihan WHERE nis = '$nis'");
@@ -110,13 +110,57 @@ $garis = "outline outline-2 rounded px-2 py-1 outline-gray-300";
                     </div>
                     <?php endforeach; ?>
                 </div>
+                <table class="w-full border border-gray-300 text-sm text-left text-gray-700 cursor-default mt-2">
+                    <thead class="bg-gray-100 text-gray-800 font-[Lato]">
+                        <tr>
+                            <th class="border px-4 py-2 w-[5%]">No</th>
+                            <th class="border px-4 py-2 w-[15%]">Hubungan</th>
+                            <th class="border px-4 py-2 w-[40%]">Nama</th>
+                            <th class="border px-4 py-2 w-[10%]">Umur</th>
+                            <th class="border px-4 py-2">Pekerjaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; foreach ($kk as $k): ?>
+                        <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100">
+                            <td class="border px-4 py-2"><?= $i ?></td>
+                            <td class="border px-4 py-2"><?= $k['hubungan'] ?></td>
+                            <td class="border px-4 py-2"><?= $k['nama'] ?></td>
+                            <td class="border px-4 py-2"><?=  umur($k['thn_kelahiran']) ?></td>
+                            <td class="border px-4 py-2"><?= $k['pekerjaan'] ?></td>
+                        </tr>
+                        <?php $i++; endforeach; ?>
+                    </tbody>
+                </table>
+                <table class="w-full border border-gray-300 text-sm text-left text-gray-700 cursor-default mt-2">
+                    <thead class="bg-gray-100 text-gray-800 font-[Lato]">
+                        <tr>
+                            <th class="border px-4 py-2 w-[5%]">No</th>
+                            <th class="border px-4 py-2 w-[40%]">Sekolah</th>
+                            <th class="border px-4 py-2 w-[5%]">Thn Masuk</th>
+                            <th class="border px-4 py-2 w-[5%]">Thn Lulus</th>
+                            <th class="border px-4 py-2 2-[10%]">Jurusan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; foreach ($pendidikan as $p): ?>
+                        <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100">
+                            <td class="border px-4 py-2"><?= $i ?></td>
+                            <td class="border px-4 py-2"><?= $p['sekolah'] ?></td>
+                            <td class="border px-4 py-2"><?= $p['masuk'] ?></td>
+                            <td class="border px-4 py-2"><?= $p['lulus'] ?></td>
+                            <td class="border px-4 py-2"><?= $p['jurusan'] ?></td>
+                        </tr>
+                        <?php $i++; endforeach; ?>
+                    </tbody>
+                </table>
             </div>
             <?php endforeach; ?>
             <div class="">
-            <a href="../form/edit_siswa.php?nis=<?= $nis?>&<?=$ket?>"><img src="../../image/asset/pen.png" class="max-w-6 md:w-6 translate-y-3"/> </a>
+                <a href="../form/edit_siswa.php?nis=<?= $nis?>&<?=$ket?>"><img src="../../image/asset/pen.png" class="max-w-6 md:w-6 translate-y-3"/> </a>
             </div>
             <div>
-            <a href="#<?= $nis?>"><img src="../../image/asset/sampah.png" class="max-w-6 md:w-6 translate-y-3"/> </a>
+                <a href="#<?= $nis?>"><img src="../../image/asset/sampah.png" class="max-w-6 md:w-6 translate-y-3"/> </a>
             </div>
             <!-- end data diri -->
         </div>
@@ -129,9 +173,9 @@ $garis = "outline outline-2 rounded px-2 py-1 outline-gray-300";
             <hr class="my-2">
             <!-- jika lolos -->
             <?php if ($lolos) : ?>
-                <div class=" my-1 bg-red-700 text-white font-semibold rounded-md px-2 py-1 text-sm text-center">
-                    <a href="#" download="#">TWIBBON LOLOS</a>
-                </div>
+                <a href="#" download="#" >
+                    <div class=" my-1 bg-red-700 text-white font-semibold rounded-md px-2 py-1 text-sm text-center">TWIBBON LOLOS</div>
+                </a>
 
                 <!-- SO lolos JOB -->
                 <div class="font-semibold font-[Lato] bg-slate-100 p-1"><span class="text-sm font-normal">DATA LOLOS JOB</span>
@@ -158,7 +202,7 @@ $garis = "outline outline-2 rounded px-2 py-1 outline-gray-300";
                 <div class="font-[Lato] bg-gray-50 p-1">
                     <div class="flex flex-cols">
                         <p class="text-sm grow">TAGIHAN </p>
-                        <a href="form/tambah_tagihan.php?nis=<?=$nis?>&<?=$ket?>" class="hover:text-red-700 pr-1">+</a>
+                        <a href="../form/tambah_tagihan.php?nis=<?=$nis?>&<?=$ket?>" class="hover:text-red-700 pr-1">+</a>
                     </div>
                     <?php if ($tagihan) : ?>
                         <!-- <div class="grid grid-cols-2 gap-2 p-2"> -->
