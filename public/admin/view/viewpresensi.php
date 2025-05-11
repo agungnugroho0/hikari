@@ -63,6 +63,6 @@ $kelas = tampil("SELECT * FROM kelas");
     <div class="mx-auto w-full mt-3" id="hasil"></div>
 </body>
 <script src="../../javascript/presensi.js"></script>
-<script src="../../javascript/jumlah_lolos.js"></script>
+<script src="/hikari/public/javascript/jumlah_lolos.js"></script>
 
 </html>

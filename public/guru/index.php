@@ -12,6 +12,10 @@ foreach ($guru as $g) {
     $foto = $g['foto'];
 };
 
+$kelasku = tampil("SELECT kelas FROM kelas WHERE id_kelas = '$id_kelas'");
+foreach ($kelasku as $kl){
+    $kelas = $kl['kelas'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +25,9 @@ foreach ($guru as $g) {
     <title><?= $nama; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="../image/asset/logo.png">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <style>
         @font-face{
             font-family:'Lato';
@@ -51,17 +57,21 @@ foreach ($guru as $g) {
     <main class="container w-full grid grid-cols-2 gap-3 mx-auto px-6 dark:bg-black">
         <div class="col-span-2 border-4 border-black dark:border-white w-full">
             <div class="p-2 flex items-center justify-between font-[Lato] font-semibold dark:text-white text-black">
-                <p>Jumlah Siswa Lolos </p>
-                <select name="tahun" id="tahun" class="dark:text-white dark:bg-black">
+                <p>Jumlah Siswa Lolos <span id="bln"></span> 
+                <span id="kls" class="hidden sm:inline"></span>
+                </p>
+                <!-- <select name="tahun" id="tahun" class="dark:text-white dark:bg-black">
                     <script>
                         let tahunSekarang = new Date().getFullYear();
                         for (let i = tahunSekarang; i >= tahunSekarang - 5; i--) {
                             document.write(`<option value="${i}">${i}</option>`);
                         }
                     </script>
-                </select> 
+                </select>  -->
+            <input type="month" class="py-1 px-2 rounded focus:outline-none shadow-sm dark:border dark:text-black" id="bulan" value="<?= date('Y-m')?>">
+            <input type="hidden" value="<?= $kelas?>" id="kelas">
             </div>
-            <canvas id="chartLolos" class="dark:bg-white pt-3"></canvas>
+            <div id="chartLolos" class="dark:bg-white pt-3"></div>
         </div>
         <a href="siswa.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
             <img src="../image/asset/staff.png" alt="siswa" class="h-14 group-hover:scale-0 transition duration-200">
@@ -81,7 +91,9 @@ foreach ($guru as $g) {
         
     </main>
 </body>
-<script src="../javascript/grafik_lolos.js"></script>
+<!-- <script src="../javascript/grafik_lolos.js"></script> -->
+<script src="/hikari/public/javascript/jumlah_lolos.js"></script>
+<!-- <script src="../javascript/jumlah_lolos.js"></script> -->
 <script>
      
 </script>
