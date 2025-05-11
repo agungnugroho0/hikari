@@ -5,6 +5,7 @@ require '../../autoloader.php';
 header('Content-Type: application/json');
 $bulan = $_GET['bulan'];
 $kelas = $_GET['kelas'] ;
+
     $absen = tampil("SELECT 
                             absen.tgl,
                             SUM(ket = 'H') AS hadir,
@@ -14,7 +15,9 @@ $kelas = $_GET['kelas'] ;
                             SUM(ket = 'M') AS mensetsu
                             FROM absen
                             JOIN siswa ON absen.nis = siswa.nis 
+                            JOIN kelas on siswa.id_kelas = kelas.id_kelas
                             WHERE siswa.id_kelas = '$kelas' 
+                            OR kelas = '$kelas'
                             AND DATE_FORMAT(absen.tgl, '%Y-%m') = '$bulan'
                             GROUP BY absen.tgl
                             ORDER BY absen.tgl");

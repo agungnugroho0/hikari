@@ -55,6 +55,10 @@ $kelas = tampil("SELECT * FROM kelas");
             <h2 class="font-semibold text-base font-[Lato]">Jumlah Siswa Lolos Bulan <span id="bln"></span> Kelas <span id="kls"></span></h2>
             <div id="chartLolos"></div>
       </div>
+      <div class="border-2 p-2 rounded border-gray-200 bg-white ">
+            <h2 class="font-semibold text-base font-[Lato]">Rekapan Presensi Siswa Bulan <span id="bln2"></span> Kelas <span id="kls2"></span></h2>
+            <div id="chartPresensi"></div>
+      </div>
     </div>  
     <div class="mx-auto w-full mt-3" id="hasil"></div>
 </body>
