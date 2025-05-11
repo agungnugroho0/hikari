@@ -19,35 +19,8 @@ $kelas = tampil("SELECT * FROM kelas");
 
 </head>
 <body>
-<button
-  class="bg-white text-center w-48 rounded-xl h-8 relative text-black text-sm font-semibold group mt-2 sm:hidden"
-  type="button"
-  onclick="window.location.href='../index.php';"
->
-  <div
-    class="bg-red-800 rounded-2xl h-8 w-1/4 flex items-center justify-center absolute left-0 top-[0px] group-hover:w-[184px] z-10 duration-500"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1024 1024"
-      height="25px"
-      width="25px"
-    >
-      <path
-        d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
-        fill="#ffffff"
-      ></path>
-      <path
-        d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
-        fill="#ffffff"
-      ></path>
-    </svg>
-  </div>
-  <p class="translate-x-2">Go Back</p>
-</button>
-
 <div class="mx-2 flex flex-col sm:flex-row gap-3 mt-3 sm:mt-0">
-        <input type="month" class="py-1 px-2 rounded focus:outline-none shadow-sm" id="bulan" >
+        <input type="month" class="py-1 px-2 rounded focus:outline-none shadow-sm" id="bulan" value="<?= date('Y-m')?>">
         <select id="kelas" class="py-1 px-2 rounded focus:outline-none shadow-sm">
             <?php foreach ($kelas as $key => $value) :?>
                 <option value="<?=$value['kelas']?>"><?= $value['kelas']?>

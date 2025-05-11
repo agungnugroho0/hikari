@@ -25,6 +25,7 @@ const kelas = document.getElementById('kelas');
         XLSX.writeFile(wb, `Presensi ${kelas.value} ${bulan.value}.xlsx`);
     }
 
+    loadData();
     kelas.addEventListener('change', loadData);
     bulan.addEventListener('change', loadData);
     exportBtn.addEventListener('click', exportexcel);
