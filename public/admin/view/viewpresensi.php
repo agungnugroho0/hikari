@@ -15,8 +15,16 @@ $kelas = tampil("SELECT * FROM kelas");
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="icon" type="image/png" href="../../image/asset/logo.png">
-
+    <style>
+      @font-face {
+        font-family: 'Lato';
+        src: url('../../font/Lato-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        }
+    </style>
 </head>
 <body>
 <div class="mx-2 flex flex-col sm:flex-row gap-3 mt-3 sm:mt-0">
@@ -40,9 +48,17 @@ $kelas = tampil("SELECT * FROM kelas");
                 class="fill-gray-800 group-hover:fill-gray-800"
                 ></path>
             </svg>
-            </button>
-    </div>
+        </button>
+      </div>
+    <div class="sm:grid sm:grid-cols-2 gap-2 mt-2">
+      <div class="border-2 p-2 rounded border-gray-200 bg-white ">
+            <h2 class="font-semibold text-base font-[Lato]">Jumlah Siswa Lolos Bulan <span id="bln"></span> Kelas <span id="kls"></span></h2>
+            <div id="chartLolos"></div>
+      </div>
+    </div>  
     <div class="mx-auto w-full mt-3" id="hasil"></div>
 </body>
 <script src="../../javascript/presensi.js"></script>
+<script src="../../javascript/jumlah_lolos.js"></script>
+
 </html>
