@@ -45,6 +45,69 @@ $d_tagihan2=[
 $wawancara = [
     ':nis'=>$nis
 ];
+// coba API kelulusan siswa
+$token = "vXze72HNXjgiDio2Z9HK";
+function Kirimfonnte($token, $data)
+{
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+            'target' => $data["target"],
+            'message' => $data["message"],
+            'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: ' . $token
+        ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    // echo $response; //log response fonnte
+};
+
+$no_wasiswa = tampil("SELECT wa,nama,id_kelas FROM siswa WHERE nis = '$nis'");
+foreach ($no_wasiswa as $no){$no_wa = formatnowa($no['wa']);$nama= $no['nama'];$idkls = $no['id_kelas'];};
+$no_sensei = tampil("SELECT no,nama FROM staff WHERE id_kelas = '$idkls'");
+foreach ($no_sensei as $s){$no_s = $s['no'];$nama_s = $s['nama'];};
+
+
+$pesan_siswa = "🎉 Selamat, *$nama* !\n\n"
+. "Kamu telah dinyatakan *LOLOS MENSETSU* pada perusahaan $perusahaan pada bidang $job.\n\n"
+. "📅 Tanggal Lolos: $tgl_lolos\n\n"
+. "Terus semangat, jaga kesehatan dan jaga sikap, karena ini adalah awal dari perjalananmu menuju Jepang 🇯🇵✨\n\n"
+. "おめでとうございます！\n\n"
+. "Salam,\nTeam Hikari Gakkou";
+
+$pesan_sensei = "👨‍🏫 Kepada Yth. $nama_s Sensei,\n\n"
+    . "Kami informasikan bahwa siswa atas nama:\n\n"
+    . "👤 Nama : $nama\n"
+    . "🏢 Perusahaan : $perusahaan\n"
+    . "💼 Bidang: $job\n"
+    . "📅 Tanggal Lolos : $tgl_lolos\n\n"
+    . "Telah *LOLOS MENSETSU* \n\n"
+    . "Terima kasih atas bimbingan dan dukungan dari Sensei selama ini 🙏\n\n"
+    . "お疲れ様でした";
+
+$pesan1 =["target"=> '089649792758',//$no_wa,
+        "message" => $pesan_siswa
+];
+$pesan2 =["target"=> '089649792758',$no_s,
+        "message" => $pesan_sensei ];
+
+@kirimfonnte($token,$pesan1);
+@kirimfonnte($token,$pesan2);
+
 
 masukan('log_lolos',$d_loglolos);
 masukan('tagihan',$d_tagihan1);
@@ -53,14 +116,10 @@ pindahkanData('lolos','siswa',$nis);
 hapus('wawancara',$wawancara);
 hapus('siswa',$wawancara);
 hapus('absen',$wawancara);
-// hapus('keaktifan',$wawancara);
-// echo "
-//     <script>
-//         if (window.innerWidth <= 768) {
-//             window.location.href = '/hikari/public/view/wawancara.php?sukses';
-//         } else {
-//             window.location.href = '/hikari/public/admin/index.php?menu_id=3&sukses';
-//         }
-//     </script>
-// ";
-header("Location:../../public/admin/index.php?menu_Id=3&sukses");
+
+
+echo "
+    <script>
+    window.top.location.href= '/hikari/public/admin/index.php?menu_Id=3&sukses';;
+    </script>
+";

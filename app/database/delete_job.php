@@ -15,5 +15,9 @@ hapus('job',$data);
 //         }
 //     </script>
 // ";
-header("Location:../../public/admin/index.php?menu_Id=3&sukses");
+echo "
+    <script>
+    window.top.location.href= '/hikari/public/admin/index.php?menu_Id=3&sukses';;
+    </script>
+";
 

@@ -2,7 +2,7 @@
 require_once '../../autoloader.php';
 admin();
 $nis = $_POST['nis'];
-$ket = $_POST['ket'];
+$ket = 'lolos=ya';
 if($ket == 'lolos'){
     $ket2 = '&lolos=ya';
 } else {
@@ -20,4 +20,4 @@ $d_tagihan=[
     ':sisa_tagihan' =>$tagihan
 ];
 masukan('tagihan',$d_tagihan);
-header("Location:../../public/admin/view/detail_siswa.php?nis=$nis$ket2");
+header("Location:../../public/admin/view/detail_siswa.php?nis=$nis&lolos=ya");
