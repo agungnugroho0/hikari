@@ -15,3 +15,4 @@ hapus('kelas',$data);
 //     </script>
 // ";
 header("Location:../../public/admin/index.php?menu_Id=6&sukses");
+

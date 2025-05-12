@@ -72,8 +72,8 @@ foreach ($so as $data_so) {
 
 </head>
 <body>
-
-    <div class="flex flex-wrap gap-3 flex-row">
+<a href="/hikari/public/admin/form/tambah_job.php" class="text-white bg-gradient-to-br from-orange-600 to-red-700 hover:to-yellow-700 focus:ring-1 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium text-sm px-5 py-2 text-center">+ Training Order</a>
+    <div class="flex flex-wrap gap-3 flex-row mt-5">
         <!-- mulai looping -->
          <?php foreach ($job as $id_so => $data_so): ?>
         <div class="shadow w-full sm:w-[18rem] relative">

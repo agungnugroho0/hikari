@@ -15,5 +15,9 @@ hapus('so',$data);
 //         }
 //     </script>
 // ";
-header("Location:../../public/admin/index.php?menu_Id=8&sukses");
-
+// header("Location:../../public/admin/index.php?menu_Id=8&sukses");
+echo "
+    <script>
+    window.top.location.href= '/hikari/public/admin/index.php?menu_Id=8&sukses';;
+    </script>
+";
