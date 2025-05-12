@@ -17,7 +17,7 @@ $kelas = $_GET['kelas'] ;
                             JOIN siswa ON absen.nis = siswa.nis 
                             JOIN kelas on siswa.id_kelas = kelas.id_kelas
                             WHERE siswa.id_kelas = '$kelas' 
-                            OR kelas = '$kelas'
+                            OR kelas.kelas = '$kelas'
                             AND DATE_FORMAT(absen.tgl, '%Y-%m') = '$bulan'
                             GROUP BY absen.tgl
                             ORDER BY absen.tgl");

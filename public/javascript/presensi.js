@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 let kelas = document.getElementById("kelas");
 let bulan = document.getElementById("bulan");
 
@@ -38,19 +39,19 @@ function exportexcel() {
   XLSX.writeFile(wb, `Presensi ${kelas.value} ${bulan.value}.xlsx`);
 }
 
-async function fetchdataKelas(bulan, kelas) {
+async function fetchdataKelas() {
   const response = await fetch(
-    `../../../app/api/api_grafikabsenperkelas.php?bulan=${bulan}&kelas=${kelas}`
+    `../../../app/api/api_grafikabsenperkelas.php?bulan=${bulan.value}&kelas=${kelas.value}`
   );
   const data = await response.json();
   //   const text = await response.text();
-//   console.log("RESPON DARI SERVER:", data);
-  const tgl = data.map((item) => item.tgl);
-  const hadir = data.map((item) => parseInt(item.hadir));
-  const izin = data.map((item) => parseInt(item.izin));
-  const alpha = data.map((item) => parseInt(item.alpha));
-  const sakit = data.map((item) => parseInt(item.sakit));
-  const mensetsu = data.map((item) => parseInt(item.mensetsu));
+  // console.log("RESPON DARI SERVER:", data);
+  const tgl = data.map(item => item.tgl);
+  const hadir = data.map(item => parseInt(item.hadir));
+  const izin = data.map(item => parseInt(item.izin));
+  const alpha = data.map(item => parseInt(item.alpha));
+  const sakit = data.map(item => parseInt(item.sakit));
+  const mensetsu = data.map(item => parseInt(item.mensetsu));
 
   const options = {
     chart: {
@@ -89,10 +90,9 @@ async function fetchdataKelas(bulan, kelas) {
   if (chart2) {
     chart2.destroy();
   }
-  //   const target = document.querySelector(`#chartPresensi`);
   chart2 = new ApexCharts(chartabsen, options);
+  // console.log('Rendering chart...');
   chart2.render();
-  // chartMapKelas[kelasId] = chart; // Simpan chart ke dalam peta berdasarkan id_kelas
 }
 
 function formatBulan(bulan) {
@@ -115,6 +115,7 @@ kelas.addEventListener("change", () => {
   bln2.textContent = formatBulan(bulan.value);
   kls2.textContent = kelas.value;
 });
+
 bulan.addEventListener("change", () => {
   loadData();
   fetchdataKelas(bulan.value, kelas.value);
@@ -123,7 +124,12 @@ bulan.addEventListener("change", () => {
 });
 exportBtn.addEventListener("click", exportexcel);
 
-bln2.textContent = formatBulan(bulan.value);
-kls2.textContent = kelas.value;
-fetchdataKelas(bulan.value, kelas.value);
-loadData();
+
+window.addEventListener("DOMContentLoaded", () => {
+  bln2.textContent = formatBulan(bulan.value);
+  kls2.textContent = kelas.value;
+  fetchdataKelas(bulan.value, kelas.value);
+  loadData();
+});
+
+});
