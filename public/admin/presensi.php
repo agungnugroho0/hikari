@@ -5,5 +5,5 @@ require __DIR__.'/../../autoloader.php';
 admin();
 
 ?>
-    <iframe src="view/viewpresensi.php" frameborder="0" class="w-full h-screen"></iframe>
+    <iframe src="view/viewpresensi.php" frameborder="0" class="w-full h-[87vh]"></iframe>
 

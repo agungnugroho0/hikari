@@ -67,6 +67,11 @@
                 </svg>
                     <div id="searchResults" class="hidden ml-2 absolute top-10 md:top-10 w-full md:w-64 bg-white shadow-sm rounded-lg z-10"></div>
                 </div>
+                <a href="../../app/config/logout.php" class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-black dark:border-white group px-5 py-1.5 h-10 ml-5">
+                    <span class="relative z-10 text-black dark:text-white group-hover:text-white dark:group-hover:text-black text-base duration-500 font-semibold font-[Lato]">KELUAR</span>
+                    <span class="absolute w-full h-full bg-black dark:bg-gray-100 -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
+                    <span class="absolute w-full h-full bg-black dark:bg-gray-100 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
+                </a>
                 <div class="ml-auto">
                     <?php
                     if ($foto == null ){

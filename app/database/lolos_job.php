@@ -99,16 +99,16 @@ $pesan_sensei = "👨‍🏫 Kepada Yth. $nama_s Sensei,\n\n"
     . "Terima kasih atas bimbingan dan dukungan dari Sensei selama ini 🙏\n\n"
     . "お疲れ様でした";
 
-$pesan1 =["target"=> '089649792758',//$no_wa,
+$pesan1 =["target"=> $no_wa,
         "message" => $pesan_siswa
 ];
-$pesan2 =["target"=> '089649792758',$no_s,
+$pesan2 =["target"=> $no_s,
         "message" => $pesan_sensei ];
 
 @kirimfonnte($token,$pesan1);
 @kirimfonnte($token,$pesan2);
 
-
+// print_r ($pesan1);
 masukan('log_lolos',$d_loglolos);
 masukan('tagihan',$d_tagihan1);
 masukan('tagihan',$d_tagihan2);

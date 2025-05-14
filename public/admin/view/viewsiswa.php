@@ -33,7 +33,7 @@ $kelas = tampil("SELECT * FROM kelas");
       .fade-in-up {
         opacity: 0;
         transform: translateY(20px);
-        transition: all 0.5s ease-out;
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         transition-delay: var(--delay, 0s);
       }
 
@@ -47,7 +47,7 @@ $kelas = tampil("SELECT * FROM kelas");
 <body class="mt-2">
   <!-- <select name="kelas" id="kelas" class="border-b-2 border-slate-600 p-2 w-full md:w-1/4 md:mb-3"> -->
     <!-- </select> -->
-    <a class=" text-red-600 font-[Lato] text-sm hover:bg-red-900 hover:text-white transition-all p-2 font-semibold rounded" href="<?= BASE_URL2?>siswa.php?sk" target="_top">Tambah Siswa</a>
+    <a class=" text-red-600 font-[Lato] text-sm hover:bg-red-900 hover:text-white p-2 font-semibold rounded" href="<?= BASE_URL2?>siswa.php?sk" target="_top">Tambah Siswa</a>
     
     <?php foreach ($kelas as $k) : ?>
       <?php $siswa = tampil("SELECT siswa.nis, siswa.nama,siswa.foto, siswa.tgl, wawancara.id_job, job.tgl_job 
