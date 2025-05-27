@@ -5,5 +5,7 @@ function naik($nis){
     $id_kelas = $s['id_kelas'];
     }
     $id_kelasbaru = $id_kelas - 1 ;
-    perbarui('siswa', [':id_kelas' => $id_kelasbaru], [':nis' => $nis]);
+$where = [':nis' => $nis];
+    $data = [':id_kelas' => $id_kelasbaru];
+    perbarui('siswa', $data, $where);
 }

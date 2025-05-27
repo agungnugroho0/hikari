@@ -4,6 +4,6 @@ $nis = $_GET['nis'];
 naik($nis);
 echo "
     <script>
-            window.location.href = '/hikari/public/guru/index.php?sukses';
+            window.location.href = '/hikari/public/guru/siswa.php?sukses';
     </script>
 ";

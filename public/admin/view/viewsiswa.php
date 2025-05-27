@@ -68,7 +68,7 @@ $kelas = tampil("SELECT * FROM kelas");
           <a href="detail_siswa.php?nis=<?=$s['nis']?>" class="border-2 <?= $s['id_job'] ? 'bg-green-300' : 'bg-white' ?> rounded p-2 flex flex-col group hover:bg-slate-200 fade-in-up border-slate-600"
              style="--delay: <?=$delay?>s;">
               
-            <p class="font-semibold font-[Lato] overflow-hidden text-ellipsis whitespace-nowrap w-32 mt-0.5"><span><?= $i ?>. </span><?= $s['nama']?></p>
+            <p class="font-semibold font-[Lato] overflow-hidden //text-ellipsis //whitespace-nowrap w-32 mt-0.5"><span><?= $i ?>. </span><?= $s['nama']?></p>
             <p class="font-semibold font-[Lato] overflow-hidden text-ellipsis whitespace-nowrap w-32 mt-0.5 text-red-900"><?= umur($s['tgl'])?> 歳</p>
             <?php if (!empty($s['tgl_job'])) : ?>
             <p class="text-xs text-slate-700">
