@@ -1,8 +1,10 @@
 <?php
-header('Content-Type: application/json');
 
 require '../../autoloader.php';
 
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 function stringToColor($str) {
   $code = dechex(crc32($str));
   return '#' . substr($code, 0, 6);
@@ -49,5 +51,5 @@ foreach ($wawancara as $row) {
         ];
     }
 }
-
+header('Content-Type: application/json');
 echo json_encode($data_chart);
