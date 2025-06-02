@@ -14,16 +14,18 @@ function stringToColor($str) {
 };
 
 $wawancara = tampil ("SELECT
-  job.id_job,
+  ANY_VALUE(job.id_job) AS id_job,
   job.tgl_job AS start_datetime,
-  IF(job.tgl_job = '0000-00-00', NULL, DATE_ADD(job.tgl_job, INTERVAL 12 HOUR)) AS end_datetime,
-  so.so AS nama_so, COUNT(job.id_job) AS jumlah_job,
+  IF(job.tgl_job IS NULL, NULL, DATE_ADD(job.tgl_job, INTERVAL 24 HOUR)) AS end_datetime,
+  so.so AS nama_so,
+  COUNT(job.id_job) AS jumlah_job,
   CASE
-    WHEN job.tgl_job = '0000-00-00' THEN 'Belum Dijadwalkan'
+    WHEN job.tgl_job IS NULL THEN 'Belum Dijadwalkan'
     ELSE 'Sudah Dijadwalkan'
   END AS status
 FROM job
-JOIN so ON job.id_so = so.id_so GROUP BY so.so, job.tgl_job
+JOIN so ON job.id_so = so.id_so
+GROUP BY so.so, job.tgl_job
 ORDER BY FIELD(status, 'Belum Dijadwalkan', 'Sudah Dijadwalkan'), job.tgl_job");
 
 $data_chart = [];
@@ -41,7 +43,7 @@ foreach ($wawancara as $row) {
         continue; // skip yang error
         }
 
-        
+
         $now = time() * 1000;
         $dummy_end = $now + 18000000; // Tambah 1 menit
         $data_chart[] = [
