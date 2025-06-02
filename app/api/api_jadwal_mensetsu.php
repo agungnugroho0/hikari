@@ -2,9 +2,9 @@
 
 require '../../autoloader.php';
 
-ini_set('display_errors', 1);
+// ini_set('display_errors', 1);
 error_reporting(E_ALL);
-file_put_contents('/tmp/mensetsu_debug.txt', "Masuk API Mensetsu\n", FILE_APPEND);
+// file_put_contents('/tmp/mensetsu_debug.txt', "Masuk API Mensetsu\n", FILE_APPEND);
 
 // header('Content-Type: application/json'); // Aktifkan kembali header json
 echo "tes";
