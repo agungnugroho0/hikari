@@ -16,7 +16,7 @@ function stringToColor($str) {
 $wawancara = tampil ("SELECT
   ANY_VALUE(job.id_job) AS id_job,
   job.tgl_job AS start_datetime,
-  IF(job.tgl_job IS NULL, NULL, DATE_ADD(job.tgl_job, INTERVAL 24 HOUR)) AS end_datetime,
+  IF(job.tgl_job IS NULL, '0000-00-00', DATE_ADD(job.tgl_job, INTERVAL 24 HOUR)) AS end_datetime,
   so.so AS nama_so,
   COUNT(job.id_job) AS jumlah_job,
   CASE
@@ -66,4 +66,6 @@ foreach ($wawancara as $row) {
     }
 }
 
-echo json_encode($data_chart);
+// echo json_encode($data_chart);
+print_r($data_chart);
+file_put_contents('/tmp/mensetsu_debug.txt', "Data Chart: ".json_encode($data_chart)."\n", FILE_APPEND);
