@@ -2,25 +2,25 @@
 
 require '../../autoloader.php';
 
-
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 file_put_contents('/tmp/mensetsu_debug.txt', "Masuk API Mensetsu\n", FILE_APPEND);
 
-// header('Content-Type: application/json');
+header('Content-Type: application/json'); // Aktifkan kembali header json
+
 function stringToColor($str) {
   $code = dechex(crc32($str));
   return '#' . substr($code, 0, 6);
-};
+}
 
-$wawancara = tampil ("SELECT
+$wawancara = tampil("SELECT
   ANY_VALUE(job.id_job) AS id_job,
   job.tgl_job AS start_datetime,
-  IF(job.tgl_job IS NULL, '0000-00-00', DATE_ADD(job.tgl_job, INTERVAL 24 HOUR)) AS end_datetime,
+  IF(job.tgl_job IS NULL OR job.tgl_job = '0000-00-00', NULL, DATE_ADD(job.tgl_job, INTERVAL 24 HOUR)) AS end_datetime,
   so.so AS nama_so,
   COUNT(job.id_job) AS jumlah_job,
   CASE
-    WHEN job.tgl_job IS NULL THEN 'Belum Dijadwalkan'
+    WHEN job.tgl_job IS NULL OR job.tgl_job = '0000-00-00' THEN 'Belum Dijadwalkan'
     ELSE 'Sudah Dijadwalkan'
   END AS status
 FROM job
@@ -31,41 +31,36 @@ ORDER BY FIELD(status, 'Belum Dijadwalkan', 'Sudah Dijadwalkan'), job.tgl_job");
 $data_chart = [];
 
 foreach ($wawancara as $row) {
+    $color = stringToColor($row['nama_so']);
 
-  $color = stringToColor($row['nama_so']); // generate warna unik berdasarkan nama SO
-    // Kalau belum dijadwalkan, kasih waktu dummy biar bisa tetap muncul
-    if ($row['start_datetime'] == '0000-00-00' || !$row['end_datetime']) {
- 
-      $start = strtotime($row['start_datetime'] ?? '');
-      $end = strtotime($row['end_datetime'] ?? '');
-      if (!$start || !$end) {
-        file_put_contents('/tmp/mensetsu_debug.txt', "Datetime error: ".json_encode($row)."\n", FILE_APPEND);
-        continue; // skip yang error
-        }
+    $start = strtotime($row['start_datetime'] ?? '');
+    $end   = strtotime($row['end_datetime'] ?? '');
 
-
+    // Kalau tanggal invalid (NULL/0000-00-00), pakai waktu dummy
+    if (!$start || !$end) {
         $now = time() * 1000;
-        $dummy_end = $now + 18000000; // Tambah 1 menit
-        $data_chart[] = [
-            "x" => substr($row['nama_so'], 0, 10), // ambil 10 karakter pertama dari nama_so
-            "y" => [$now, $dummy_end],
-            "fillColor" => '#000000', // warna abu-abu
-            "jumlah_job" => 'Belum Dijadwalkan'
-        ];
-    } else {
+        $dummy_end = $now + 18000000; // +5 jam
+
         $data_chart[] = [
             "x" => substr($row['nama_so'], 0, 10),
-            "y" => [
-                strtotime($row['start_datetime']) * 1000,
-                strtotime($row['end_datetime']) * 1000
-            ],
-            "status" => 'Sudah Dijadwalkan',
-            "jumlah_job" => $row['jumlah_job'],
-            "fillColor" => $color, // warna unik berdasarkan nama SO
+            "y" => [$now, $dummy_end],
+            "fillColor" => '#000000',
+            "jumlah_job" => 'Belum Dijadwalkan'
         ];
+
+        file_put_contents('/tmp/mensetsu_debug.txt', "Datetime error: ".json_encode($row)."\n", FILE_APPEND);
+        continue;
     }
+
+    // Jika tanggal valid
+    $data_chart[] = [
+        "x" => substr($row['nama_so'], 0, 10),
+        "y" => [$start * 1000, $end * 1000],
+        "status" => 'Sudah Dijadwalkan',
+        "jumlah_job" => $row['jumlah_job'],
+        "fillColor" => $color,
+    ];
 }
 
-// echo json_encode($data_chart);
-print_r($data_chart);
 file_put_contents('/tmp/mensetsu_debug.txt', "Data Chart: ".json_encode($data_chart)."\n", FILE_APPEND);
+echo json_encode($data_chart);
