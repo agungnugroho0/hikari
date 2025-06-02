@@ -1,5 +1,6 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require_once '../../autoloader.php';
+
 admin();
 $nis = $_POST['nis'];
 $id_job = $_POST['job'];

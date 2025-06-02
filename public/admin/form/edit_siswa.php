@@ -1,6 +1,6 @@
 <?php 
 // require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
-include __DIR__.'../../../autoloader.php';
+include __DIR__.'/../../../autoloader.php';
 
 admin();
 $nis = $_GET['nis'];

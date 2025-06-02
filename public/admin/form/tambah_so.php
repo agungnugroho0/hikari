@@ -1,5 +1,6 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+include '../../../autoloader.php';
+
 admin();
 
 ?>

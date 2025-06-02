@@ -1,6 +1,8 @@
 <?php
 // require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
-require '../../autoloader.php';
+
+require_once '../../../autoloader.php';
+
 admin();
 $nis = $_GET['nis'];
 $job = tampil("SELECT j.*, s.* FROM job j JOIN so s ON j.id_so = s.id_so");

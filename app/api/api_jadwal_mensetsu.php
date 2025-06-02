@@ -47,7 +47,7 @@ foreach ($wawancara as $row) {
             "x" => $row['nama_so'].  " #" . $row['id_job'],
             "y" => [$now, $dummy_end],
             "status" => 'Belum Dijadwalkan',
-            // "nama_job" => $row['nama_job'],
+            "nama_job" => $row['nama_job'],
             "fillColor" => '#000000',
         ];
     } else {
@@ -55,8 +55,8 @@ foreach ($wawancara as $row) {
         $data_chart[] = [
             "x" => $row['nama_so'].  " #" . $row['id_job'],
             "y" => [$start * 1000, $end * 1000],
-            "status" => 'Sudah Dijadwalkan',
-            // "nama_job" => $row['nama_job'],
+            "status" =>  $row['start_datetime'],
+            "nama_job" => $row['nama_job'],
             "fillColor" => $color,
         ];
     }

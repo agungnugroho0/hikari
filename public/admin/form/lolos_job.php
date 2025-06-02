@@ -1,5 +1,5 @@
 <?php
-include __DIR__.'../../../autoloader.php';
+include __DIR__.'/../../../autoloader.php';
 admin();
 $id_w = $_GET['id_w'];
 $tampil = tampil("SELECT wawancara.*,job.*,so.id_so,so.so,siswa.nama FROM wawancara JOIN job ON wawancara.id_job = job.id_job JOIN so ON job.id_so = so.id_so JOIN siswa ON wawancara.nis = siswa.nis WHERE id_w = '$id_w'");

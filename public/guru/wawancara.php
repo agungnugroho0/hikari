@@ -80,7 +80,7 @@ foreach ($so as $data_so) {
         <div class="shadow w-full sm:w-[18rem] relative">
             <!-- judul SO -->
             <div class="flex gap-2 logo-container relative overflow-hidden items-center h-16">
-                <img src="/hikari/public/image/img_so/<?= $data_so['foto_so']?>" alt="" class="w-16 object-cover logo-img" >
+                <img src="/public/image/img_so/<?= $data_so['foto_so']?>" alt="" class="w-16 object-cover logo-img" >
                 <p class="nama_so font-semibold text-2xl pl-2 overflow-hidden text-ellipsis whitespace-nowrap"><?= $data_so['so']?></p> 
             </div>
             <!-- judul SO -->

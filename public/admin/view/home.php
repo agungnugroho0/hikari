@@ -185,7 +185,8 @@ fetch('../../../app/api/api_jadwal_mensetsu.php')
           const d = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
           return `<div style="padding:5px">
                     <div class="text-red-900 font-semibold">${d.x}</div>
-                    ${d.jumlah_job ? `Jumlah Job: ${d.jumlah_job}` : ''}<br/>
+                    <p class="font-semibold">${d.nama_job ? `Job : ${d.nama_job}` : ''}</p>
+                    ${d.status ? `Tanggal : ${d.status}` : ''}<br/>
                   </div>`;
         }
       },
