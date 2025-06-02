@@ -5,6 +5,9 @@ require '../../autoloader.php';
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+file_put_contents('/tmp/mensetsu_debug.txt', "Masuk API Mensetsu\n", FILE_APPEND);
+
+// header('Content-Type: application/json');
 function stringToColor($str) {
   $code = dechex(crc32($str));
   return '#' . substr($code, 0, 6);
@@ -30,6 +33,15 @@ foreach ($wawancara as $row) {
   $color = stringToColor($row['nama_so']); // generate warna unik berdasarkan nama SO
     // Kalau belum dijadwalkan, kasih waktu dummy biar bisa tetap muncul
     if ($row['start_datetime'] == '0000-00-00' || !$row['end_datetime']) {
+ 
+      $start = strtotime($row['start_datetime'] ?? '');
+      $end = strtotime($row['end_datetime'] ?? '');
+      if (!$start || !$end) {
+        file_put_contents('/tmp/mensetsu_debug.txt', "Datetime error: ".json_encode($row)."\n", FILE_APPEND);
+        continue; // skip yang error
+        }
+
+        
         $now = time() * 1000;
         $dummy_end = $now + 18000000; // Tambah 1 menit
         $data_chart[] = [
@@ -51,5 +63,5 @@ foreach ($wawancara as $row) {
         ];
     }
 }
-header('Content-Type: application/json');
+
 echo json_encode($data_chart);
