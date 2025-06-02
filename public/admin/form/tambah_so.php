@@ -16,7 +16,7 @@ admin();
     <div class="bg-slate-50 w-96 p-2 rounded-lg shadow-md">
         <h1 class="text-xl text-center font-semibold mb-4">Tambah SO</h1>
         <hr class="my-1">
-        <form action="../../../app/database/tambah_so.php" method="post" enctype="multipart/form-data">
+        <form action="/app/database/tambah_so.php" method="post" enctype="multipart/form-data">
             <label for="so" class="text-sm font-semibold text-gray-500 my-2">Nama SO</label>
             <input type="text" class="p-2 border-b-2 border-blue-400 w-full focus:border-blue-800 focus:outline-none font-normal my-2" name="so" placeholder="" id="so">
             <label for="lokasi" class="text-sm font-semibold text-gray-500 my-2">Lokasi</label>

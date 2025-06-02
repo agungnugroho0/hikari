@@ -19,7 +19,7 @@ $kls = $kelas[0];
     <div class="container mx-auto my-auto md:max-w-lg mt-5 shadow-md p-3">
         <p class="text-center font-medium text-xl">KELAS</p>
         <hr class="my-2">
-        <form action="../../../app/database/edit_kelas.php" method="post" class="flex flex-col">
+        <form action="/app/database/edit_kelas.php" method="post" class="flex flex-col">
             <label for="kelas" class="text-sm font-semibold text-gray-500 my-2">ID Kelas</label>
             <input type="text" class="p-2 border-b-2 text-white w-full bg-blue-800 focus:outline-none" value="<?=$id_kelas?>" name="id_kelas" readonly/>
             <label for="kelas" class="text-sm font-semibold text-gray-500 my-2">Kelas</label>

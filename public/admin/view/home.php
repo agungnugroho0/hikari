@@ -1,5 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require __DIR__.'/../../../autoloader.php';
+
 $kelas = tampil("SELECT id_kelas, kelas FROM kelas");
 
 ?> 
@@ -52,7 +54,7 @@ let chart;
 // chart jumlah_lolos
 async function fetchdata(bulan) {
   try {
-    const res = await fetch(`../../../app/api/api_jmllolos_perbulan.php?bulan=${bulan}`);
+    const res = await fetch(`/app/api/api_jmllolos_perbulan.php?bulan=${bulan}`);
     const data = await res.json();
     const tanggal = data.map(item => item.tgl);
     const jumlah = data.map(item => parseInt(item.jumlah_lolos,10)); // Pastikan jumlah_lolos adalah angka
@@ -103,7 +105,7 @@ async function fetchdata(bulan) {
 // chart absen kelas
 const chartKelas = document.querySelectorAll("[id^='chartKelas']"); // Ambil semua elemen yang id-nya diawali dengan 'chartKelas'
 async function fetchdataKelas(bulan,kelasId){
-  const response = await fetch(`../../../app/api/api_grafikabsen.php?bulan=${bulan}&kelas=${kelasId}`);
+  const response = await fetch(`/app/api/api_grafikabsen.php?bulan=${bulan}&kelas=${kelasId}`);
   const data = await response.json();
   const tgl = data.map(item => item.tgl);
   const hadir = data.map(item => parseInt(item.hadir));
@@ -156,7 +158,7 @@ async function fetchdataKelas(bulan,kelasId){
 }
 
 // chart jadwal mensetsu
-fetch('../../../app/api/api_jadwal_mensetsu.php')
+fetch('/app/api/api_jadwal_mensetsu.php')
   .then(res => res.json())
   .then(data => {
     const options = {

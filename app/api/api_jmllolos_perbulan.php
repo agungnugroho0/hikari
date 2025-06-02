@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+
 require '../../autoloader.php';
 
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('Y-m'); // Default ke bulan ini

@@ -19,7 +19,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dashboard</title>
-        <link rel="icon" type="image/png" href="../image/asset/logo.png">
+        <link rel="icon" type="image/png" href="/public/image/asset/logo.png">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -29,7 +29,7 @@
         <style>
             @font-face{
                 font-family:'Lato';
-                src: url('../font/Lato-Regular.ttf') format('truetype');
+                src: url('/public/font/Lato-Regular.ttf') format('truetype');
                 font-weight: normal;
                 font-style: normal;
             }
@@ -43,7 +43,7 @@
     <body class="bg-[#F5F5F5] dark:bg-slate-900 ">
         <header>
             <div class=" flex items-center h-12">
-                <img src="../image/asset/logo.png" alt="" class="ml-2 my-2 w-6 sm:hidden block" />
+                <img src="/public/image/asset/logo.png" alt="" class="ml-2 my-2 w-6 sm:hidden block" />
                 <div class="pl-2 w font-[Lato] font-semibold text-lg hidden sm:block transition-all dark:text-white">HIKARI</div>
                 <div class="relative">
                 <input
@@ -67,7 +67,7 @@
                 </svg>
                     <div id="searchResults" class="hidden ml-2 absolute top-10 md:top-10 w-full md:w-64 bg-white shadow-sm rounded-lg z-10"></div>
                 </div>
-                <a href="../../app/config/logout.php" class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-black dark:border-white group px-5 py-1.5 h-10 ml-5">
+                <a href="/app/config/logout.php" class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-black dark:border-white group px-5 py-1.5 h-10 ml-5">
                     <span class="relative z-10 text-black dark:text-white group-hover:text-white dark:group-hover:text-black text-base duration-500 font-semibold font-[Lato]">KELUAR</span>
                     <span class="absolute w-full h-full bg-black dark:bg-gray-100 -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
                     <span class="absolute w-full h-full bg-black dark:bg-gray-100 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
@@ -75,9 +75,9 @@
                 <div class="ml-auto">
                     <?php
                     if ($foto == null ){
-                        echo '<div class="py-2 "><img class="w-7 h-7 rounded-full mr-2" src="../image/asset/app.png" /></div>';
+                        echo '<div class="py-2 "><img class="w-7 h-7 rounded-full mr-2" src="/public/image/asset/app.png" /></div>';
                     } else {
-                        echo '<div class="py-2 "><img class="w-7 h-7 rounded-full mr-2" src="../image/photos/'.$foto.'" /></div>';
+                        echo '<div class="py-2 "><img class="w-7 h-7 rounded-full mr-2" src="/public/image/photos/'.$foto.'" /></div>';
                     }
                     ?>
                 </div>
@@ -409,5 +409,5 @@
 </script>
 
 
-    <script src="../javascript/pencarian_siswa.js"></script>
+    <script src="/public/javascript/pencarian_siswa.js"></script>
     </html>

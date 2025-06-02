@@ -5,7 +5,7 @@ const bln = document.querySelector("#bln");
 const kls = document.querySelector("#kls");
 let chart;
 
-const API_URL = "/hikari/app/api/api_jumlah_lolos.php";
+const API_URL = "/app/api/api_jumlah_lolos.php";
 async function fetchdata(bulan,kelas){
     try{
         // const respon = await fetch(`../../../app/api/api_jumlah_lolos.php?kelas=${kelas.value}&bulan=${bulan.value}`);

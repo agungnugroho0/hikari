@@ -1,7 +1,7 @@
 <?php
 require '../../autoloader.php';
 guru();
-define('BASE_URL2', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
+// define('BASE_URL2', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
 $user = $_SESSION['username'];
 $level = $_SESSION['level'];
 $guru = tampil("SELECT * FROM staff WHERE nama = '$user'");
@@ -19,7 +19,7 @@ $laporan = tampil("SELECT a.*, s.nis, s.nama FROM absen a JOIN siswa s ON a.nis 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <title>LAPORAN</title>
-    <link rel="icon" type="image/png" href="../image/asset/logo.png">
+    <link rel="icon" type="image/png" href="/public/image/asset/logo.png">
 
 </head>
 <body class="dark:bg-gray-800 bg-gray-100">
@@ -51,7 +51,7 @@ $laporan = tampil("SELECT a.*, s.nis, s.nama FROM absen a JOIN siswa s ON a.nis 
     const exportBtn = document.getElementById('exportBtn');
 
         async function loadData() {
-        const response = await fetch(`../../app/api/api_presensi.php?kelas=${kelas.value}&bulan=${bulan.value}`);
+        const response = await fetch(`/app/api/api_presensi.php?kelas=${kelas.value}&bulan=${bulan.value}`);
         if (!response.ok) {
             throw new Error("Gagal mengambil data");
         }

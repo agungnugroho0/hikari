@@ -11,19 +11,10 @@ $data = [
 ];
 $where = [':id_job' => $_POST['id_job']];
 perbarui('job',$data, $where);
-// echo "
-//     <script>
-//         if (window.innerWidth <= 768) {
-//             window.location.href = '/hikari/public/view/wawancara.php?sukses';
-//         } else {
-//             window.location.href = '/hikari/public/admin/index.php?menu_id=3&sukses';
-//         }
-//     </script>
-// ";
-// header("Location:../../public/admin/index.php?menu_Id=3&sukses");
+
 
 echo "
     <script>
-    window.top.location.href= '/hikari/public/admin/index.php?menu_Id=3&sukses';;
+    window.top.location.href= '/public/admin/index.php?menu_Id=3&sukses';;
     </script>
 ";

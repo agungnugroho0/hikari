@@ -16,11 +16,11 @@ $kelas = tampil("SELECT * FROM kelas");
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <link rel="icon" type="image/png" href="../../image/asset/logo.png">
+    <link rel="icon" type="image/png" href="/public/image/asset/logo.png">
     <style>
       @font-face {
         font-family: 'Lato';
-        src: url('../../font/Lato-Regular.ttf') format('truetype');
+        src: url('/public/font/Lato-Regular.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
         }
@@ -34,7 +34,6 @@ $kelas = tampil("SELECT * FROM kelas");
                 <option value="<?=$value['kelas']?>"><?= $value['kelas']?>
             <?php endforeach;?>
         </select>
-        <!-- <button id="exportBtn" class="py-1 px-3 bg-green-800 text-white rounded">EXPORT EXCEL</button> -->
         
         <button type="submit" class="flex justify-center gap-2 items-center shadow-md text-sm bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-800 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group" id="exportBtn"
             >EXPORT EXCEL
@@ -62,7 +61,7 @@ $kelas = tampil("SELECT * FROM kelas");
     </div>  
     <div class="mx-auto w-full mt-3" id="hasil"></div>
 </body>
-<script src="../../javascript/presensi.js"></script>
-<script src="/hikari/public/javascript/jumlah_lolos.js"></script>
+<script src="/public/javascript/presensi.js"></script>
+<script src="/public/javascript/jumlah_lolos.js"></script>
 
 </html>

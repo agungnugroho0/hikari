@@ -13,7 +13,7 @@ function startScanner() {
             html5QrCode.stop().then(() => {
                 $.ajax({
                 type: 'POST',
-                url: '../../app/api/absen_proses.php',
+                url: '/app/api/absen_proses.php',
                 data: { "nis": decodedText},
                 success: function(data) {
                     // Tampilkan SweetAlert2 dan restart scanner setelah ditutup
@@ -52,7 +52,7 @@ html5QrCode.stop().then(() => {
 
 async function updateStatus(nis, status) {
 try {
-    const response = await fetch('../../app/api/absen_izin.php', {
+    const response = await fetch('/app/api/absen_izin.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ nis, status }),
@@ -87,7 +87,7 @@ try {
 
 async function loadSiswa() {
 try {
-    const response = await fetch('../../app/api/api_belum_absen.php');
+    const response = await fetch('/app/api/api_belum_absen.php');
     if (!response.ok) {
         throw new Error('Gagal memuat data siswa.');
     }

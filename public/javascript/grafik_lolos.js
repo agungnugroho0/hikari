@@ -1,7 +1,7 @@
 const ctx = document.getElementById('chartLolos').getContext('2d');
      let chart; // Simpan referensi ke grafik
      function loadChart(tahun) {
-        fetch(`../../app/api/api_jumlah_lolos.php?tahun=${tahun}`)
+        fetch(`/app/api/api_jumlah_lolos.php?tahun=${tahun}`)
         .then(response => response.json())  // Mengambil data dari server dan mengubahnya ke format JSON
             .then(data =>{
                 const bulan = data.map(item => item.bulan); // Mengambil bulan dari data

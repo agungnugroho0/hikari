@@ -26,7 +26,7 @@ foreach ($job as $jobs){
     <div class="container mx-auto md:max-w-lg mt-5 shadow-md p-3">
         <p class="text-center font-medium text-xl">JOBDESK</p>
         <hr class="my-2">
-        <form action="../../../app/database/edit_jobs.php" method="post" class="flex flex-col">
+        <form action="/app/database/edit_jobs.php" method="post" class="flex flex-col">
             <input type="text" value="<?=$id?>" name="id_job" hidden/>
             <label for="so" class="text-sm font-semibold text-gray-500">Pilih SO</label>
             <select name="so" id="so" class="p-2 border-b-2 border-blue-400 w-full focus:border-blue-800 focus:outline-none">

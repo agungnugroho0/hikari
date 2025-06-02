@@ -16,4 +16,4 @@ perbarui('kelas',$data, $where);
 //         }
 //     </script>
 // ";
-header("Location:../../public/admin/index.php?menu_Id=6&sukses");
+header("Location:/public/admin/index.php?menu_Id=6&sukses");

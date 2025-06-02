@@ -18,6 +18,6 @@ hapus('so',$data);
 // header("Location:../../public/admin/index.php?menu_Id=8&sukses");
 echo "
     <script>
-    window.top.location.href= '/hikari/public/admin/index.php?menu_Id=8&sukses';;
+    window.top.location.href= '/public/admin/index.php?menu_Id=8&sukses';;
     </script>
 ";

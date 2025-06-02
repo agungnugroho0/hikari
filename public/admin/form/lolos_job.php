@@ -1,5 +1,5 @@
 <?php
-include '../../../autoloader.php';
+include __DIR__.'../../../autoloader.php';
 admin();
 $id_w = $_GET['id_w'];
 $tampil = tampil("SELECT wawancara.*,job.*,so.id_so,so.so,siswa.nama FROM wawancara JOIN job ON wawancara.id_job = job.id_job JOIN so ON job.id_so = so.id_so JOIN siswa ON wawancara.nis = siswa.nis WHERE id_w = '$id_w'");
@@ -19,11 +19,11 @@ foreach ($tampil as $siswa){
     <script src="https://cdn.tailwindcss.com"></script>
     <title>LOLOS</title>
 </head>
-<body class="flex items-center justify-center bg-no-repeat  bg-cover" style="background-image: url(../../image/asset/jepang.png)">
+<body class="flex items-center justify-center bg-no-repeat  bg-cover" style="background-image: url(public/image/asset/jepang.png)">
     <div class="bg-slate-50 w-96 p-2 rounded-lg shadow-md">
         <h1 class="text-xl text-center font-semibold mb-4">Kelulusan Siswa </h1>
         <hr class="my-1">
-        <form action="../../../app/database/lolos_job.php" method="post" class="flex flex-col">
+        <form action="/app/database/lolos_job.php" method="post" class="flex flex-col">
             <input type="text" value="<?= $nis ?>" name="nis" hidden>
             <label for="nis" class="text-sm font-semibold text-gray-500 my-2"><?= $nis ?></label>
             <input type="text" class="p-2 border-b-2 border-blue-400 w-full focus:border-blue-800 focus:outline-none bg-slate-900 text-white " value="<?= $nama ?>" id="nis" readonly>

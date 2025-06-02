@@ -45,5 +45,5 @@ $d_bayar =[
 ];
 perbarui('tagihan',$d_tagihan, $where);
 masukan('log_pembayaran',$d_bayar);
-header("Location:../../public/admin/view/detail_siswa.php?nis=$nis$ket2");
+header("Location: /public/admin/view/detail_siswa.php?nis=$nis$ket2");
 

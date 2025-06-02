@@ -1,6 +1,6 @@
 <?php
 require '../../autoloader.php';
-define('BASE_URL', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
+// define('BASE_URL', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
 guru();
 $user = $_SESSION['username'];
 $level = $_SESSION['level'];
@@ -42,13 +42,13 @@ foreach ($kelasku as $kl){
         <div>
             <?php
             if ($foto == null ){
-                echo '<div class="py-2 "><img class="max-w-10 rounded-full mr-2" src="../image/asset/app.png" /></div>';
+                echo '<div class="py-2 "><img class="max-w-10 rounded-full mr-2" src="/public/image/asset/app.png" /></div>';
             } else {
-                echo '<div class="py-2 "><img class="max-w-10 rounded-full mr-2" src="../image/photos/'.$foto.'" /></div>';
+                echo '<div class="py-2 "><img class="max-w-10 rounded-full mr-2" src="/public/image/photos/'.$foto.'" /></div>';
             }
             ?>
         </div>
-        <a href="../../app/config/logout.php" class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-black dark:border-white group px-5 py-1.5 h-10 ml-auto mt-2">
+        <a href="/app/config/logout.php" class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-black dark:border-white group px-5 py-1.5 h-10 ml-auto mt-2">
             <span class="relative z-10 text-black dark:text-white group-hover:text-white dark:group-hover:text-black text-base duration-500 font-semibold font-[Lato]">KELUAR</span>
             <span class="absolute w-full h-full bg-black dark:bg-gray-100 -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
             <span class="absolute w-full h-full bg-black dark:bg-gray-100 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
@@ -67,7 +67,7 @@ foreach ($kelasku as $kl){
             <div id="chartLolos" class="dark:bg-white pt-3"></div>
         </div>
         <a href="siswa.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
-            <img src="../image/asset/staff.png" alt="siswa" class="h-14 group-hover:scale-0 transition duration-200">
+            <img src="/public/image/asset/staff.png" alt="siswa" class="h-14 group-hover:scale-0 transition duration-200">
             <p class="text-3xl font-bold group-hover:scale-150 sm:group-hover:scale-100 group-hover:translate-x-6 sm:group-hover:translate-x-0 group-hover:-translate-y-7 duration-500 pt-6 group-hover:pt-0 group-hover:text-slate-50 font-[Lato] ">SISWA</p>
         </a> 
         <a href="wawancara.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
@@ -131,19 +131,19 @@ foreach ($kelasku as $kl){
                 <p class="text-xl sm:text-3xl font-bold group-hover:-translate-x-1 sm:group-hover:translate-x-0 group-hover:-translate-y-7 duration-500 pt-6 group-hover:pt-0 group-hover:text-slate-50 font-[Lato] -translate-y-2">JADWAL MENSETSU</p> 
         </a>
         <a href="presensi.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
-            <img src="../image/asset/qr.png" alt="qr" class="h-14 group-hover:scale-0 transition duration-200">
+            <img src="/public/image/asset/qr.png" alt="qr" class="h-14 group-hover:scale-0 transition duration-200">
             <p class="text-3xl font-bold group-hover:-translate-x-1 sm:group-hover:translate-x-0 group-hover:-translate-y-7 duration-500 pt-6 group-hover:pt-0 group-hover:text-slate-50 font-[Lato] ">PRESENSI</p> 
         </a>
         <a href="laporan.php" class="border-4 border-black dark:hover:border-white dark:bg-white h-40 p-5 group hover:bg-red-900 active:bg-black active:border-red-600 transition">
-            <img src="../image/asset/report.png" alt="laporan" class="h-14 group-hover:scale-0 transition duration-200">
+            <img src="/public/image/asset/report.png" alt="laporan" class="h-14 group-hover:scale-0 transition duration-200">
             <p class="text-3xl font-bold group-hover:-translate-x-1 sm:group-hover:translate-x-0 group-hover:-translate-y-7 duration-500 pt-6 group-hover:pt-0 group-hover:text-slate-50 font-[Lato] ">LAPORAN</p> 
         </a>
         
     </main>
 </body>
-<!-- <script src="../javascript/grafik_lolos.js"></script> -->
-<script src="/hikari/public/javascript/jumlah_lolos.js"></script>
-<!-- <script src="../javascript/jumlah_lolos.js"></script> -->
+
+<script src="/public/javascript/jumlah_lolos.js"></script>
+
 <script>
      
 </script>

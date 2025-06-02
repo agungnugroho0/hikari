@@ -20,7 +20,7 @@ if (isset($_GET['siswa'])){
     <div class="bg-slate-50 w-96 p-2 rounded-lg shadow-md">
         <h1 class="text-xl text-center font-semibold mb-4">Tambah Tagihan</h1>
         <hr class="my-1">
-        <form action="../../../app/database/tambah_tagihan.php" method="post" class="flex flex-col">
+        <form action="/app/database/tambah_tagihan.php" method="post" class="flex flex-col">
             <input type="text" value="<?= $nis ?>" name="nis" hidden>
             <input type="text" value="<?= $ket ?>" name="ket" hidden>
             <label for="jenis_tagihan" class="text-sm font-semibold text-gray-500 my-2">Jenis Tagihan</label>

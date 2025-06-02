@@ -10,4 +10,4 @@ $data = [
     ':nis' => $nis
 ];
 masukan('wawancara', $data);
-header("Location:../../public/admin/view/detail_siswa.php?nis=$nis");
+header("Location:/public/admin/view/detail_siswa.php?nis=$nis");

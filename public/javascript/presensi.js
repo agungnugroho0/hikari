@@ -12,7 +12,7 @@ let chart2;
 
 async function loadData() {
   const response = await fetch(
-    `../../../app/api/api_presensi.php?kelas=${kelas.value}&bulan=${bulan.value}`
+    `/app/api/api_presensi.php?kelas=${kelas.value}&bulan=${bulan.value}`
   );
   if (!response.ok) {
     throw new Error("Gagal mengambil data");
@@ -41,7 +41,7 @@ function exportexcel() {
 
 async function fetchdataKelas() {
   const response = await fetch(
-    `../../../app/api/api_grafikabsenperkelas.php?bulan=${bulan.value}&kelas=${kelas.value}`
+    `/app/api/api_grafikabsenperkelas.php?bulan=${bulan.value}&kelas=${kelas.value}`
   );
   const data = await response.json();
   //   const text = await response.text();

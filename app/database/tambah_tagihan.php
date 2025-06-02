@@ -20,4 +20,4 @@ $d_tagihan=[
     ':sisa_tagihan' =>$tagihan
 ];
 masukan('tagihan',$d_tagihan);
-header("Location:../../public/admin/view/detail_siswa.php?nis=$nis&lolos=ya");
+header("Location:/public/admin/view/detail_siswa.php?nis=$nis&lolos=ya");

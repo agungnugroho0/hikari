@@ -1,7 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
-define('BASE_URL', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/public/admin/');
-define('BASE_URL2', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require __DIR__.'/../../../autoloader.php';
+
 admin();
 ?>
 <!DOCTYPE html>
@@ -48,7 +48,7 @@ admin();
             // Fungsi untuk memuat data
             function loadData(page) {
                 $.ajax({
-                    url: '../../../app/api/api_lolos.php',
+                    url: '/app/api/api_lolos.php',
                     type: 'GET',
                     data: { page: page, limit: limit },
                     dataType: 'json',

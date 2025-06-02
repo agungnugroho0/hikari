@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+
 require '../../autoloader.php';
 
 function stringToColor($str) {

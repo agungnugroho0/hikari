@@ -5,7 +5,7 @@ function cari() {
     document.getElementById("searchResults").classList.add("hidden");
     return;
   }
-  fetch(`../../app/api/search.php?query=${encodeURIComponent(query)}`)
+  fetch(`/app/api/search.php?query=${encodeURIComponent(query)}`)
     .then((response) => response.json())
     .then((data) => {
       // console.log(data);
@@ -23,7 +23,7 @@ function cari() {
           if (item.sumber == "siswa") {
             div.innerHTML = `
                   <div onclick="window.location.href='index.php?menu_Id=4&nis=${item.nis}'" class="flex cursor-default">
-                    <div class="w-10 h-10 overflow-hidden rounded-full"><img src="../image/photos/${item.foto}"></div>
+                    <div class="w-10 h-10 overflow-hidden rounded-full"><img src="/public/image/photos/${item.foto}"></div>
                     <div class="flex flex-col">
                       <div class="font-normal truncate pl-1.5">${item.nama}</div>
                       <div class="text-gray-500 pl-1.5">siswa</div>
@@ -33,7 +33,7 @@ function cari() {
           } else if (item.sumber == "lolos") {
             div.innerHTML = `
                   <div onclick="window.location.href='index.php?menu_Id=5&nis=${item.nis}&lolos=ya'" class="flex cursor-default">
-                    <div class="w-10 h-10 overflow-hidden rounded-full"><img src="../image/photos/${item.foto}"></div>
+                    <div class="w-10 h-10 overflow-hidden rounded-full"><img src="/public/image/photos/${item.foto}"></div>
                     <div class="flex flex-col">
                       <div class="font-normal truncate pl-1.5">${item.nama}</div>
                       <div class="text-gray-500 pl-1.5">lolos</div>

@@ -5,11 +5,11 @@ $konek = koneksi();
 $username = htmlspecialchars(trim($_POST['username']));
 $password = htmlspecialchars(trim($_POST['password']));
 if (!preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
-    header("location:../../index.php?pesan=gagal");
+    header("location:/index.php?pesan=gagal");
     exit;
 }
 if (!preg_match('/^[a-zA-Z0-9_]+$/', $password)) {
-    header("location:../../index.php?pesan=gagal");
+    header("location:/index.php?pesan=gagal");
     exit;
 }
 try{
@@ -18,17 +18,17 @@ try{
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 }catch (PDOException $e){
     error_log($e->getMessage());
-    header("location:../../index.php?pesan=error");
+    header("location:/index.php?pesan=error");
     exit;
 }
 
 function posisi($level){
     if ($level == 'admin'){
-        header("location:../../public/admin/index.php");
+        header("location:/public/admin/index.php");
     } elseif ($level =='guru'){
-        header("location:../../public/guru/index.php");
+        header("location:/public/guru/index.php");
     } else{
-        header("location:../../index.php?pesan=gagal");
+        header("location:/index.php?pesan=gagal");
     }
 
 }

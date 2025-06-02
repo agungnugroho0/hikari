@@ -1,5 +1,7 @@
 <?php 
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+include __DIR__.'../../../autoloader.php';
+
 admin();
 $nis = $_GET['nis'];
 $nis = trim($_GET['nis']); // Pastikan NIS bersih dari spasi tambahan
@@ -37,7 +39,7 @@ $pilihan = [
     'GENDER' => ['L', 'P'],
     'AGAMA' => ['ISLAM', 'KRISTEN', 'KATOLIK', 'HINDU', 'BUDDHA', 'KONGHUCU'],
     'STATUS' => ['BELUM MENIKAH', 'MENIKAH', 'CERAI'],
-    'DARAH' => ['A', 'B', 'AB', 'O'],
+    'DARAH' => ['A', 'B', 'AB', 'O','TIDAK TAHU'],
     'BB' => range(30, 220),
     'TB' => range(30, 220),
     'MEROKOK' => ['YA', 'TIDAK'],
@@ -55,7 +57,7 @@ $pilihan = [
     <title><?= $sis['nama'] ?></title>
 </head>
 <body>
-    <form action="../../../app/database/edit_siswa.php" method="POST" class="container mx-auto max-w-md shadow-md p-7 my-3 rounded" enctype="multipart/form-data">
+    <form action="/app/database/edit_siswa.php" method="POST" class="container mx-auto max-w-md shadow-md p-7 my-3 rounded" enctype="multipart/form-data">
         <input type="text" name="nis" value="<?= $sis['nis'] ?>" class="w-full px-3 py-1.5 rounded-md mb-2 font-semibold bg-gray-200" readonly>
         <input type="text" name="ket" value="<?=$ket?>" hidden>
         <?php foreach ($panjang as $label => $value): ?>
@@ -100,7 +102,7 @@ $pilihan = [
         <label for="foto" class="block text-sm font-normal text-gray-500">Foto Siswa</label>
         <div class="flex">
             <div class="overflow-clip rounded-full origin-center w-7 h-7">
-                <img src="../../image/photos/<?= $sis['foto'] ?>" alt="Foto siswa">
+                <img src="/public/image/photos/<?= $sis['foto'] ?>" alt="Foto siswa">
             </div>
             <input type="file" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-50" name="foto">
         </div>

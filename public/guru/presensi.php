@@ -1,7 +1,7 @@
 <?php
 require '../../autoloader.php';
 guru();
-define('BASE_URL2', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
+// define('BASE_URL2', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
 $user = $_SESSION['username'];
 $level = $_SESSION['level'];
 $guru = tampil("SELECT * FROM staff WHERE nama = '$user'");
@@ -23,7 +23,7 @@ foreach ($guru as $g) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-    <link rel="icon" type="image/png" href="../image/asset/logo.png">
+    <link rel="icon" type="image/png" href="/public/image/asset/logo.png">
     
 </head>
 <body class="dark:bg-slate-800">
@@ -49,6 +49,6 @@ foreach ($guru as $g) {
      <!-- endsiswa -->
     </main>
 </body>
-<script src="../javascript/presensi_guru.js"></script>
+<script src="/public/javascript/presensi_guru.js"></script>
 
 </html>

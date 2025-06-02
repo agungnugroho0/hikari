@@ -52,8 +52,8 @@ ob_end_clean();
         $panggilan = $data['panggilan'];
     }
     // Image($file, $x='', $y='', $w=0, $h=0, $type='', $link='', $align='', $resize=false, $dpi=300, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false)
-    $pdf->Image('../../public/image/asset/name_tag.jpg', 14.92,11.368,90,55, 'JPG', '', '', false, 150, '', false, false, 0, false, false, false);
-    $pdf->Image('../../public/image/asset/name_tag2.jpg', 104.92,11.368,90,55,'JPG', '', '', false, 150, '', false, false, 0, false, false, false);
+    $pdf->Image('/public/image/asset/name_tag.jpg', 14.92,11.368,90,55, 'JPG', '', '', false, 150, '', false, false, 0, false, false, false);
+    $pdf->Image('/public/image/asset/name_tag2.jpg', 104.92,11.368,90,55,'JPG', '', '', false, 150, '', false, false, 0, false, false, false);
     $pdf->Image($qr_image, 18, 29, 17, 17,'PNG', '', '', false, 150, '', false, false, 0, false, false, false); // Lokasi, ukuran QR Code
     $pdf->Image($qr_image, 110, 29, 17, 17,'PNG', '', '', false, 150, '', false, false, 0, false, false, false);
     

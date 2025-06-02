@@ -1,5 +1,6 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+// require $_SERVER['DOCUMENT_ROOT'].'/hikari/autoloader.php';
+require '../../autoloader.php';
 admin();
 $nis = $_GET['nis'];
 $job = tampil("SELECT j.*, s.* FROM job j JOIN so s ON j.id_so = s.id_so");
@@ -14,11 +15,11 @@ $job = tampil("SELECT j.*, s.* FROM job j JOIN so s ON j.id_so = s.id_so");
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body class="flex items-center justify-center min-h-screen bg-cover" style="background-image:url('../../image/asset/jepang.png')">
+<body class="flex items-center justify-center min-h-screen bg-cover" style="background-image:url('/public/image/asset/jepang.png')">
     <div class="bg-slate-50 w-96 p-2 rounded-lg shadow-md ">
         <h1 class="text-xl text-center font-semibold mb-4">IKUT JOB</h1>
         <hr class="my-1">
-        <form action="../../../app/database/tambah_wawancara.php" method="post" >
+        <form action="/app/database/tambah_wawancara.php" method="post" >
             <input type="hidden" name="nis" value="<?= $nis ?>">
             <label for="so" class="text-sm font-semibold text-gray-500">Pilih Job</label>
             <select name="job" id="job" class="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-red-300">

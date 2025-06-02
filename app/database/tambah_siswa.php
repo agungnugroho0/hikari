@@ -6,14 +6,14 @@ $id_kelas = $_POST['id_kelas'] ?? '4';
 $nama_lengkap = $_POST['nama_lengkap'];
 $namaExist = cek_nama($nama_lengkap);
 if ($namaExist > 0) {
-    header('Location:../../siswa.php?sk&nama');
+    header('Location:/siswa.php?sk&nama');
     exit;
 }
 $uploadResult = uploadFotoSiswa($_FILES['foto'], $nis);
 if (is_array($uploadResult) && $uploadResult['status'] === 'success') {
     $foto = $uploadResult['foto'];
 } else {
-    header('Location:../../siswa.php?sk&foto');
+    header('Location:/siswa.php?sk&foto');
     exit;
 }
 

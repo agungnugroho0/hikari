@@ -1,6 +1,6 @@
 <?php
 require '../../autoloader.php';
-define('BASE_URL', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
+// define('BASE_URL', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/hikari/');
 guru();
 $user = $_SESSION['username'];
 $level = $_SESSION['level'];
@@ -30,7 +30,7 @@ if(isset($_GET['sukses'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $nama; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="../image/asset/logo.png">
+    <link rel="icon" type="image/png" href="/public/image/asset/logo.png">
 
 </head>
 <body class="dark:bg-slate-800">
@@ -40,9 +40,9 @@ if(isset($_GET['sukses'])){
         <div id="judul" class="flex">
             <?php
             if ($foto == null ){
-                echo '<div class="py-2 "><img class="max-w-12 rounded-full mr-2" src="../image/asset/app.png" /></div>';
+                echo '<div class="py-2 "><img class="max-w-12 rounded-full mr-2" src="/public/image/asset/app.png" /></div>';
             } else {
-                echo '<div class="py-2 "><img class="max-w-12 rounded-full mr-2" src="../image/photos/'.$foto.'" /></div>';
+                echo '<div class="py-2 "><img class="max-w-12 rounded-full mr-2" src="/public/image/photos/'.$foto.'" /></div>';
             }
             ?>
             <h2 class="font-bold text-xl self-center dark:text-slate-200"><?= $nama?> 先生</h2>    
@@ -61,7 +61,7 @@ if(isset($_GET['sukses'])){
                     <p class="py-1 w-72 dark:text-slate-200"><?= $s['nama'] ?></p>
                     <p class="py-1 ml-auto dark:text-slate-400"><?= umur($s['tgl']) ?> 歳</p>
                     <?php if ($hari_ini == $tgl_event && $s['id_kelas']!== '1') { ?>
-                            <a class="ml-auto bg-green-900 rounded py-1 px-1.5 font-medium text-white" href="<?=BASE_URL?>app/database/event.php?nis=<?= $s['nis']?>">NAIK KELAS</a>
+                            <a class="ml-auto bg-green-900 rounded py-1 px-1.5 font-medium text-white" href="/app/database/event.php?nis=<?= $s['nis']?>">NAIK KELAS</a>
                         <?php } else { ?>
                             <!-- <a class="ml-auto bg-blue-900 rounded py-1 px-1.5 font-medium text-white" href="">Detail</a> -->
                         <?php } ?>

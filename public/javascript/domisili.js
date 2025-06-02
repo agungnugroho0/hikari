@@ -38,18 +38,3 @@ fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/districts/${kabupaten}.j
         document.getElementById('kecamatan').innerHTML = tampung;
     })
 });
-
-// const selectkecamatan = document.getElementById("kecamatan");
-// selectkecamatan.addEventListener('change', (e) => {
-//     var kecamatan = e.target.options[e.target.selectedIndex].dataset.vill;
-//     fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/villages/${kecamatan}.json`)
-//         .then(respons => respons.json())
-//         .then(districts => {
-//             var data = districts;
-//             var tampung = '<option>Pilih Desa</option>'
-//             data.forEach(element => {
-//                 tampung += `<option value="${element.name}">${element.name}</option>`;
-//             })
-//             document.getElementById('kelurahan').innerHTML = tampung;
-//         })
-// });
