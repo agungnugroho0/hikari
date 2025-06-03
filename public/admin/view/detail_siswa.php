@@ -3,7 +3,7 @@ include __DIR__.'/../../../autoloader.php';
 
 
 $nis= $_GET['nis'] ?? null;
-$qrPath = "../../../qr_images/$nis.png";
+$qrPath = "../#../../qr_images/$nis.png";
 
 if (!file_exists($qrPath)) {
     require_once '../../../app/api/phpqrcode/qrlib.php';
