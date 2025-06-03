@@ -88,6 +88,9 @@ function generateQRCode($nis) {
 
     ob_end_clean(); // bersihkan buffer supaya output PNG tidak kacau
     header('Content-Type: image/png');
+    error_log("File exists: " . (file_exists($filename) ? 'yes' : 'no'));
+    error_log("File size: " . filesize($filename));
+
     readfile($filename);
     exit; // penting! hentikan script agar tidak output lain
 }
