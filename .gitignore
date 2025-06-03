@@ -1,2 +1,3 @@
-/qr_images/
+qr_images/*.png
+
 #*.log
