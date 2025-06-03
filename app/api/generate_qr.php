@@ -25,7 +25,8 @@ function generateQRCode($nis) {
     if (!file_exists($tempdir)) {
         mkdir($tempdir, 0755, true);
     }
-    $filename = $tempdir . hash('sha256', $nis) . ".png";
+    // $filename = $tempdir . hash('sha256', $nis) . ".png";
+    $filename = $tempdir . $nis . ".png";
     if (!file_exists($filename)) {
         qrcode();
         QRcode::png($nis, $filename, QR_ECLEVEL_L, 4);
