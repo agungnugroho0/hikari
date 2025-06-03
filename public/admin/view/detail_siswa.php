@@ -3,6 +3,13 @@ include __DIR__.'/../../../autoloader.php';
 
 
 $nis= $_GET['nis'] ?? null;
+$qrPath = "../../../qr_images/$nis.png";
+
+if (!file_exists($qrPath)) {
+    require_once '../../../app/api/phpqrcode/qrlib.php';
+    QRcode::png($nis, $qrPath, QR_ECLEVEL_H, 4);
+}
+
 $lolos = isset($_GET['lolos']);
 $ket = $lolos ? 'lolos' : 'siswa';
 if ($lolos) {
@@ -225,7 +232,8 @@ $garis = "outline outline-2 rounded px-2 py-1 outline-gray-300";
             <?php else : ?>
                 <!-- buat nafuda -->
                 <div class=" rounded-lg md:mt-0 max-h-fit w-full p-1 flex flex-row outline outline-2 outline-gray-300 gap-2">
-                            <img src="/app/api/generate_qr.php?nis=<?= $nis?>" alt="QR Code" class="w-14 h-14 object-center"/>
+                            <!-- <img src="/app/api/generate_qr.php?nis=<?= $nis?>" alt="QR Code" class="w-14 h-14 object-center"/> -->
+                            <img src="/qr_images/<?= $nis ?>.png" alt="QR Code" class="w-14 h-14 object-center"/>
                             <a class="max-h-fit self-center text-lg font-semibold" href="/app/api/generateid_card.php?nis=<?= $nis?>" target="_blank">BUAT NAFUDA</a>
                 </div>
                 <!-- end nafuda -->

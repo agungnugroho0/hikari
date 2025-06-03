@@ -31,7 +31,7 @@ function generateQRCode($nis) {
         QRcode::png($nis, $filename, QR_ECLEVEL_L, 4);
     }
     ob_end_clean();
-    header('Content-Type: image/png');
+    header('Content-Type: image/png'); 
     readfile($filename);
 }
 ?>
