@@ -10,7 +10,7 @@
   ExpiresByType image/jpg "access plus 1 year"
 </IfModule>
 
-# Tambahin header Cache-Control supaya browser tau ini boleh di-cache
+# Tambahin header Cache-Control supaya browser tau ini boleh di-cache y
 <IfModule mod_headers.c>
   <FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
     Header set Cache-Control "max-age=31536000, public"
