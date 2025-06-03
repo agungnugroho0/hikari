@@ -44,9 +44,9 @@ ob_end_clean();
     $pdf->AddPage();
     
     // kuery data
-    $filename = hash('sha256', $nis);
+    $filename =  $nis;
     $siswa = tampil("SELECT nama,panggilan FROM siswa WHERE nis = '$nis'");
-    $qr_image = dirname(__DIR__)."/../qr_images/" . $filename . ".png";
+    $qr_image = __DIR__."/../../qr_images/" . $filename . ".png";
     foreach ($siswa as $data) {
         $nama = $data['nama'];
         $panggilan = $data['panggilan'];
