@@ -1,3 +1,4 @@
 qr_images/*.png
-
+public/image/photos/
+!public/image/photos/.htaccess
 #*.log

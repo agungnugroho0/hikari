@@ -36,7 +36,7 @@ $d_tagihan1=[
 ];
 $d_tagihan2=[
     ':id_tagihan'=>$idtagihan2,
-    ':jenis_tagihan'=>'Biaya SO',
+    ':jenis_tagihan'=>'Biaya SO '.$so,
     ':biaya_tagihan' =>$tagihan_so,
     ':nis'=>$nis,
     ':status_tagihan'=>'Belum Lunas',

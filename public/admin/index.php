@@ -44,7 +44,7 @@
         <header>
             <div class=" flex items-center h-12">
                 <img src="/public/image/asset/logo.png" alt="" class="ml-2 my-2 w-6 sm:hidden block" />
-                <div class="pl-2 w font-[Lato] font-semibold text-lg hidden sm:block transition-all dark:text-white">HIKARI</div>
+                <div class="pl-2 w font-[Lato] font-semibold text-lg hidden sm:block transition-all dark:text-white">HIKARI aa</div>
                 <div class="relative">
                 <input
                     placeholder="Cari Siswa"
