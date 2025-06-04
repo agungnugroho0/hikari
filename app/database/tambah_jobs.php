@@ -13,8 +13,8 @@ $data = [
 $tes = masukan('job',$data);
 var_dump ($tes);
 
-// echo "
-//     <script>
-//     window.top.location.href= '/public/admin/index.php?menu_Id=3&sukses';
-//     </script>
-// ";
+echo "
+    <script>
+    window.top.location.href= '/public/admin/index.php?menu_Id=3&sukses';
+    </script>
+";
