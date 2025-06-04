@@ -6,7 +6,8 @@ $data = [
     ':id_so' => $_POST['so'],
     ':job' => $_POST['job'],
     ':perusahaan' => $_POST['perusahaan'],
-    ':tgl_job' => $_POST['tgl']
+    // ':tgl_job' => $_POST['tgl']
+    ':tgl_job' => !empty($_POST['tgl']) ? $_POST['tgl'] : null
 ];
 
 $tes = masukan('job',$data);

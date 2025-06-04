@@ -30,7 +30,7 @@ $so = tampil("SELECT * FROM so");
             <input type="text" class="p-2 border-b-2 border-blue-400 w-full focus:border-blue-800 focus:outline-none" name="job">
             <label for="perusahaan" class="text-sm font-semibold text-gray-500 my-2">Nama Perusahaan</label>
             <input type="text" class="p-2 border-b-2 border-blue-400 w-full focus:border-blue-800 focus:outline-none" name="perusahaan">
-            <label for="perusahaan" class="text-sm font-semibold text-gray-500 my-2">Tanggal</label>
+            <label for="tanggal" class="text-sm font-semibold text-gray-500 my-2">Tanggal</label>
             <input type="date" class="p-2 border-b-2 border-blue-400 w-full focus:border-blue-800 focus:outline-none" name="tgl">
             <button type="submit" class="bg-red-800 w-full mt-3 py-2 rounded-md text-white font-semibold">TAMBAH JOB</button>
         </form>
