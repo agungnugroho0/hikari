@@ -14,6 +14,6 @@ masukan('job',$data);
 
 echo "
     <script>
-    window.top.location.href= '/public/admin/index.php?menu_Id=3&sukses';;
+    window.top.location.href= '/public/admin/index.php?menu_Id=3&sukses';
     </script>
 ";
