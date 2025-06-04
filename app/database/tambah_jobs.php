@@ -10,7 +10,7 @@ $data = [
 ];
 
 // masukan('job',$data);
-echo $data;
+var_dump ($data);
 
 // echo "
 //     <script>
