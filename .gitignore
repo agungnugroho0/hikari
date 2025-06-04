@@ -1,3 +1,4 @@
 qr_images/*.png
-
+/public/image/img_so/
+/public/image/photos/
 #*.log
