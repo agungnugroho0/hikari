@@ -9,10 +9,11 @@ $data = [
     ':tgl_job' => $_POST['tgl']
 ];
 
-masukan('job',$data);
+// masukan('job',$data);
+echo $data;
 
-echo "
-    <script>
-    window.top.location.href= '/public/admin/index.php?menu_Id=3&sukses';;
-    </script>
-";
+// echo "
+//     <script>
+//     window.top.location.href= '/public/admin/index.php?menu_Id=3&sukses';;
+//     </script>
+// ";
