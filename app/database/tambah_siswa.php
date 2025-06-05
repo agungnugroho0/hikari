@@ -48,11 +48,11 @@ $data = [
     ':no_rumah' => $_POST['no_rumah']
 ];
 masukan('siswa',$data);
-session_start();
-$_SESSION['nama'] = $_POST['nama_lengkap'];
-$_SESSION['sumber'] = 'siswa';
-$_SESSION['nis'] = $nis;
-$_SESSION['level'] = 'siswa';
+// session_start();
+// $_SESSION['nama'] = $_POST['nama_lengkap'];
+// $_SESSION['sumber'] = 'siswa';
+// $_SESSION['nis'] = $nis;
+// $_SESSION['level'] = 'siswa';
 // header('Location:../../siswa.php?sk&sukses');
 // header('Location:../../../siakad/index.php');
 echo "Terima Kasih selamat bergabung";
