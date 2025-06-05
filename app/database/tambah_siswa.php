@@ -54,4 +54,5 @@ $_SESSION['sumber'] = 'siswa';
 $_SESSION['nis'] = $nis;
 $_SESSION['level'] = 'siswa';
 // header('Location:../../siswa.php?sk&sukses');
-header('Location:../../../siakad/index.php');
+// header('Location:../../../siakad/index.php');
+echo "Terima Kasih selamat bergabung";
