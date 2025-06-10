@@ -68,7 +68,7 @@ if ($ket =='A'){
     $pesan =["target"=> $no_rumah,    
             "message" => $pesan_siswa
     ];
-    @kirimfonnte($token,$pesan);
+    // @kirimfonnte($token,$pesan);
 
 
 }
@@ -76,5 +76,5 @@ if ($ket =='A'){
 // kirim pesan ke fonnte
 
 
-// masukan('absen',$data);
+masukan('absen',$data);
 echo 'Presensi sudah masuk';
