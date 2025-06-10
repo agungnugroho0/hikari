@@ -68,7 +68,7 @@ if ($ket =='A'){
     $pesan =["target"=> $no_rumah,    
             "message" => $pesan_siswa
     ];
-    // @kirimfonnte($token,$pesan);
+    @kirimfonnte($token,$pesan);
 
 
 }
