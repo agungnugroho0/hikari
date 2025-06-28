@@ -105,8 +105,8 @@ $pesan1 =["target"=> $no_wa,
 $pesan2 =["target"=> $no_s,
         "message" => $pesan_sensei ];
 
-@kirimfonnte($token,$pesan1);
-@kirimfonnte($token,$pesan2);
+// @kirimfonnte($token,$pesan1);
+// @kirimfonnte($token,$pesan2);
 
 // print_r ($pesan1);
 masukan('log_lolos',$d_loglolos);
