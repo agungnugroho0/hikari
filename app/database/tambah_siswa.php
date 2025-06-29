@@ -2,7 +2,7 @@
 require '../../autoloader.php';
 $nis = idbaru('','nis','siswa');
 $_POST = toUpperCase($_POST);
-$id_kelas = $_POST['id_kelas'] ?? '4';
+$id_kelas = $_POST['id_kelas'] ?? '5';
 $nama_lengkap = $_POST['nama_lengkap'];
 $namaExist = cek_nama($nama_lengkap);
 if ($namaExist > 0) {
