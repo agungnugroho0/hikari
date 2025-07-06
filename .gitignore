@@ -4,4 +4,4 @@ public/image/photos/
 public/image/img_so/
 !public/image/img_so/.htaccess
 # vendor/
-# !vendor/tecnickcom/tcpdf/fonts
+!vendor/tecnickcom/tcpdf/
