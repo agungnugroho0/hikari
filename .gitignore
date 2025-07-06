@@ -1,4 +1,5 @@
-qr_images/*.png
+public/image/qr_images/*.png
 public/image/photos/
 !public/image/photos/.htaccess
-#*.log
+public/image/img_so/
+!public/image/img_so/.htaccess

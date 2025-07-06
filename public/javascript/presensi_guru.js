@@ -1,3 +1,4 @@
+function initpresensi_guru(){
 const siswaList = document.getElementById("siswa_list");
 const html5QrCode = new Html5Qrcode("reader");
 
@@ -13,7 +14,7 @@ function startScanner() {
             html5QrCode.stop().then(() => {
                 $.ajax({
                 type: 'POST',
-                url: '/app/api/absen_proses.php',
+                url: '/public/api/api_absen_proses.php',
                 data: { "nis": decodedText},
                 success: function(data) {
                     // Tampilkan SweetAlert2 dan restart scanner setelah ditutup
@@ -23,7 +24,8 @@ function startScanner() {
                         icon: 'success',
                         timer : 1000,
                         showConfirmButton: false
-                    }).then(() => {
+                    })
+                .then(() => {
                         // Mulai ulang scanner setelah menutup notifikasi
                         loadSiswa();
                         startScanner();
@@ -52,7 +54,7 @@ html5QrCode.stop().then(() => {
 
 async function updateStatus(nis, status) {
 try {
-    const response = await fetch('/app/api/absen_izin.php', {
+    const response = await fetch('/public/api/api_absen_izin.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ nis, status }),
@@ -84,10 +86,11 @@ try {
     });
 }
 }
+window.updateStatus = updateStatus;
 
 async function loadSiswa() {
 try {
-    const response = await fetch('/app/api/api_belum_absen.php');
+    const response = await fetch('/public/api/api_siswa_belumabsen.php');
     if (!response.ok) {
         throw new Error('Gagal memuat data siswa.');
     }
@@ -96,12 +99,13 @@ try {
     if (siswaData.length > 0) {
         siswaData.forEach((siswa) => {
             siswaHtml += `
-                <div class="border p-2 mb-2 rounded shadow dark:bg-slate-300">
+                <div class="border p-2 mb-2 rounded shadow dark:bg-slate-800">
                     <p class="font-semibold pb-2 dark:text-white">${siswa.nama}</p>
-                    <button onclick="updateStatus('${siswa.nis}', 'I')" class="rounded px-2 bg-blue-700 text-white font-semibold mt-2">IZIN</button>
-                    <button onclick="updateStatus('${siswa.nis}', 'A')" class="rounded px-2 bg-red-700 text-white font-semibold mt-2">ALPHA</button>
+                    <button onclick="updateStatus('${siswa.nis}', 'H')" class="rounded px-2 bg-blue-700 text-white font-semibold mt-2">HADIR</button>
+                    <button onclick="updateStatus('${siswa.nis}', 'I')" class="rounded px-2 bg-amber-700 text-white font-semibold mt-2">IZIN</button>
                     <button onclick="updateStatus('${siswa.nis}', 'M')" class="rounded px-2 bg-green-700 text-white font-semibold mt-2">MENSETSU</button>
                     <button onclick="updateStatus('${siswa.nis}', 'S')" class="rounded px-2 bg-orange-700 text-white font-semibold mt-2">SAKIT</button>
+                    <button onclick="updateStatus('${siswa.nis}', 'A')" class="rounded px-2 bg-red-700 text-white font-semibold mt-2">ALPHA</button>
                 </div>`;
         });
     } else {
@@ -118,3 +122,5 @@ loadSiswa();
 startScanner();
 document.getElementById("startButton").addEventListener("click", startScanner);
 document.getElementById("stopButton").addEventListener("click", stopScanner);
+}
+window.initpresensi_guru = initpresensi_guru;

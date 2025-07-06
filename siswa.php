@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET['sk'])){
-    header ("Location:rules.php");
+    header ("Location:rules.html");
 } else {
     $sk = true;
 }
@@ -33,7 +33,7 @@ if (!isset($_GET['sk'])){
         </center>
     </div>
 
-    <form action="app/database/tambah_siswa.php" method="POST" enctype="multipart/form-data" class="max-w-xl mx-auto px-5">
+    <form action="/public/api/api_insertsiswa.php" method="POST" enctype="multipart/form-data" class="max-w-xl mx-auto px-5">
         <?php 
             if (isset($_GET['id_kelas'])) {
                 $id_kelas = $_GET['id_kelas'];
@@ -97,12 +97,12 @@ if (!isset($_GET['sk'])){
         <hr>
         <label for="" class="block mt-3 mb-5 text-sm font-medium text-gray-900 ">Masukan Alamat Lengkap Anda</label>
 
-        <select name="provinsi" id="provinsi" class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full mb-5 pl-3 h-9" required>
-        </select>
-        <select name="kabupaten" id="kabupaten" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full mb-5 h-9 pl-3" required>
-        </select>
-        <select name="kecamatan" id="kecamatan" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full mb-5 h-9 pl-3">
-        </select>
+        <input name="provinsi" id="provinsi" class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full mb-5 pl-3 h-9" placeholder="PROVINSI" required>
+        </input>
+        <input name="kabupaten" id="kabupaten" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full mb-5 h-9 pl-3" required placeholder="KABUPATEN">
+        </input>
+        <input name="kecamatan" id="kecamatan" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full mb-5 h-9 pl-3" placeholder="KECAMATAN" required>
+        </input>
         <input name="kelurahan" id="kelurahan" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full mb-5 h-9 pl-3" placeholder="KELURAHAN / DESA" required>
         </input>
 

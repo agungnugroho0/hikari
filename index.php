@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="public/image/asset/logo.png">
+    <link rel="icon" type="image/png" href="/public/image/asset/logo.png">
 
     <style>
         @layer utilities {
@@ -30,7 +30,7 @@
     </style>
 </head>
 <body >
-    <div class="relative w-full min-h-screen md:flex items-center justify-center dark:bg-black">
+    <div class="relative w-full min-h-screen md:flex items-center justify-center bg-gray-200 md:dark:bg-black">
         <!-- <div class="bg-white"></div> -->
         <div class="md:container mx-auto md:grid bg-white md:max-w-screen-md md:grid-cols-[16rem_auto] md:rounded-xl overflow-hidden">
             <div class="relative">
@@ -38,11 +38,11 @@
                 </div>
                 <p class="absolute top-5 right-4 writing-vertical-rl text-upright text-4xl font-DF">光学校</p>
             </div>
-            <div class="relative flex">
+            <div class="relative flex ">
                 <div class="flex-grow flex flex-col bg-white justify-center items-center dark:bg-gray-200">
                     <img src="public/image/asset/logo.png" alt="hikari logo" class="hidden md:block w-28 drop-shadow mb-3">
                     <p class="hidden md:block text-3xl font-semibold">LOGIN</p>
-                    <form action="app/config/login.php" method="post" class="mt-7 flex flex-col space-y-4 w-full">
+                    <form action="public/login/proses_login.php" method="post" class="mt-7 flex flex-col space-y-4 w-full">
                         <input type="text" name="username" id="pengguna" class="h-10 mx-8 p-2 border-b-2 focus:outline-none" placeholder="username" required>
                         <input type="password" name="password" id="password" class="mx-8 h-10 p-2 border-b-2 focus:outline-none" placeholder="password" required>
                         <?php

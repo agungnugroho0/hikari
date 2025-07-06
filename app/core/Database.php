@@ -1,0 +1,24 @@
+<?php
+
+namespace app\core;
+use PDO;
+use PDOException;
+class Database{
+    private $host = 'localhost';
+    private $dbname = 'lpk';
+    private $username = 'root';
+    private $password = 'bapakDjokam354';
+    private $port = 3307;
+    public $conn;
+    public function connect(){
+        $this->conn = null;
+        try{
+            $this->conn = new PDO("mysql:host=$this->host;port=$this->port;dbname=$this->dbname",$this->username,$this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e){
+            die("Koneksi database gagal: " . $e->getMessage());
+        }   
+        return $this->conn;
+    }
+
+}
