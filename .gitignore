@@ -3,5 +3,5 @@ public/image/photos/
 !public/image/photos/.htaccess
 public/image/img_so/
 !public/image/img_so/.htaccess
-# vendor/
-!vendor/tecnickcom/tcpdf/
+vendor
+# !vendor/tecnickcom/tcpdf/
