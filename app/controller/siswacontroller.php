@@ -234,6 +234,8 @@ class siswacontroller{
         }
         ob_end_clean(); 
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        // define('K_PATH_FONTS', __DIR__ . '/../../public/fonts/');
+        // require_once __DIR__ . '/../vendor/tecnickcom/tcpdf/tcpdf.php';
         // set document information
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Wahyu Agung');
@@ -267,6 +269,7 @@ class siswacontroller{
         $pdf->setLanguageArray($lg);
             
         // set font
+        
         $pdf->SetFont('dfminchoub', '', 28);
         
         // add a page
