@@ -91,8 +91,8 @@ use Com\Tecnick\Pdf\Image\Import\ImageImportInterface;
  *          'width': int,
  *      }
  *
- * @SuppressWarnings(PHPMD.ExcessiveClassLength)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.ExcessiveClassLength")
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 class Import extends \Com\Tecnick\Pdf\Image\Output
 {
@@ -119,17 +119,17 @@ class Import extends \Com\Tecnick\Pdf\Image\Output
      * @var array<int>
      */
     protected const LOSSLESS = [
-        IMAGETYPE_GIF,
-        IMAGETYPE_PNG,
-        IMAGETYPE_PSD,
-        IMAGETYPE_BMP,
-        IMAGETYPE_WBMP,
-        IMAGETYPE_XBM,
-        IMAGETYPE_TIFF_II,
-        IMAGETYPE_TIFF_MM,
-        IMAGETYPE_IFF,
-        IMAGETYPE_SWC,
-        IMAGETYPE_ICO,
+        IMAGETYPE_GIF,     // 1
+        IMAGETYPE_PNG,     // 3
+        IMAGETYPE_PSD,     // 5
+        IMAGETYPE_BMP,     // 6
+        IMAGETYPE_WBMP,    // 15
+        IMAGETYPE_XBM,     // 16
+        IMAGETYPE_TIFF_II, // 7
+        IMAGETYPE_TIFF_MM, // 8
+        IMAGETYPE_IFF,     // 14
+        IMAGETYPE_SWC,     // 13
+        IMAGETYPE_ICO,     // 17
     ];
 
     /**
@@ -430,7 +430,7 @@ class Import extends \Com\Tecnick\Pdf\Image\Output
             $data['channels'] = (int) $meta['channels'];
         }
 
-        if (isset(self::COLSPACEMAP[$data['channels']]) && self::COLSPACEMAP[$data['channels']] !== '') {
+        if (isset(self::COLSPACEMAP[$data['channels']])) {
             $data['colspace'] = self::COLSPACEMAP[$data['channels']];
         }
 
@@ -451,8 +451,8 @@ class Import extends \Com\Tecnick\Pdf\Image\Output
      *
      * @return ImageRawData Image raw data array.
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+     * @SuppressWarnings("PHPMD.NPathComplexity")
      */
     protected function getResizedRawData(
         array $data,
@@ -534,7 +534,10 @@ class Import extends \Com\Tecnick\Pdf\Image\Output
             throw new ImageException('Unable to create alpha channel image from string');
         }
 
-        $newimg = imagecreate($data['width'], $data['height']);
+        $newimg = imagecreate(
+            max(1, $data['width']),
+            max(1, $data['height']),
+        );
         if ($newimg === false) {
             throw new ImageException('Unable to create new empty alpha channel image');
         }

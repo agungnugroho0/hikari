@@ -31,7 +31,7 @@ use Com\Tecnick\File\Exception as FileException;
  * @license   http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE.TXT)
  * @link      https://github.com/tecnickcom/tc-lib-file
  *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 class File
 {
@@ -79,6 +79,10 @@ class File
      */
     public function fopenLocal(string $filename, string $mode): mixed
     {
+        if ($this->hasDoubleDots($filename)) {
+            throw new FileException('path contains parent directory dots');
+        }
+
         if (! str_contains($filename, '://')) {
             $filename = 'file://' . $filename;
         } elseif (! str_starts_with($filename, 'file://')) {
@@ -108,7 +112,7 @@ class File
         }
 
         $val = unpack('Ni', $data);
-        return $val === false ? 0 : $val['i'];
+        return $val === false ? 0 : (is_int($val['i']) ? $val['i'] : 0);
     }
 
     /**
@@ -118,7 +122,7 @@ class File
      * length bytes have been read; EOF (end of file) is reached.
      *
      * @param ?resource  $resource A file system pointer resource that is typically created using fopen().
-     * @param int<0, max> $length   Number of bytes to read.
+     * @param int<1, max> $length  Number of bytes to read.
      *
      * @throws FileException in case of error
      */
@@ -173,6 +177,10 @@ class File
      */
     public function getFileData(string $file): string|false
     {
+        if ($this->hasDoubleDots($file) || $this->hasForbiddenProtocol($file)) {
+            return false;
+        }
+
         $ret = @file_get_contents($file);
         if ($ret !== false) {
             return $ret;
@@ -187,7 +195,7 @@ class File
      *
      * @param string $url URL to read.
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     public function getUrlData(string $url): string|false
     {
@@ -255,6 +263,7 @@ class File
             && ($file[0] === '/')
             && ($file[1] !== '/')
             && ! empty($_SERVER['DOCUMENT_ROOT'])
+            && is_string($_SERVER['DOCUMENT_ROOT'])
             && ($_SERVER['DOCUMENT_ROOT'] !== '/')
         ) {
             $findroot = strpos($file, (string) $_SERVER['DOCUMENT_ROOT']);
@@ -267,7 +276,7 @@ class File
     }
 
     /**
-     * Add missing local URL protocol
+     * Add missing local URL protocol.
      *
      * @param string $file Relative URL path
      *
@@ -283,12 +292,16 @@ class File
     }
 
     /**
-     * Get the default URL protocol (http or https)
+     * Get the default URL protocol (http or https).
      */
     protected function getDefaultUrlProtocol(): string
     {
         $protocol = 'http';
-        if (! empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) != 'off')) {
+        if (
+            ! empty($_SERVER['HTTPS'])
+            && is_string($_SERVER['HTTPS'])
+            && (strtolower($_SERVER['HTTPS']) != 'off')
+        ) {
             $protocol .= 's';
         }
 
@@ -296,11 +309,13 @@ class File
     }
 
     /**
-     * Add missing local URL protocol
+     * Add missing local URL protocol.
      *
      * @param string $url Relative URL path
      *
      * @return string local path or original $file
+     *
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     protected function getAltPathFromUrl(string $url): string
     {
@@ -308,7 +323,9 @@ class File
             preg_match('%^(https?)://%', $url) === 0
             || preg_match('%^(https?)://%', $url) === false
             || empty($_SERVER['HTTP_HOST'])
+            || !is_string($_SERVER['HTTP_HOST'])
             || empty($_SERVER['DOCUMENT_ROOT'])
+            || !is_string($_SERVER['DOCUMENT_ROOT'])
         ) {
             return $url;
         }
@@ -329,18 +346,19 @@ class File
     }
 
     /**
-     * Get an alternate URL from a file path
+     * Get an alternate URL from a file path.
      *
      * @param string $file File name and path
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     protected function getAltUrlFromPath(string $file): string
     {
         if (
             isset($_SERVER['SCRIPT_URI'])
-            && (preg_match('%^(https?|ftp)://%', $file) === 0
-            || preg_match('%^(https?|ftp)://%', $file) === false)
+            && is_string($_SERVER['SCRIPT_URI'])
+            && (preg_match('%^(ftp|https?)://%', $file) === 0
+            || preg_match('%^(ftp|https?)://%', $file) === false)
             && (preg_match('%^//%', $file) === 0
             || preg_match('%^//%', $file) === false)
         ) {
@@ -353,5 +371,30 @@ class File
         }
 
         return $file;
+    }
+
+    /**
+     * Check if the path contains parent directory dots ('..').
+     *
+     * @param string $path path to check
+     *
+     * @return boolean true if the path is relative
+     */
+    public static function hasDoubleDots($path)
+    {
+        return (strpos(str_ireplace('%2E', '.', html_entity_decode($path, ENT_QUOTES, 'UTF-8')), '..') !== false);
+    }
+
+    /**
+     * Check if the path contains a non-allowed protocol.
+     * If a protocol is present ('://'), then only 'file://' and 'https://' are allowed.
+     *
+     * @param string $path path to check.
+     *
+     * @return boolean true if the protocol is not allowed.
+     */
+    public static function hasForbiddenProtocol($path)
+    {
+        return ((strpos($path, '://') !== false) && (preg_match('%^(file|ftp|https?)://%', $path) !== 1));
     }
 }

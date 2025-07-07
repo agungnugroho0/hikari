@@ -16,6 +16,8 @@
 
 namespace Test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+
 /**
  * Import Test
  *
@@ -27,10 +29,22 @@ namespace Test;
  * @license   http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE.TXT)
  * @link      https://github.com/tecnickcom/tc-lib-pdf-font
  *
- * @SuppressWarnings(PHPMD.LongVariable)
+ * @SuppressWarnings("PHPMD.LongVariable")
  */
 class ImportTest extends TestUtil
 {
+    public function testImportForbiddenProtocol(): void
+    {
+        $this->bcExpectException('\\' . \Com\Tecnick\Pdf\Font\Exception::class);
+        new \Com\Tecnick\Pdf\Font\Import('phar://test.txt');
+    }
+
+    public function testImportParentDir(): void
+    {
+        $this->bcExpectException('\\' . \Com\Tecnick\Pdf\Font\Exception::class);
+        new \Com\Tecnick\Pdf\Font\Import('/tmp/something/../test.txt');
+    }
+
     public function testImportEmptyName(): void
     {
         $this->bcExpectException('\\' . \Com\Tecnick\Pdf\Font\Exception::class);
@@ -77,9 +91,7 @@ class ImportTest extends TestUtil
         new \Com\Tecnick\Pdf\Font\Import($outdir . 'test.ttf', $outdir);
     }
 
-    /**
-     * @dataProvider importDataProvider
-     */
+    #[DataProvider('importDataProvider')]
     public function testImport(
         string $fontdir,
         string $font,

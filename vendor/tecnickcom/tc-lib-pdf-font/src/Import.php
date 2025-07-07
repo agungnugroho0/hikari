@@ -38,7 +38,7 @@ use Com\Tecnick\Unicode\Data\Encoding;
  *
  * @phpstan-import-type TFontData from Load
  *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 class Import
 {
@@ -218,6 +218,10 @@ class Import
         int $encoding_id = 1,
         bool $linked = false
     ) {
+        if (FILE::hasDoubleDots($file) || FILE::hasForbiddenProtocol($file)) {
+            throw new FontException('Invalid font file name: ' . $file);
+        }
+
         $this->fdt['input_file'] = $file;
         $this->fdt['file_name'] = $this->makeFontName($file);
         if (empty($this->fdt['file_name'])) {
@@ -319,8 +323,8 @@ class Import
     /**
      * Save the eported metadata font file
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+     * @SuppressWarnings("PHPMD.NPathComplexity")
      */
     protected function saveFontData(): void
     {
@@ -450,7 +454,12 @@ class Import
      */
     protected function findOutputPath(string $output_path = ''): string
     {
-        if ($output_path !== '' && is_writable($output_path)) {
+        if (
+            $output_path !== ''
+            && (strpos($output_path, '://') === false)
+            && !FILE::hasDoubleDots($output_path)
+            && is_writable($output_path)
+        ) {
             return $output_path;
         }
 
@@ -535,7 +544,7 @@ class Import
     /**
      * If required, get differences between the reference encoding (cp1252) and the current encoding
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     protected function getEncodingDiff(): string
     {

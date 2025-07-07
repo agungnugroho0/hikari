@@ -7,7 +7,7 @@
  * @category  Library
  * @package   Pdf
  * @author    Nicola Asuni <info@tecnick.com>
- * @copyright 2002-2024 Nicola Asuni - Tecnick.com LTD
+ * @copyright 2002-2025 Nicola Asuni - Tecnick.com LTD
  * @license   http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE.TXT)
  * @link      https://github.com/tecnickcom/tc-lib-pdf
  *
@@ -29,7 +29,7 @@ use Com\Tecnick\Pdf\Exception as PdfException;
  * @category  Library
  * @package   Pdf
  * @author    Nicola Asuni <info@tecnick.com>
- * @copyright 2002-2024 Nicola Asuni - Tecnick.com LTD
+ * @copyright 2002-2025 Nicola Asuni - Tecnick.com LTD
  * @license   http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE.TXT)
  * @link      https://github.com/tecnickcom/tc-lib-pdf
  *
@@ -45,7 +45,7 @@ use Com\Tecnick\Pdf\Exception as PdfException;
  * @phpstan-import-type TUserRights from Output
  * @phpstan-import-type TXOBject from Output
  *
- * @SuppressWarnings(PHPMD.DepthOfInheritance)
+ * @SuppressWarnings("PHPMD.DepthOfInheritance")
  */
 class Tcpdf extends \Com\Tecnick\Pdf\ClassObjects
 {
@@ -273,7 +273,68 @@ class Tcpdf extends \Com\Tecnick\Pdf\ClassObjects
         return $out . $this->graph->getStopTransform();
     }
 
+    /**
+     * Add an embedded file.
+     * If a file with the same name already exists, it will be ignored.
+     *
+     * @param string $file File name (absolute or relative path).
+     *
+     * @throws PdfException in case of error.
+     */
+    public function addEmbeddedFile(string $file): void
+    {
+        if (($this->pdfa == 1) || ($this->pdfa == 2)) {
+            throw new PdfException('Embedded files are not allowed in PDF/A mode version 1 and 2');
+        }
+
+        if (empty($file)) {
+            throw new PdfException('Empty file name');
+        }
+        $filekey = basename((string) $file);
+        if (
+            ! empty($filekey)
+            && empty($this->embeddedfiles[$filekey])
+        ) {
+            $this->embeddedfiles[$filekey] = [
+                'a' => 0,
+                'f' => ++$this->pon,
+                'n' => ++$this->pon,
+                'file' => (string) $file,
+                'content' => '',
+            ];
+        }
+    }
+
+    /**
+     * Add string content as an embedded file.
+     * If a file with the same name already exists, it will be ignored.
+     *
+     * @param string $file File name to be used a key for the embedded file.
+     * @param string $content  Content of the embedded file.
+     *
+     * @throws PdfException in case of error.
+     */
+    public function addContentAsEmbeddedFile(string $file, string $content): void
+    {
+        if (($this->pdfa == 1) || ($this->pdfa == 2)) {
+            throw new PdfException('Embedded files are not allowed in PDF/A mode version 1 and 2');
+        }
+        if (empty($file) || empty($content)) {
+            throw new PdfException('Empty file name or content');
+        }
+        if (empty($this->embeddedfiles[$file])) {
+            $this->embeddedfiles[$file] = [
+                'a' => 0,
+                'f' => ++$this->pon,
+                'n' => ++$this->pon,
+                'file' => $file,
+                'content' => $content,
+            ];
+        }
+    }
+
     // ===| ANNOTATION |====================================================
+
 
     /**
      * Add an annotation and returns the object id.
@@ -325,34 +386,19 @@ class Tcpdf extends \Com\Tecnick\Pdf\ClassObjects
         switch (strtolower($opt['subtype'])) {
             case 'fileattachment':
             case 'sound':
-                if (empty($opt['fs'])) {
-                    throw new PdfException('Missing file attachment');
-                }
-                $filekey = basename((string) $opt['fs']);
-                if (
-                    ! empty($opt['fs'])
-                    && is_string($opt['fs'])
-                    && empty($this->embeddedfiles[$filekey])
-                ) {
-                    $this->embeddedfiles[$filekey] = [
-                        'a' => 0,
-                        'f' => ++$this->pon,
-                        'n' => ++$this->pon,
-                        'file' => $opt['fs'],
-                    ];
-                }
+                $this->addEmbeddedFile($opt['fs']);
         }
 
         // Add widgets annotation's icons
-        if (isset($opt['mk']['i'])) {
+        if (isset($opt['mk']['i']) && is_string($opt['mk']['i'])) {
             $this->image->add($opt['mk']['i']);
         }
 
-        if (isset($opt['mk']['ri'])) {
+        if (isset($opt['mk']['ri']) && is_string($opt['mk']['ri'])) {
             $this->image->add($opt['mk']['ri']);
         }
 
-        if (isset($opt['mk']['ix'])) {
+        if (isset($opt['mk']['ix']) && is_string($opt['mk']['ix'])) {
             $this->image->add($opt['mk']['ix']);
         }
 

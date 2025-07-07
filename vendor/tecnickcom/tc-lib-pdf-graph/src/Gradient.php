@@ -32,7 +32,7 @@ use Com\Tecnick\Pdf\Graph\Exception as GraphException;
  * @phpstan-import-type GradientData from \Com\Tecnick\Pdf\Graph\Base
  * @phpstan-import-type StyleDataOpt from \Com\Tecnick\Pdf\Graph\Base
  *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
  */
 abstract class Gradient extends \Com\Tecnick\Pdf\Graph\Raw
 {
@@ -102,8 +102,7 @@ abstract class Gradient extends \Com\Tecnick\Pdf\Graph\Raw
         array $style = []
     ): string {
         return $this->getStyleCmd($style)
-            . $this->getRawRect($posx, $posy, $width, $height)
-            . $this->getPathPaintOp($mode);
+            . $this->getRawRect($posx, $posy, $width, $height, $mode);
     }
 
     /**
@@ -214,16 +213,12 @@ abstract class Gradient extends \Com\Tecnick\Pdf\Graph\Raw
      * @param float $posy   Ordinate of the top left corner of the rectangle.
      * @param float $width  Width of the rectangle.
      * @param float $height Height of the rectangle.
+     * @param bool  $eoclip If true, set clipping path using even-odd rule.
      */
-    public function getClippingRect(float $posx, float $posy, float $width, float $height): string
+    public function getClippingRect(float $posx, float $posy, float $width, float $height, bool $eoclip = false): string
     {
-        return sprintf(
-            '%F %F %F %F re W n' . "\n",
-            ($posx * $this->kunit),
-            (($this->pageh - $posy) * $this->kunit),
-            ($width * $this->kunit),
-            (-$height * $this->kunit)
-        );
+        $mode = $eoclip ? 'CEO' : 'CNZ';
+        return $this->getRawRect($posx, $posy, $width, $height, $mode);
     }
 
     /**
@@ -406,8 +401,8 @@ abstract class Gradient extends \Com\Tecnick\Pdf\Graph\Raw
      *
      * @return string PDF command
      *
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings("PHPMD.ExcessiveParameterList")
+     * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
      */
     public function getCoonsPatchMeshWithCoords(
         float $posx,
@@ -608,9 +603,9 @@ abstract class Gradient extends \Com\Tecnick\Pdf\Graph\Raw
      *
      * @return string PDF command
      *
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.ExcessiveParameterList")
+     * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     public function getCoonsPatchMesh(
         float $posx,
@@ -688,7 +683,7 @@ abstract class Gradient extends \Com\Tecnick\Pdf\Graph\Raw
      *
      * @return string PDF command
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     public function getColorRegistrationBar(
         float $posx,
@@ -846,7 +841,7 @@ abstract class Gradient extends \Com\Tecnick\Pdf\Graph\Raw
      * (Check the "Entries in a Graphics State Parameter Dictionary" on PDF 32000-1:2008).
      *
      * @param bool $stroking    If true apply overprint for stroking operations.
-     * @param bool $nonstroking If true apply overprint for painting operations other than stroking.
+     * @param bool|null $nonstroking If true apply overprint for painting operations other than stroking.
      * @param int  $mode        Overprint mode:
      *                          0 = each source
      *                          colour
@@ -873,7 +868,7 @@ abstract class Gradient extends \Com\Tecnick\Pdf\Graph\Raw
      */
     public function getOverprint(
         bool $stroking = true,
-        bool $nonstroking = null,
+        ?bool $nonstroking = null,
         int $mode = 0
     ): string {
         if ($nonstroking === null) {
