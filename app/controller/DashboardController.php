@@ -1,6 +1,6 @@
 <?php
 namespace app\controller;
-use app\model\kelas;
+use app\model\Kelas;
 
 class DashboardController{
 
