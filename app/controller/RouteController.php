@@ -1,6 +1,9 @@
 <?php
+
 namespace app\controller;
 use app\model\staff;
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // pengatur viewloader/view controller
 class RouteController{
     public function __construct(){
