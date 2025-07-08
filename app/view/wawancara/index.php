@@ -36,7 +36,8 @@ foreach ($so as $data_so) {
 
 <body>
 <a href="#" class="text-white bg-gradient-to-br from-orange-600 to-red-700 hover:to-yellow-700 focus:ring-1 focus:outline-none text-sm px-5 py-2 text-center dark:from-black dark:to-black dark:hover:to-gray-900 font-[Lato] font-bold rounded" onclick="loadPageFromMenu('router.php?page=wawancara&act=tambah', '3')">+ Training Order</a>
-    <div class="grid gap-2 mt-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+
+    <div class="grid gap-2 mt-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ">
         <!-- mulai looping -->
          <?php foreach ($job as $id_so => $data_so): ?>
         <div class="shadow w-full bg-white dark:bg-gray-700">
