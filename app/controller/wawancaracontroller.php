@@ -211,10 +211,9 @@ class wawancaracontroller{
             };
 
             $data_siswa = $this->db->datasiswa($POST['nis']);
-            // $no_wa = formatnowa($data_siswa['no_rumah']);
+            $no_wa = formatnowa($data_siswa['no_rumah']);
             $nama = $data_siswa['nama'];
             $id_kelas = $data_siswa['id_kelas'];
-$no_wa = formatnowa('089649792758');
 
             $pesan_wali = "📢 *Pemberitahuan Hasil Wawancara*\n\n"
                 . "Yth. Bapak/Ibu Wali dari *$nama*,\n\n"
