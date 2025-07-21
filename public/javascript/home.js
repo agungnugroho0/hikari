@@ -29,7 +29,7 @@ async function fetchdata(bulan) {
           enabled: false
         },
       },
-      colors: ['#ffc1bd'],
+      colors: ['#32478c'],
       dataLabels: {
         enabled: false
       },

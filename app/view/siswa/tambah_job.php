@@ -74,7 +74,7 @@ foreach($siswa as $s){
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-900 dark:text-white" for="file_input">&nbsp;</label>
-                    <a href="#" class=" bg-red-600 block font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center text-white hover:bg-red-900 transition" onclick="loadPageFromMenu('router.php?page=siswa%act=detail&nis<?= $nis?>', '2')">Cancel</a>
+                    <a href="#" class=" bg-red-600 block font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center text-white hover:bg-red-900 transition" onclick="loadPageFromMenu('router.php?page=siswa&act=detail&nis<?= $nis?>', '2')">Cancel</a>
                 </div>
             </div>
     </form> 

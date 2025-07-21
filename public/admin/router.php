@@ -69,6 +69,10 @@ switch ($page) {
     case 'siswa':
         if      ( $act === 'detail' && isset($_GET['nis'])){
                 $controller->detailsiswa($_GET['nis']);
+        }elseif ($act === 'uploaddoc' && isset($_GET['nis'])){
+                $controller->uploaddoc($_GET['nis']);
+        } elseif ($act === 'upload_doc' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                (new siswacontroller())->uploaddokumen($_POST,$_FILES);
         }elseif ($act === 'nafuda' && isset($_GET['nis'])){
                 (new siswacontroller())->cetaknafuda($_GET['nis']);
         }elseif ( $act === 'edit' && isset($_GET['nis'])){
@@ -81,7 +85,6 @@ switch ($page) {
                 $controller->tambah_job($_GET['nis']);
         } elseif ($act === 'tambah_job' && $_SERVER['REQUEST_METHOD'] === 'POST') {
                 (new siswacontroller())->tambahjob($_POST);
-
         }else{
                 $controller->siswa();
         }

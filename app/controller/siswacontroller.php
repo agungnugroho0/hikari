@@ -133,6 +133,94 @@ class siswacontroller{
                 exit;
         }
     }
+
+    public function uploaddokumen($post, $files): void {
+        try {
+            $nama       = $post['nama'] ?? '';
+            $nis        = $post['nis'] ?? '';
+            $tipe       = $post['tipe'] ?? '';
+            $keterangan = $post['keterangan'] ?? '';
+
+            $originalName = $files['dokumen']['name'] ?? '';
+            $tmpName      = $files['dokumen']['tmp_name'] ?? '';
+            $ext          = pathinfo($originalName, PATHINFO_EXTENSION);
+
+            // Validasi dasar file
+            if (empty($originalName) || empty($tmpName)) {
+                throw new \Exception("File tidak valid atau tidak ditemukan.");
+            }
+
+            if (!is_uploaded_file($tmpName)) {
+                throw new \Exception("File bukan hasil upload melalui HTTP POST.");
+            }
+
+            // Sanitasi nama-nama
+            $safeNama       = preg_replace('/[^a-zA-Z0-9_\-]/', '', str_replace(' ', '_', $nama));
+            $safeTipe       = strtoupper(preg_replace('/[^a-zA-Z0-9_\-]/', '', str_replace(' ', '_', $tipe)));
+            $safeKeterangan = preg_replace('/[^a-zA-Z0-9_\-]/', '', str_replace(' ', '_', $keterangan));
+            $label          = ($tipe === 'lainnya') ? $safeKeterangan : $safeTipe;
+
+            // Format nama file
+            $newFileName = "{$nis}_{$safeNama}_{$label}." . strtolower($ext);
+
+            // Tentukan folder target NAS (sudah di-mount ke /mnt/nas)
+            $targetFolder = "/mnt/nas/{$safeTipe}";
+
+            // Buat folder jika belum ada
+            if (!is_dir($targetFolder)) {
+                if (!mkdir($targetFolder, 0775, true)) {
+                    throw new \Exception("Gagal membuat folder tujuan: {$targetFolder}");
+                }
+            }
+
+            // Pastikan folder bisa ditulis
+            if (!is_writable($targetFolder)) {
+                throw new \Exception("Folder tidak bisa ditulis: {$targetFolder}");
+            }
+
+            // Path final file
+            $targetPath = $targetFolder . '/' . $newFileName;
+
+            // Proses pemindahan file
+            if (!move_uploaded_file($tmpName, $targetPath)) {
+                throw new \Exception("Gagal menyimpan file ke NAS: {$targetPath}");
+            }
+
+            // Simpan ke database
+            $data = [
+                'id_doc'     => idBaru('DOC', 'id_doc', 'dokumen'),
+                'nis'        => $nis,
+                'tipe'       => $tipe,
+                'keterangan' => $keterangan,
+                'dokumen'    => $newFileName
+            ];
+
+            // $this->db->uploaddokumen($data);
+
+            // Kirim respons sukses
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => true,
+                'message' => 'File berhasil diupload.'
+            ]);
+            exit;
+
+        } catch (\Throwable $e) {
+            // Debug log ke /tmp
+            file_put_contents('/tmp/upload_error.log', $e->getMessage() . PHP_EOL, FILE_APPEND);
+
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => false,
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ]);
+            exit;
+        }
+    }
+    
+    public function lihatdokumen($nis){
+        return $this->db->lihatdokumen($nis);
+    }
     public function insertsiswa($post,$files){
         try{
             $data = [
@@ -198,6 +286,7 @@ class siswacontroller{
         return $this->db->daftar_wawancara();
     }
 
+    
     public function tambahjob($post){
         try {
             $id = $post['id_job'];

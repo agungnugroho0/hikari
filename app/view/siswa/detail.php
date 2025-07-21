@@ -7,6 +7,7 @@ $siswa = $objek->detailsiswa($nis,'data');
 $job = $objek->detailsiswa($nis,'job');
 $kk = $objek->detailsiswa($nis,'keluarga');
 $pendidikan = $objek->detailsiswa($nis,'pendidikan');
+$dokumen = $objek->lihatdokumen($nis);
 
 // var_dump($siswa);
 ?>
@@ -129,7 +130,7 @@ $pendidikan = $objek->detailsiswa($nis,'pendidikan');
         <!-- bilik kanan -->
         <div class=" sm:min-w-64">
             <div class=" my-1 bg-green-600 dark:bg-green-400 text-white font-semibold rounded-md px-2 py-1 text-sm text-center h-7 hover:bg-green-700 cursor-pointer transition duration-400 ease-out"><a href="https://wa.me/<?= $nomor_wa?>" >WHATSAPP</a></div>
-            <div class=" my-1 bg-red-700 text-white font-semibold rounded-md px-2 py-1 text-sm text-center hover:bg-green-700 cursor-pointer transition duration-400 ease-out">
+            <div class=" my-1 bg-slate-700 text-white font-semibold rounded-md px-2 py-1 text-sm text-center hover:bg-slate-800 cursor-pointer transition duration-400 ease-out">
             <a href="<?='/public/image/photos/'.$s['foto']?>" download="<?= $s['nama']?>.jpg">DOWNLOAD FOTO</a>
             </div>
             <hr class="my-2">
@@ -163,6 +164,24 @@ $pendidikan = $objek->detailsiswa($nis,'pendidikan');
                     <?php else : ?> 
                         <p class="text-gray-500 text-sm dark:text-gray-400">Belum ikut job</p>
                     <?php endif; ?>
+                </div>
+                <div class="rounded mt-5 p-1 outline outline-2 outline-gray-300 dark:outline-white gap-2 font-[Lato] px-2">
+                    <div class="flex flex-row items-center"> 
+                        <p class="grow font-semibold text-gray-500 dark:text-gray-300">Dokumen</p>
+                        <a href="#" onclick="loadPageFromMenu('router.php?page=siswa&act=uploaddoc&nis=<?=$s['nis']?>','4')" class="hover:text-red-700 font-semibold text-red-500 ">+</a>
+                    </div>
+                    <?php 
+                    if ($dokumen):?>
+                        <?php foreach ($dokumen as $d): ?>
+                            
+                            <hr class="my-1">
+                            <p class="text-gray-500 text-sm dark:text-gray-300">Jenis Dokumen : <?= $d['tipe']?></p>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="text-gray-500 text-sm dark:text-gray-400">Belum ada dokumen yang diupload</p>
+                    <?php endif; ?>
+                    
+                    <hr>
                 </div>
         </div>
     </div>
