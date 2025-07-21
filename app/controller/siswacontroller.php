@@ -164,7 +164,7 @@ class siswacontroller{
             $newFileName = "{$nis}_{$safeNama}_{$label}." . strtolower($ext);
 
             // Tentukan folder target NAS (sudah di-mount ke /mnt/nas)
-            $targetFolder = "/mnt/nas/{$safeTipe}";
+            $targetFolder = "/mnt/nas/";
 
             // Buat folder jika belum ada
             if (!is_dir($targetFolder)) {
