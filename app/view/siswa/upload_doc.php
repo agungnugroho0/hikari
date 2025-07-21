@@ -21,11 +21,11 @@ foreach($siswa as $s){
         <div>
             <label for="tipe" class="text-sm font-medium text-gray-900 dark:text-slate-300">Jenis Dokumen</label>
             <select name="tipe" id="tipe" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-100 focus:outline-none dark:bg-black dark:border-gray-600 dark:placeholder-gray-400 p-2 mt-1.5" required>
-                <option value="siswa">Data Diri</option>
-                <option value="pramcu">Pra-MCU</option>
-                <option value="passport">Passport</option>
-                <option value="mcu_final">MCU-Final</option>
-                <option value="lainnya">Lainnya</option>
+                <option value="SISWA">Data Diri</option>
+                <option value="PRAMCU">Pra-MCU</option>
+                <option value="PASSPORT">Passport</option>
+                <option value="MCU_FINAL">MCU-Final</option>
+                <option value="LAINNYA">Lainnya</option>
             </select>
         </div>
         <div>

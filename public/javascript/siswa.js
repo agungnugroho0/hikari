@@ -133,40 +133,40 @@ function initsiswa() {
                 method: "POST",
                 body: formData
             })
-            // .then(res => res.json())
-            // .then(response => {
-            //     if (response.success) {
-            //         toastr.success(response.message);
-            //         loadPageFromMenu(`router.php?page=siswa&act=detail&nis=${nis}`, "4");
-            //     } else {
-            //         toastr.error(response.message || "Gagal mengupload dokumen.");
-            //     }
-            // })
-            // .catch(err => {
-            //     console.error(err);
-            //     toastr.error("Terjadi kesalahan saat mengirim dokumen dari js siswa.");
-            // });
-
-            // maintenance
-            .then(async res => {
-                const text = await res.text(); // baca semua respon sebagai teks
-                try {
-                    const json = JSON.parse(text); // coba parse ke JSON
-                    if (json.success) {
-                        toastr.success(json.message);
-                        loadPageFromMenu(`router.php?page=siswa&act=detail&nis=${nis}`, "4");
-                    } else {
-                        toastr.error(json.message || "Gagal mengupdate data.");
-                    }
-                } catch (e) {
-                    console.error("⚠️ Respon bukan JSON:", text);  // log full respon
-                    toastr.error("Respon bukan JSON: cek konsol!");
+            .then(res => res.json())
+            .then(response => {
+                if (response.success) {
+                    toastr.success(response.message);
+                    loadPageFromMenu(`router.php?page=siswa&act=detail&nis=${nis}`, "4");
+                } else {
+                    toastr.error(response.message || "Gagal mengupload dokumen.");
                 }
             })
             .catch(err => {
-                console.error("⚠️ Gagal fetch:", err);
-                toastr.error("Kesalahan saat mengirim data.");
+                console.error(err);
+                toastr.error("Terjadi kesalahan saat mengirim dokumen dari js siswa.");
             });
+
+            // maintenance
+            // .then(async res => {
+            //     const text = await res.text(); // baca semua respon sebagai teks
+            //     try {
+            //         const json = JSON.parse(text); // coba parse ke JSON
+            //         if (json.success) {
+            //             toastr.success(json.message);
+            //             loadPageFromMenu(`router.php?page=siswa&act=detail&nis=${nis}`, "4");
+            //         } else {
+            //             toastr.error(json.message || "Gagal mengupdate data.");
+            //         }
+            //     } catch (e) {
+            //         console.error("⚠️ Respon bukan JSON:", text);  // log full respon
+            //         toastr.error("Respon bukan JSON: cek konsol!");
+            //     }
+            // })
+            // .catch(err => {
+            //     console.error("⚠️ Gagal fetch:", err);
+            //     toastr.error("Kesalahan saat mengirim data.");
+            // });
             
         });
     }
