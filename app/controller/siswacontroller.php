@@ -162,9 +162,18 @@ class siswacontroller{
 
         // Pindahkan file
         $tujuan = $folderTujuan . '/' . $newFileName;
-        if (!move_uploaded_file($tmpPath, $tujuan)) {
+        $success = move_uploaded_file($tmpPath, $tujuan);
+
+        file_put_contents('/tmp/debug.log', 'Move: ' . ($success ? 'yes' : 'no') . "\n", FILE_APPEND);
+        file_put_contents('/tmp/debug_path.log', "TMP: $tmpPath\nDEST: $tujuan\n", FILE_APPEND);
+        if (!$success) {
             throw new \Exception("Gagal memindahkan file ke NAS.");
         }
+        
+        // if (!move_uploaded_file($tmpPath, $tujuan)) {
+        //     file_put_contents('/tmp/debug.log', 'Move: ' . ($success ? 'yes' : 'no') . "\n", FILE_APPEND);
+        //     throw new \Exception("Gagal memindahkan file ke NAS.");
+        // }
 
         // Simpan ke database
         $data = [
