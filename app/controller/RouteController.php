@@ -59,6 +59,9 @@ class RouteController{
     public function tambah_job($nis){
         include __DIR__."/../view/siswa/tambah_job.php";
     }
+    public function uploaddoc($nis){
+        include __DIR__."/../view/siswa/upload_doc.php";
+    }
     
     public function lolos(){
         include __DIR__."/../view/lolos/index.php";

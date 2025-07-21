@@ -161,4 +161,22 @@ class Siswa{
         $stmt->bindParam(':nis', $data['nis']);
         return $stmt->execute();
     }
+
+    public function uploaddokumen($data){
+        $query = "INSERT INTO dokumen (id_doc, nis, tipe, keterangan, dokumen) VALUES (:id_doc, :nis,:tipe, :keterangan, :dokumen)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id_doc', $data['id_doc']);
+        $stmt->bindParam(':nis', $data['nis']);
+        $stmt->bindParam(':tipe', $data['tipe']);
+        $stmt->bindParam(':keterangan', $data['keterangan']);
+        $stmt->bindParam(':dokumen', $data['dokumen']);
+        return $stmt->execute();
+    }
+
+    public function lihatdokumen($nis){
+        $stmt = $this->db->prepare("SELECT * FROM dokumen WHERE nis = :nis ");
+        $stmt->bindParam(':nis', $nis);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

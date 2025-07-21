@@ -119,6 +119,57 @@ function initsiswa() {
             
         });
     }
+
+
+    const formDoc = document.getElementById("form-upload-doc");
+    if (formDoc) {
+        formDoc.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(formDoc);
+            const nis = document.getElementById("nis").value;
+
+            fetch("router.php?page=siswa&act=upload_doc", {
+                method: "POST",
+                body: formData
+            })
+            // .then(res => res.json())
+            // .then(response => {
+            //     if (response.success) {
+            //         toastr.success(response.message);
+            //         loadPageFromMenu(`router.php?page=siswa&act=detail&nis=${nis}`, "4");
+            //     } else {
+            //         toastr.error(response.message || "Gagal mengupload dokumen.");
+            //     }
+            // })
+            // .catch(err => {
+            //     console.error(err);
+            //     toastr.error("Terjadi kesalahan saat mengirim dokumen dari js siswa.");
+            // });
+
+            // maintenance
+            .then(async res => {
+                const text = await res.text(); // baca semua respon sebagai teks
+                try {
+                    const json = JSON.parse(text); // coba parse ke JSON
+                    if (json.success) {
+                        toastr.success(json.message);
+                        loadPageFromMenu(`router.php?page=siswa&act=detail&nis=${nis}`, "4");
+                    } else {
+                        toastr.error(json.message || "Gagal mengupdate data.");
+                    }
+                } catch (e) {
+                    console.error("⚠️ Respon bukan JSON:", text);  // log full respon
+                    toastr.error("Respon bukan JSON: cek konsol!");
+                }
+            })
+            .catch(err => {
+                console.error("⚠️ Gagal fetch:", err);
+                toastr.error("Kesalahan saat mengirim data.");
+            });
+            
+        });
+    }
     
    
     let pendingDeleteUrl = null;
@@ -162,32 +213,6 @@ function initsiswa() {
           });
       });
     }
-
-    // document.getElementById('btn-batal-hapus').addEventListener('click', () => {
-    //   pendingDeleteUrl = null;
-    //   document.getElementById('toast-konfirmasi-hapus').classList.add('hidden');
-    // });
-
-    // document.getElementById('btn-ya-hapus').addEventListener('click', () => {
-    //   if (!pendingDeleteUrl) return;
-
-    //   fetch(pendingDeleteUrl)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       if (data.success) {
-    //         toastr.success(data.message || "Berhasil menghapus siswa");
-    //       } else {
-    //         toastr.error(data.message || "Gagal menghapus siswa");
-    //       }
-    //       document.getElementById('toast-konfirmasi-hapus').classList.add('hidden');
-    //       loadPageFromMenu("router.php?page=siswa", "4");
-    //     })
-    //     .catch(err => {
-    //       toastr.error("Terjadi kesalahan saat menghapus siswa.");
-    //       console.error(err);
-    //       document.getElementById('toast-konfirmasi-hapus').classList.add('hidden');
-    //     });
-    // });
 
     const jobSelect = document.getElementById('job');
 
