@@ -177,7 +177,12 @@ $dokumen = $objek->lihatdokumen($nis);
                             $icon = $objek->getFileIcon($d['tipe']);    
                         ?>
                             <hr class="my-1">
-                            <p class="text-gray-500 text-sm dark:text-gray-300">Jenis Dokumen : <?= $d['tipe']?></p>
+                            <div class="flex">
+                                <p> icon</p>
+                                <div>
+                                    <p><?= $d['tipe']?></p>
+                                </div>
+                            </div>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <p class="text-gray-500 text-sm dark:text-gray-400">Belum ada dokumen yang diupload</p>

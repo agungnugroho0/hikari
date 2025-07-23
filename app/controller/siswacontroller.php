@@ -149,7 +149,7 @@ class siswacontroller{
 
         $safeNama = preg_replace('/[^a-zA-Z0-9_\-]/', '', str_replace(' ', '_', $nama));
         $safeTipe = strtoupper(preg_replace('/[^a-zA-Z0-9_\-]/', '', str_replace(' ', '_', $tipe)));
-        $safeKeterangan = preg_replace('/[^a-zA-Z0-9_\-]/', '', str_replace(' ', '_', $keterangan));
+        $safeKeterangan = strtoupper(preg_replace('/[^a-zA-Z0-9_\-]/', '', str_replace(' ', '_', $keterangan)));
 
         $label = ($tipe === 'LAINNYA') ? $safeKeterangan : $safeTipe;
         $newFileName = "{$nis}_{$safeNama}_{$label}." . strtolower($ext);
