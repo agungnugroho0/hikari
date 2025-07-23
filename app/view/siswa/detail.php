@@ -177,10 +177,10 @@ $dokumen = $objek->lihatdokumen($nis);
                             $icon = $objek->getFileIcon($d['dokumen']);    
                         ?>
                             <hr class="my-1">
-                            <div class="flex gap-2">
+                            <div class="flex gap-2 dark:hover:text-white">
                                 <?= $icon ?>
                                 <div class="grow">
-                                    <p class="dark:text-slate-400 dark:hover:text-white dark:text-sm"><?= $d['tipe']?></p>
+                                    <p class="dark:text-slate-400 dark:text-sm"><?= $d['tipe']?></p>
                                     <p class="dark:text-slate-400 dark:font-medium dark:text-sm"><?= $d['keterangan']?></p>
                                 </div>
                                 <a href="router.php?page=siswa&act=downloadfile&tipe=<?= urlencode($d['tipe']) ?>&file=<?= urlencode($d['dokumen']) ?>" class="text-blue-500 dark:text-blue-400 hover:underline" target="_blank">Lihat Dokumen</a>
