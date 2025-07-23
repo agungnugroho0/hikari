@@ -177,9 +177,9 @@ $dokumen = $objek->lihatdokumen($nis);
                             $icon = $objek->getFileIcon($d['dokumen']);    
                         ?>
                             <hr class="my-1">
-                            <div class="flex gap-2 dark:hover:text-white">
+                            <div class="flex gap-2 ">
                                 <?= $icon ?>
-                                <div class="grow">
+                                <div class="grow dark:hover:text-white">
                                     <p class="dark:text-slate-400 dark:text-sm"><?= $d['tipe']?></p>
                                     <p class="dark:text-slate-400 dark:font-medium dark:text-sm"><?= $d['keterangan']?></p>
                                 </div>
