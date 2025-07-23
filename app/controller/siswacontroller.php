@@ -205,11 +205,10 @@ public function downloadfile($get)
     $safeFile = basename($dokumen);
 
     $path = "/mnt/nas/$safeTipe/$safeFile";
-    $ext = pathinfo($safeFile, PATHINFO_EXTENSION);
 
     if (file_exists($path)) {
         header('Content-Description: File Transfer');
-        header('Content-Type: application/pdf'); // Ganti sesuai tipe file yang sesuai
+        header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="'.basename($path).'"');
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
