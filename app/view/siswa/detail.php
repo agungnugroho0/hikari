@@ -179,10 +179,11 @@ $dokumen = $objek->lihatdokumen($nis);
                             <hr class="my-1">
                             <div class="flex gap-2">
                                 <?= $icon ?>
-                                <div>
-                                    <p class="dark:text-white dark:font-semibold dark:text-sm"><?= $d['tipe']?></p>
+                                <div class="grow">
+                                    <p class="dark:text-slate-400 dark:hover:text-white dark:text-sm"><?= $d['tipe']?></p>
                                     <p class="dark:text-slate-400 dark:font-medium dark:text-sm"><?= $d['keterangan']?></p>
                                 </div>
+                                <a href="<?= '/mnt/nas/'.$d['tipe'].'/'.$d['dokumen']?>" class="text-blue-500 dark:text-blue-400 hover:underline" target="_blank">Lihat Dokumen</a>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
