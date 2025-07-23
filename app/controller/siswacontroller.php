@@ -199,6 +199,7 @@ class siswacontroller{
         return $this->db->lihatdokumen($nis);
     }
     function getFileIcon($ext) {
+    $exts = pathinfo($ext, PATHINFO_EXTENSION);
     $icons = [
         'pdf'  => '<i class="fa fa-file-pdf text-red-500 text-xl"></i>',
         'doc'  => '<i class="fa fa-file-word text-blue-500 text-xl"></i>',
@@ -213,7 +214,7 @@ class siswacontroller{
         'rar'  => '<i class="fa fa-file-archive text-yellow-500 text-xl"></i>',
         'default' => '<i class="fa fa-file text-gray-400 text-xl"></i>',
     ];
-    return $icons[$ext] ?? $icons['default'];
+    return $icons[$exts] ?? $icons['default'];
 }
     public function insertsiswa($post,$files){
         try{

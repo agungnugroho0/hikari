@@ -174,13 +174,14 @@ $dokumen = $objek->lihatdokumen($nis);
                     <?php 
                     if ($dokumen):?>
                         <?php foreach ($dokumen as $d): 
-                            $icon = $objek->getFileIcon($d['tipe']);    
+                            $icon = $objek->getFileIcon($d['dokumen']);    
                         ?>
                             <hr class="my-1">
-                            <div class="flex">
+                            <div class="flex gap-2">
                                 <p> icon</p>
                                 <div>
-                                    <p><?= $d['tipe']?></p>
+                                    <p class="dark:text-white dark:font-semibold dark:text-lg"><?= $d['tipe']?></p>
+                                    <p class="dark:text-slate-400 dark:font-medium dark:text-sm"><?= $d['keterangan']?></p>
                                 </div>
                             </div>
                         <?php endforeach; ?>
