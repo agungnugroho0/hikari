@@ -9,6 +9,7 @@ $kk = $objek->detailsiswa($nis,'keluarga');
 $pendidikan = $objek->detailsiswa($nis,'pendidikan');
 $dokumen = $objek->lihatdokumen($nis);
 
+
 // var_dump($siswa);
 ?>
 <body>
@@ -172,8 +173,9 @@ $dokumen = $objek->lihatdokumen($nis);
                     </div>
                     <?php 
                     if ($dokumen):?>
-                        <?php foreach ($dokumen as $d): ?>
-                            
+                        <?php foreach ($dokumen as $d): 
+                            $icon = $objek->getFileIcon($d['tipe']);    
+                        ?>
                             <hr class="my-1">
                             <p class="text-gray-500 text-sm dark:text-gray-300">Jenis Dokumen : <?= $d['tipe']?></p>
                         <?php endforeach; ?>

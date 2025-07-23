@@ -198,6 +198,23 @@ class siswacontroller{
     public function lihatdokumen($nis){
         return $this->db->lihatdokumen($nis);
     }
+    function getFileIcon($ext) {
+    $icons = [
+        'pdf'  => '<i class="fa fa-file-pdf text-red-500 text-xl"></i>',
+        'doc'  => '<i class="fa fa-file-word text-blue-500 text-xl"></i>',
+        'docx' => '<i class="fa fa-file-word text-blue-500 text-xl"></i>',
+        'xls'  => '<i class="fa fa-file-excel text-green-500 text-xl"></i>',
+        'xlsx' => '<i class="fa fa-file-excel text-green-500 text-xl"></i>',
+        'jpg'  => '<i class="fa fa-file-image text-purple-500 text-xl"></i>',
+        'jpeg' => '<i class="fa fa-file-image text-purple-500 text-xl"></i>',
+        'png'  => '<i class="fa fa-file-image text-purple-500 text-xl"></i>',
+        'txt'  => '<i class="fa fa-file-alt text-gray-500 text-xl"></i>',
+        'zip'  => '<i class="fa fa-file-archive text-yellow-500 text-xl"></i>',
+        'rar'  => '<i class="fa fa-file-archive text-yellow-500 text-xl"></i>',
+        'default' => '<i class="fa fa-file text-gray-400 text-xl"></i>',
+    ];
+    return $icons[$ext] ?? $icons['default'];
+}
     public function insertsiswa($post,$files){
         try{
             $data = [
