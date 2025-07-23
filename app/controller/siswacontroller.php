@@ -194,6 +194,32 @@ class siswacontroller{
         exit;
     }
 }
+
+public function downloadfile($get)
+{
+    $tipe = $get['tipe'] ?? '';
+    $dokumen = $get['file'] ?? '';
+
+    // Security: bersihkan input
+    $safeTipe = preg_replace('/[^a-zA-Z0-9_\-]/', '', $tipe);
+    $safeFile = basename($dokumen);
+
+    $path = "/mnt/nas/$safeTipe/$safeFile";
+
+    if (file_exists($path)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($path).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+        exit;
+    } else {
+        echo "File tidak ditemukan.";
+    }
+}
+
     
     public function lihatdokumen($nis){
         return $this->db->lihatdokumen($nis);
