@@ -178,7 +178,7 @@ $dokumen = $objek->lihatdokumen($nis);
                         ?>
                             <hr class="my-1">
                             <div class="flex gap-2">
-                                <p> icon</p>
+                                <?= $icon ?>
                                 <div>
                                     <p class="dark:text-white dark:font-semibold dark:text-sm"><?= $d['tipe']?></p>
                                     <p class="dark:text-slate-400 dark:font-medium dark:text-sm"><?= $d['keterangan']?></p>
