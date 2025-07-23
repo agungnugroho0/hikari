@@ -180,7 +180,7 @@ $dokumen = $objek->lihatdokumen($nis);
                             <div class="flex gap-2">
                                 <p> icon</p>
                                 <div>
-                                    <p class="dark:text-white dark:font-semibold dark:text-lg"><?= $d['tipe']?></p>
+                                    <p class="dark:text-white dark:font-semibold dark:text-sm"><?= $d['tipe']?></p>
                                     <p class="dark:text-slate-400 dark:font-medium dark:text-sm"><?= $d['keterangan']?></p>
                                 </div>
                             </div>
