@@ -179,4 +179,10 @@ class Siswa{
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function hapusdocdb($id_doc)
+    {
+    $stmt = $this->db->prepare("DELETE FROM dokumen WHERE id_doc = ?");
+    return $stmt->execute([$id_doc]);
+    }
 }

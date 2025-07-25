@@ -73,6 +73,8 @@ switch ($page) {
                 $controller->uploaddoc($_GET['nis']);
         }elseif ($act === 'downloadfile') {
                 (new siswacontroller())->downloadfile($_GET);
+        }elseif ($act === 'hapusdoc'){
+                (new siswacontroller())->hapusdoc($_GET);
         } elseif ($act === 'upload_doc' && $_SERVER['REQUEST_METHOD'] === 'POST') {
                 (new siswacontroller())->uploaddokumen($_POST,$_FILES);
         }elseif ($act === 'nafuda' && isset($_GET['nis'])){

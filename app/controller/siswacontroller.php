@@ -195,6 +195,39 @@ class siswacontroller{
     }
 }
 
+public function hapusdoc($get){
+
+    try {
+        $id_doc = $get['id_doc'] ?? '';
+        $tipe = $get['tipe'] ?? '';
+        $file = $get['file'] ?? '';
+
+        if (empty($id_doc) || empty($tipe) || empty($file)) {
+            throw new \Exception("Parameter tidak lengkap.");
+        }
+
+        // Hapus dari database
+        $this->db->hapusdocdb($id_doc);
+
+        // Hapus file dari NAS
+        $path = "/mnt/nas/{$tipe}/{$file}";
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        header('Content-Type: application/json');
+        echo json_encode([
+            'success' => true,
+            'message' => 'Dokumen berhasil dihapus.'
+        ]);
+    } catch(\Throwable $e) {
+        header('Content-Type: application/json');
+        echo json_encode([
+            'success' => false,
+            'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+        ]);
+    }
+}
+
 public function downloadfile($get)
 {
     $tipe = $get['tipe'] ?? '';
