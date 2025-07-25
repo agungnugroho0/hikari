@@ -201,6 +201,7 @@ public function hapusdoc($get){
         $id_doc = $get['id_doc'] ?? '';
         $tipe = $get['tipe'] ?? '';
         $file = $get['file'] ?? '';
+        $nis = $get['nis'] ?? '';
 
         if (empty($id_doc) || empty($tipe) || empty($file)) {
             throw new \Exception("Parameter tidak lengkap.");
@@ -214,11 +215,12 @@ public function hapusdoc($get){
         if (file_exists($path)) {
             unlink($path);
         }
-        header('Content-Type: application/json');
-        echo json_encode([
-            'success' => true,
-            'message' => 'Dokumen berhasil dihapus.'
-        ]);
+        // header('Content-Type: application/json');
+        // echo json_encode([
+        //     'success' => true,
+        //     'message' => 'Dokumen berhasil dihapus.'
+        // ]);
+        header("Location: router.php?page=siswa&act=detail&nis=$nis");
     } catch(\Throwable $e) {
         header('Content-Type: application/json');
         echo json_encode([

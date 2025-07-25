@@ -191,33 +191,6 @@ function initsiswa() {
       });
     }
 
-    document.querySelectorAll('.btn-hapus-doc').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-
-    const url = this.getAttribute('data-url');
-    const nis = new URL(url, window.location.href).searchParams.get("nis");
-
-    if (!confirm("Yakin ingin menghapus dokumen ini?")) return;
-
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          toastr.success(data.message || "Dokumen berhasil dihapus");
-          loadPageFromMenu(`router.php?page=siswa&act=detail&nis=${nis}`, "4");
-        } else {
-          toastr.error(data.message || "Gagal menghapus dokumen");
-        }
-      })
-      .catch(err => {
-        toastr.error("Terjadi kesalahan saat menghapus dokumen.");
-        console.error(err);
-      });
-  });
-});
-
-
     const btnYa = document.getElementById('btn-ya-hapus');
     if (btnYa) {
       btnYa.addEventListener('click', () => {

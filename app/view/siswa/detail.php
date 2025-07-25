@@ -184,11 +184,7 @@ $dokumen = $objek->lihatdokumen($nis);
                                     <p class="dark:text-slate-400 dark:font-medium dark:text-sm"><?= $d['keterangan']?></p>
                                 </div>
                                 <a href="router.php?page=siswa&act=downloadfile&tipe=<?= urlencode($d['tipe']) ?>&file=<?= urlencode($d['dokumen']) ?>" class="text-blue-500 dark:text-blue-400 hover:underline" target="_blank"><i class="fa fa-download"></i></a>
-                                <a href="#" 
-                                class="text-red-500 dark:text-red-400 hover:underline btn-hapus-doc"
-                                data-url="router.php?page=siswa&act=hapusdoc&tipe=<?=urlencode($d['tipe'])?>&file=<?=urlencode($d['dokumen'])?>&id_doc=<?= $d['id_doc'] ?>&nis=<?= $nis ?>">
-                                <i class="fas fa-trash-alt"></i>
-                                </a>
+                                <a href="#"  onclick="loadPageFromMenu('router.php?page=siswa&act=hapusdoc&tipe=<?=$d['tipe']?>&file=<?=$d['dokumen']?>&id_doc=<?=$d['id_doc']?>&nis=<?=$nis?>','4')"  class="text-blue-500 dark:text-blue-400 hover:underline"><i class="fas fa-trash-alt"></i></a>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
