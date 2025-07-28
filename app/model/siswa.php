@@ -9,7 +9,7 @@ class Siswa{
     }
 
     public function pilihsiswa($nis){
-        $stmt = $this->db->prepare("SELECT nis,nama FROM siswa WHERE nis = :nis");
+        $stmt = $this->db->prepare("SELECT nis,nama,no_rumah,id_kelas FROM siswa WHERE nis = :nis");
         $stmt->bindParam(':nis',$nis);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
