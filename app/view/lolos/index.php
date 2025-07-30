@@ -50,7 +50,7 @@ $i = ($page - 1) * $limit + 1;
                     </td>
                     <td class="px-4 w-[60px] py-2">
                         <div class="w-10 h-10 overflow-hidden object-top rounded-full">
-                            <img src="/public/image/photos/<?= $d['foto']?>" alt="<?= $d['foto']?>" class=""> 
+                            <img src="/public/image/nas_photos/<?= $d['foto']?>" alt="<?= $d['foto']?>" class=""> 
                         </div>
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-wrap text-gray-900 whitespace-nowrap dark:text-white">

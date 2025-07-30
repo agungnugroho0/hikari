@@ -172,4 +172,11 @@ class lolos{
         $stmt->bindParam(':nis', $data['nis']);
         return $stmt->execute();
     }
+
+        public function lihatdokumen($nis){
+        $stmt = $this->db->prepare("SELECT * FROM dokumen WHERE nis = :nis ");
+        $stmt->bindParam(':nis', $nis);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -44,6 +44,15 @@ class siswacontroller{
     public function hapussiswa($nis){
         try{
             $this->db->hapus($nis);
+            $targetDir  =  '/mnt/nas/photos/';
+            // Hapus foto siswa jika ada
+            $lama = findById('siswa','nis',$nis);
+            if (!empty($lama['foto'])) {
+                $oldPath = $targetDir . $lama['foto'];
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
+            }
             header('Content-Type: application/json');
             echo json_encode([
                 'success' => true,
@@ -314,7 +323,7 @@ public function downloadfile($get)
                 $ekstensi = pathinfo($files['foto']['name'], PATHINFO_EXTENSION);
                 $fotoName = strtolower($post['nama_lengkap']) . '.' . $ekstensi;
                 
-                $targetDir  = __DIR__ . '/../../public/image/photos/';
+                $targetDir  =  '/mnt/nas/photos/';
                 $targetPath = $targetDir . $fotoName;
 
                 // Cek apakah path folder-nya ada

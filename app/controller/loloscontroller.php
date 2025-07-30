@@ -164,12 +164,12 @@ class loloscontroller{
                 $fotoName = strtolower($post['nama_lengkap']) . '.' . $ekstensi;
                 $lama = findById('siswa','nis',$post['nis']);
                 if (!empty($lama['foto'])) {
-                    $oldPath = __DIR__ . '/../../public/image/photos/' . $lama['foto'];
+                    $oldPath = '/mnt/nas/photos/' . $lama['foto'];
                     if (file_exists($oldPath)) {
                         unlink($oldPath);
                     }
                 }
-                $targetDir  = __DIR__ . '/../../public/image/photos/';
+                $targetDir  =  '/mnt/nas/photos/';
                 $targetPath = $targetDir . $fotoName;
 
                 // Cek apakah path folder-nya ada
@@ -253,4 +253,51 @@ class loloscontroller{
         $pdf->Output($nama.'.pdf', 'I');
         exit;
         }
+    function getFileIcon($ext) {
+    $exts = pathinfo($ext, PATHINFO_EXTENSION);
+    $icons = [
+        'pdf'  => '<i class="fa fa-file-pdf text-red-500 text-xl"></i>',
+        'doc'  => '<i class="fa fa-file-word text-blue-500 text-xl"></i>',
+        'docx' => '<i class="fa fa-file-word text-blue-500 text-xl"></i>',
+        'xls'  => '<i class="fa fa-file-excel text-green-500 text-xl"></i>',
+        'xlsx' => '<i class="fa fa-file-excel text-green-500 text-xl"></i>',
+        'jpg'  => '<i class="fa fa-file-image text-purple-500 text-xl"></i>',
+        'jpeg' => '<i class="fa fa-file-image text-purple-500 text-xl"></i>',
+        'png'  => '<i class="fa fa-file-image text-purple-500 text-xl"></i>',
+        'txt'  => '<i class="fa fa-file-alt text-gray-500 text-xl"></i>',
+        'zip'  => '<i class="fa fa-file-archive text-yellow-500 text-xl"></i>',
+        'rar'  => '<i class="fa fa-file-archive text-yellow-500 text-xl"></i>',
+        'default' => '<i class="fa fa-file text-gray-400 text-xl"></i>',
+    ];
+    return $icons[$exts] ?? $icons['default'];
+}
+
+    public function lihatdokumen($nis){
+        return $this->db->lihatdokumen($nis);
+    }
+
+    public function downloadfile($get)
+{
+    $tipe = $get['tipe'] ?? '';
+    $dokumen = $get['file'] ?? '';
+
+    // Security: bersihkan input
+    $safeTipe = preg_replace('/[^a-zA-Z0-9_\-]/', '', $tipe);
+    $safeFile = basename($dokumen);
+
+    $path = "/mnt/nas/$safeTipe/$safeFile";
+
+    if (file_exists($path)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($path).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+        exit;
+    } else {
+        echo "File tidak ditemukan.";
+    }
+}
 }
