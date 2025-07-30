@@ -93,7 +93,7 @@ $foto = $_SESSION['foto'] ?? null;
                     if ($foto == null ){
                         echo '<div class="py-2 "><img class="w-7 h-7 rounded-full mr-2" src="/public/image/asset/app.png" /></div>';
                     } else {
-                        echo '<div class="py-2 "><img class="w-7 h-7 rounded-full mr-2" src="/public/image/photos/'.$foto.'" /></div>';
+                        echo '<div class="py-2 "><img class="w-7 h-7 rounded-full mr-2" src="/public/image/nas_photos/'.$foto.'" /></div>';
                     }
                     ?>
                 </div>
