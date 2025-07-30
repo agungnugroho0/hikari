@@ -26,7 +26,7 @@ $dokumen = $objek->lihatdokumen($nis);
             <div class="sm:grow flex flex-col gap-1 ">
                 <header class="flex flex-row gap-2">
                     <div class="min-h-5 max-h-14 max-w-14 rounded overflow-clip sm:block hidden">
-                        <img src="<?= '/public/image/photos/'.$s['foto']?>" alt="<?=$s['foto']?>" class="object-top  "/>
+                        <img src="<?= '/public/image/nas_photos/'.$s['foto']?>" alt="<?=$s['foto']?>" class="object-top  "/>
                     </div>
                     <div class="flex flex-col">
                         <div class="flex">
@@ -132,7 +132,7 @@ $dokumen = $objek->lihatdokumen($nis);
         <div class=" sm:min-w-64">
             <div class=" my-1 bg-green-600 dark:bg-green-400 text-white font-semibold rounded-md px-2 py-1 text-sm text-center h-7 hover:bg-green-700 cursor-pointer transition duration-400 ease-out"><a href="https://wa.me/<?= $nomor_wa?>" >WHATSAPP</a></div>
             <div class=" my-1 bg-slate-700 text-white font-semibold rounded-md px-2 py-1 text-sm text-center hover:bg-slate-800 cursor-pointer transition duration-400 ease-out">
-            <a href="<?='/public/image/photos/'.$s['foto']?>" download="<?= $s['nama']?>.jpg">DOWNLOAD FOTO</a>
+            <a href="<?='/public/image/nas_photos/'.$s['foto']?>" download="<?= $s['nama']?>.jpg">DOWNLOAD FOTO</a>
             </div>
             <hr class="my-2">
                 <!-- buat nafuda -->
