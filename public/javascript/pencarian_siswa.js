@@ -23,7 +23,7 @@ function cari() {
           if (item.sumber == "siswa") {
             div.innerHTML = `
                   <div onclick="handlePilihHasil(null, 'router.php?page=siswa&act=detail&nis=${item.nis}&menuId=4')" class="flex cursor-default" data-menu-id='4'>
-                    <div class="w-10 h-10 overflow-hidden rounded-full"><img src="../image/photos/${item.foto}"></div>
+                    <div class="w-10 h-10 overflow-hidden rounded-full"><img src="../image/nas_photos/${item.foto}"></div>
                     <div class="flex flex-col">
                       <div class="font-normal truncate pl-1.5">${item.nama}</div>
                       <div class="text-gray-500 pl-1.5">siswa</div>
@@ -33,7 +33,7 @@ function cari() {
           } else if (item.sumber == "lolos") {
             div.innerHTML = `
                   <div onclick="handlePilihHasil(null, 'router.php?page=lolos&act=detail&nis=${item.nis}&lolos=ya&menuId=5')" class="flex cursor-default" data-menu-id='5'>
-                    <div class="w-10 h-10 overflow-hidden rounded-full"><img src="../image/photos/${item.foto}"></div>
+                    <div class="w-10 h-10 overflow-hidden rounded-full"><img src="../image/nas_photos/${item.foto}"></div>
                     <div class="flex flex-col">
                       <div class="font-normal truncate pl-1.5">${item.nama}</div>
                       <div class="text-gray-500 pl-1.5">lolos</div>
