@@ -153,7 +153,7 @@ $transaksi = $objek->detaillolos($nis,'transaksi');
                             <hr>
                         <?php endforeach; ?>
                 </div>
-                <div class="rounded mt-5 p-1 outline outline-2 outline-gray-300 dark:outline-white gap-2 font-[Lato] px-2">
+                <!-- <div class="rounded mt-5 p-1 outline outline-2 outline-gray-300 dark:outline-white gap-2 font-[Lato] px-2"> -->
                     <div class="flex flex-row items-center"> 
                         <p class="grow font-semibold text-gray-500 dark:text-gray-300">Dokumen</p>
                         <a href="#" onclick="loadPageFromMenu('router.php?page=siswa&act=uploaddoc&nis=<?=$s['nis']?>','4')" class="hover:text-red-700 font-semibold text-red-500 ">+</a>
@@ -179,7 +179,7 @@ $transaksi = $objek->detaillolos($nis,'transaksi');
                     <?php endif; ?>
                     
                     <hr>
-                </div>
+                <!-- </div> -->
                 
         </div>
     </div>
