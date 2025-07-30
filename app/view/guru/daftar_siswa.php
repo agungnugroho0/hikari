@@ -14,7 +14,7 @@ $ukk = (new daftar_siswagurucontroller())->ukk($id_kelas);
      <?php foreach($siswa as $s):?>
      <div class="flex flex-row hover:bg-slate-100 dark:hover:bg-slate-800 p-2 m-1 align-middle items-center ">
                 <div class="min-w-8 max-w-8 min-h-8 max-h-8 object-top overflow-hidden rounded-full mr-2">
-                    <img src="/public/image/photos/<?= $s['foto']?>" alt="foto_siswa" >
+                    <img src="/public/image/nas_photos/<?= $s['foto']?>" alt="foto_siswa" >
                 </div>
                 <p class="grow font-bold dark:text-white mx-2"><?= $s['nama']?></p>
                 <?php if ($s['id_job']!== null){
