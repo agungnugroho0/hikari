@@ -97,12 +97,12 @@ class siswacontroller{
                 $fotoName = strtolower($post['nama_lengkap']) . '.' . $ekstensi;
                 $lama = findById('siswa','nis',$post['nis']);
                 if (!empty($lama['foto'])) {
-                    $oldPath = __DIR__ . '/../../public/image/photos/' . $lama['foto'];
+                    $oldPath = __DIR__ . '/mnt/nas/photos/' . $lama['foto'];
                     if (file_exists($oldPath)) {
                         unlink($oldPath);
                     }
                 }
-                $targetDir  = __DIR__ . '/../../public/image/photos/';
+                $targetDir  = __DIR__ . '/mnt/nas/photos/';
                 $targetPath = $targetDir . $fotoName;
 
                 // Cek apakah path folder-nya ada
