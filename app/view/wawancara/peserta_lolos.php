@@ -43,7 +43,7 @@ foreach ($job as $j){
             </div>
             <div>
                 <label for="biaya_hikari" class="text-sm font-medium text-gray-900 dark:text-white">Biaya Pendidikan</label>
-                <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-950 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="hikari" name="biaya_hikari" value="4000000" >
+                <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-950 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="hikari" name="biaya_hikari" >
                 
             </div>
             <div>
