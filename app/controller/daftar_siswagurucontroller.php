@@ -2,7 +2,7 @@
 namespace app\controller;
 use app\model\siswa;
 use app\model\guru;
-use app\model\kelas;
+use app\model\Kelas;
 require_once __DIR__ . '/../../autoloader.php';
 
 class daftar_siswagurucontroller{
