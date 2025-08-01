@@ -1,6 +1,6 @@
 <?php
 namespace app\controller;
-use app\model\siswa;
+use app\model\Siswa;
 use app\model\guru;
 use app\model\kelas;
 

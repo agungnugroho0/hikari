@@ -1,7 +1,7 @@
 <?php
 namespace app\controller;
 use app\model\absensiswa;
-use app\model\Siswa;
+use app\model\siswa;
 
 class absensiswacontroller{
     private $db;
@@ -9,7 +9,7 @@ class absensiswacontroller{
 
     public function __construct(){
         $this->db = new absensiswa();
-        $this->db2 = new Siswa();
+        $this->db2 = new siswa();
     }
 
     public function api_proses_absen($nis,$ket){
