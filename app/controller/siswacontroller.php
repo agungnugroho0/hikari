@@ -1,6 +1,6 @@
 <?php
 namespace app\controller;
-use app\model\siswa;
+use app\model\Siswa;
 use TCPDF;
 require_once __DIR__ . '/../../autoloader.php';
 
