@@ -35,6 +35,7 @@ document.querySelectorAll('.btn-naik').forEach(link => {
                         updateActiveMenuById("2");
                     } else {
                         toastr.error(json.message || "Gagal mengupdate data.");
+                        console.log("Respon dari server:", text);
                     }
                 } catch (e) {
                     console.error("⚠️ Respon bukan JSON:", text);  // log full respon
