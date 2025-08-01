@@ -1,6 +1,6 @@
 <?php
 namespace app\controller;
-use app\model\Siswa;
+use app\model\siswa;
 use TCPDF;
 require_once __DIR__ . '/../../autoloader.php';
 
@@ -9,7 +9,7 @@ class siswacontroller{
     private $db;
 
     public function __construct(){
-        $this->db = new Siswa();
+        $this->db = new siswa();
     }
 
     public function daftarkelas(){
