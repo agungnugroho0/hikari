@@ -1,8 +1,9 @@
 <?php
 namespace app\controller;
-use app\model\Siswa;
+use app\model\siswa;
 use app\model\guru;
 use app\model\kelas;
+require_once __DIR__ . '/../../autoloader.php';
 
 class daftar_siswagurucontroller{
     private $db;
@@ -25,7 +26,7 @@ class daftar_siswagurucontroller{
     }
 
     public function naik($nis){
-        $this->db2 = new siswa();
+        $this->db2 = new Siswa();
         $this->db3 = new Kelas();
         $siswa = $this->db2->detail($nis,'siswa');
         foreach ($siswa as $s) {
