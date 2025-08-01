@@ -28,7 +28,7 @@ class staffcontroller{
             // upload foto
             $ekstensi = pathinfo($foto['name'], PATHINFO_EXTENSION);
             $fotoName = strtolower($username) . '.' . $ekstensi;
-            $targetPath = __DIR__ . '/../../public/image/photos/' . $fotoName;
+            $targetPath = '/mnt/nas/photos/' . $fotoName;
             // hapus foto lama jika username pernah dipakai
             if (file_exists($targetPath)) {
                unlink($targetPath);
@@ -84,12 +84,12 @@ class staffcontroller{
                 $fotoName = strtolower($post['username']) . '.' . $ekstensi;
                 $lama = (new staff())->findById($post['id_staff']);
                 if (!empty($lama['foto'])) {
-                    $oldPath = __DIR__ . '/../../public/image/photos/' . $lama['foto'];
+                    $oldPath = $oldPath = '/mnt/nas/photos/' . $lama['foto'];
                     if (file_exists($oldPath)) {
                         unlink($oldPath);
                     }
                 }
-                move_uploaded_file($files['foto']['tmp_name'], __DIR__ . '/../../public/image/photos/' . $fotoName);
+                move_uploaded_file($files['foto']['tmp_name'], '/mnt/nas/photos/' . $fotoName);
                 $data['foto'] = $fotoName;
 
 
@@ -119,7 +119,7 @@ class staffcontroller{
 
             // hapus foto jika ada
             if (!empty($staff['foto'])) {
-                $path = __DIR__ . '/../../public/image/photos/' . $staff['foto'];
+                $path ='/mnt/nas/photos/' . $staff['foto'];
                 if (file_exists($path)) {
                     unlink($path);
                 }

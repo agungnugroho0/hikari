@@ -24,10 +24,10 @@ $kelas = (new staffcontroller())->kelas();
                 <label for="username" class="text-sm font-medium text-gray-900 dark:text-white">Username</label>
                 <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="username" name="username" value="<?= $cari_staff['username'] ?>" required>
             </div>
-            <div>
+            <!-- <div>
                 <label for="password" class="text-sm font-medium text-gray-900 dark:text-white">Password</label>
                 <input type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="password" name="password" placeholder="-" value="<?= $cari_staff['password'] ?>" required>
-            </div>
+            </div> -->
             <div>
                 <label for="no" class="text-sm font-medium text-gray-900 dark:text-white">No Whatsapp</label>
                 <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="no" name="no" value="<?= $cari_staff['no'] ?>">
