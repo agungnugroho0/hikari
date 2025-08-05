@@ -2,7 +2,6 @@ function inithome(){
 const chartlolos = document.querySelector("#chartLolos");
 const monthInput = document.querySelector("#month");
 const bln = document.querySelector("#bln");
-const chartMensetsu = document.querySelector("#chartMensetsu");
 
 // const semuaKelas = <?php echo json_encode(array_column($kelas, 'id_kelas')); ?>; // Ambil semua id_kelas dari array $kelas
 const semuaKelas = JSON.parse(document.getElementById("kelasData").dataset.kelas);
@@ -138,61 +137,90 @@ async function fetchdataKelas(bulan,kelasId){
 
 // chart jadwal mensetsu
 
-fetch('../../public/api/api_jadwal_mensetsu.php')
-  .then(res => res.json())
-  .then(data => {
-    console.log("📊 DATA MENSETSU:", data);
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+// fetch('../../public/api/api_jadwal_mensetsu.php')
+//   .then(res => res.json())
+//   .then(data => {
+//     console.log("📊 DATA MENSETSU:", data);
+//     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    const options = {
-      chart: {
-        type: 'rangeBar',
-        height: 300,
-        zoom: {
-          enabled: false
-        },
-        foreColor: isDark ? '#f3f4f6' : '#1f2937', 
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          barHeight: '50%',
-          //borderRadius: 10,
-        }
-      },
-      colors: data.map(item => item.fillColor), // warna unik berdasarkan nama SO
-      xaxis: {
-        type: 'datetime'
-      },
+//     const options = {
+//       chart: {
+//         type: 'rangeBar',
+//         height: 300,
+//         zoom: {
+//           enabled: false
+//         },
+//         foreColor: isDark ? '#f3f4f6' : '#1f2937', 
+//       },
+//       plotOptions: {
+//         bar: {
+//           horizontal: true,
+//           barHeight: '50%',
+//           //borderRadius: 10,
+//         }
+//       },
+//       colors: data.map(item => item.fillColor), // warna unik berdasarkan nama SO
+//       xaxis: {
+//         type: 'datetime'
+//       },
       
-      tooltip: {
-       theme: isDark ? 'dark' : 'light' ,
-          custom: function({ series, seriesIndex, dataPointIndex, w }) {
-          const d = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
-         return `<div style="padding:5px dark:bg-black dark:text-white">
-                    <div class="text-red-900 font-semibold dark:text-white">${d.x}</div>
-                    <p class="font-semibold">${d.nama_job ? `Job : ${d.nama_job}` : ''}</p>
-                    ${d.status ? `Tanggal : ${d.status}` : ''}<br/>
-                  </div>`;
-        }
-      },
-      series: [{
-        name: 'Jadwal Mensetsu',
-        data: data
-      }],
-    };
+//       tooltip: {
+//        theme: isDark ? 'dark' : 'light' ,
+//           custom: function({ series, seriesIndex, dataPointIndex, w }) {
+//           const d = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+//          return `<div style="padding:5px dark:bg-black dark:text-white">
+//                     <div class="text-red-900 font-semibold dark:text-white">${d.x}</div>
+//                     <p class="font-semibold">${d.nama_job ? `Job : ${d.nama_job}` : ''}</p>
+//                     ${d.status ? `Tanggal : ${d.status}` : ''}<br/>
+//                   </div>`;
+//         }
+//       },
+//       series: [{
+//         name: 'Jadwal Mensetsu',
+//         data: data
+//       }],
+//     };
 
-    const chart = new ApexCharts(chartMensetsu, options);
-    chart.render();
+//     const chart = new ApexCharts(chartMensetsu, options);
+//     chart.render();
+//   });
+
+// Inisialisasi kalender
+async function loadMensetsuCalendar() {
+  const res = await fetch(`../../public/api/api_jadwal_mensetsu.php`);
+  const data = await res.json();
+
+  const calendarEl = document.getElementById('calendar');
+  calendarEl.innerHTML = ''; // Reset container kalau sudah pernah render
+
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    height: 350,
+    events: data,
+    eventClick: function(info) {
+      const { so, status,nama_job } = info.event.extendedProps;
+        const tanggal = info.event.start.toLocaleDateString('id-ID', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      alert(` ${so}\nJob : ${nama_job}\nTanggal : ${tanggal}`);
+    }
   });
 
-// event bulan diganti
-monthInput.addEventListener('change', () => {
-  loadSemuaGrafikKelas(monthInput.value); // Load semua grafik kelas saat bulan diubah
-  fetchdata(monthInput.value);
-  bln.innerHTML = formatBulan(monthInput.value);
-  console.log(monthInput.value);
-});
+  calendar.render();
+}
+
+
+  // event bulan diganti
+  monthInput.addEventListener('change', () => {
+    loadSemuaGrafikKelas(monthInput.value); // Load semua grafik kelas saat bulan diubah
+    fetchdata(monthInput.value);
+    bln.innerHTML = formatBulan(monthInput.value);
+    // loadMensetsuCalendar(monthInput.value);
+    console.log(monthInput.value);
+  });
 
 // fungsi untuk format bulan
 function formatBulan(bulan) {
@@ -212,7 +240,7 @@ function loadSemuaGrafikKelas(bulan) {
 loadSemuaGrafikKelas(monthInput.value);
 fetchdata(monthInput.value);
 bln.innerHTML = formatBulan(monthInput.value);
-
+loadMensetsuCalendar();
 };
 // Buat global biar bisa dipanggil dari luar
 window.inithome = inithome;

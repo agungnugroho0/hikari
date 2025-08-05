@@ -31,26 +31,34 @@ class grafik{
     }
 
     public function grafikjadwalmensetsu(){
+    // $query = "SELECT 
+    //     job.id_job AS id_job,
+    //     UNIX_TIMESTAMP(job.tgl_job) * 1000 AS start_ts,
+    //     IF(
+    //         job.tgl_job IS NULL 
+    //         OR job.tgl_job + 0 = 0, 
+    //         NULL, 
+    //         UNIX_TIMESTAMP(DATE_ADD(job.tgl_job, INTERVAL 23 HOUR)) * 1000
+    //     ) AS end_ts,
+    //     so.so AS nama_so,
+    //     job.job AS nama_job,
+    //     CASE
+    //         WHEN job.tgl_job IS NULL 
+    //             OR job.tgl_job + 0 = 0
+    //         THEN 'Belum Dijadwalkan'
+    //         ELSE 'Sudah Dijadwalkan'
+    //     END AS status
+    //     FROM job
+    //     LEFT JOIN so ON job.id_so = so.id_so
+    //     ORDER BY status, job.tgl_job";
     $query = "SELECT 
-        job.id_job AS id_job,
-        UNIX_TIMESTAMP(job.tgl_job) * 1000 AS start_ts,
-        IF(
-            job.tgl_job IS NULL 
-            OR job.tgl_job + 0 = 0, 
-            NULL, 
-            UNIX_TIMESTAMP(DATE_ADD(job.tgl_job, INTERVAL 23 HOUR)) * 1000
-        ) AS end_ts,
-        so.so AS nama_so,
-        job.job AS nama_job,
-        CASE
-            WHEN job.tgl_job IS NULL 
-                OR job.tgl_job + 0 = 0
-            THEN 'Belum Dijadwalkan'
-            ELSE 'Sudah Dijadwalkan'
-        END AS status
-        FROM job
-        LEFT JOIN so ON job.id_so = so.id_so
-        ORDER BY status, job.tgl_job";
+                    job.id_job,
+                    job.tgl_job,
+                    job.job AS nama_job,
+                    so.so AS nama_so
+                FROM job
+                LEFT JOIN so ON job.id_so = so.id_so
+                ORDER BY job.tgl_job IS NULL, job.tgl_job ASC";
     
     $stmt = $this->db->prepare($query);
     $stmt->execute();

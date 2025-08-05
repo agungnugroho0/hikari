@@ -23,8 +23,8 @@ $kelas = (new DashboardController())->index();
         </div>
         <div class="border-2 p-2 rounded border-gray-200 bg-white shadow-sm dark:bg-slate-950 dark:text-white">
             <h2 class="font-semibold text-base font-[Lato]">Jadwal Mensetsu </h2>
-            <div id="chartMensetsu"></div>
-
+            <!-- <div id="chartMensetsu"></div> -->
+             <div id="calendar"></div>
         </div>
         
     </div>

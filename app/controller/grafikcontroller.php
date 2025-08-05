@@ -21,6 +21,43 @@ class grafikcontroller{
     }
 
     public function jadwalmensetsucontroller(){
+    // $model = new grafik();
+    // $data = $model->grafikjadwalmensetsu();
+
+    // function stringToColor($str) {
+    //     $code = dechex(crc32($str));
+    //     return '#' . substr($code, 0, 6);
+    // }
+
+    // $data_chart = [];
+
+    // foreach ($data as $row) {
+    //     $color = stringToColor($row['nama_so']);
+    //     $start = $row['start_ts'];
+    //     $end = $row['end_ts'];
+
+    //     if (!$start || !$end) {
+    //         $now = time() * 1000;
+    //         $dummy_end = $now + 2 * 60 * 60 * 1000;
+
+    //         $data_chart[] = [
+    //             "x" => $row['nama_so'] . " #" . $row['id_job'],
+    //             "y" => [$now, $dummy_end],
+    //             "status" => 'Belum Dijadwalkan',
+    //             "nama_job" => $row['nama_job'],
+    //             "fillColor" => '#000000',
+    //         ];
+    //     } else {
+    //         $data_chart[] = [
+    //             "x" => $row['nama_so'] . " #" . $row['id_job'],
+    //             "y" => [$start, $end],
+    //             "status" => date('d M Y H:i', $start / 1000),
+    //             "nama_job" => $row['nama_job'],
+    //             "fillColor" => $color,
+    //         ];
+    //     }
+    // }
+
     $model = new grafik();
     $data = $model->grafikjadwalmensetsu();
 
@@ -33,27 +70,24 @@ class grafikcontroller{
 
     foreach ($data as $row) {
         $color = stringToColor($row['nama_so']);
-        $start = $row['start_ts'];
-        $end = $row['end_ts'];
 
-        if (!$start || !$end) {
-            $now = time() * 1000;
-            $dummy_end = $now + 2 * 60 * 60 * 1000;
-
+        if (empty($row['tgl_job'])) {
             $data_chart[] = [
-                "x" => $row['nama_so'] . " #" . $row['id_job'],
-                "y" => [$now, $dummy_end],
-                "status" => 'Belum Dijadwalkan',
+                "title" => $row['nama_job'] . " (Belum Dijadwalkan)",
+                "start" => date('Y-m-d'),
+                "status" => "Belum Dijadwalkan",
+                "so" => $row['nama_so'],
+                "backgroundColor" => "#999999",
                 "nama_job" => $row['nama_job'],
-                "fillColor" => '#000000',
             ];
         } else {
             $data_chart[] = [
-                "x" => $row['nama_so'] . " #" . $row['id_job'],
-                "y" => [$start, $end],
-                "status" => date('d M Y H:i', $start / 1000),
+                "title" => $row['nama_job'] . " ( " . $row['nama_so'] . " )",
+                "start" => $row['tgl_job'],
+                "status" => "Sudah Dijadwalkan",
+                "so" => $row['nama_so'],
+                "backgroundColor" => $color,
                 "nama_job" => $row['nama_job'],
-                "fillColor" => $color,
             ];
         }
     }
