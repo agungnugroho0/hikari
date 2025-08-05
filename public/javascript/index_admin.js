@@ -27,6 +27,13 @@ function loadScriptForPage(page) {
     loadScript(jsPath, () => {
         if (typeof window[initFunc] === 'function') {
             window[initFunc]();
+            if (pageName === "home") {
+            setTimeout(() => {
+                if (document.getElementById("calendar")) {
+                    loadMensetsuCalendar();
+                }
+            }, 100); // delay pendek
+            }
         } else {
             console.warn(`Fungsi ${initFunc}() tidak ditemukan`);
         }
