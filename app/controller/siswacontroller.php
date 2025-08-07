@@ -447,7 +447,7 @@ public function downloadfile($get)
         $pdf->MultiCell(70, 12, $panggilan, 0, 'L'); // Menulis teks
         
         $pdf->SetXY(129, 29); // Set posisi
-        // $pdf->settextColor(255,255,255);
+        $pdf->settextColor(255,255,255);
         $pdf->MultiCell(70, 12, $panggilan, 0,'L'); // Menulis teks
         // set content print
         $html =  <<<EOD
