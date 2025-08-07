@@ -28,6 +28,7 @@ $wawancara = (new wawancaracontroller())->formwawancara();
                 <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="interview" name="interview" required>
                     <option value="ONLINE">ONLINE</option>
                     <option value="OFFLINE">OFFLINE</option>
+                    <option value="SENDING DATA">SENDING DATA</option>
                 </select>
             </div>
             <div>
