@@ -77,8 +77,6 @@ switch ($page) {
                 (new siswacontroller())->hapusdoc($_GET);
         } elseif ($act === 'upload_doc' && $_SERVER['REQUEST_METHOD'] === 'POST') {
                 (new siswacontroller())->uploaddokumen($_POST,$_FILES);
-        }elseif ($act === 'nafuda' && isset($_GET['nis'])){
-                (new siswacontroller())->cetaknafuda($_GET['nis']);
         }elseif ( $act === 'edit' && isset($_GET['nis'])){
                 $controller->editsiswa($_GET['nis']);
         } elseif ($act === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
