@@ -138,7 +138,8 @@ $dokumen = $objek->lihatdokumen($nis);
                 <!-- buat nafuda -->
                 <div class="bg-white rounded-lg md:mt-0 max-h-fit w-full p-1 flex flex-row outline outline-2 outline-gray-300 gap-2">
                         <img src="/public/image/qr_images/<?= $nis ?>.png" alt="QR Code" class="w-14 h-14 object-center"/>
-                       <a href="router.php?page=siswa&act=nafuda&nis=<?= $s['nis'] ?>" 
+                       <!-- <a href="router.php?page=siswa&act=nafuda&nis=<? //= $s['nis'] ?>"  -->
+                       <a href="nafuda.php?nis=<?= $s['nis'] ?>" 
                         target="_blank"
                         class="max-h-fit self-center text-lg font-semibold hover:scale-125 hover:translate-x-3 transition ease-out duration-300">
                         BUAT NAFUDA
