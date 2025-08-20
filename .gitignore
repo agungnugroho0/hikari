@@ -4,6 +4,7 @@ public/image/photos/
 public/image/img_so/
 !public/image/img_so/.htaccess
 vendor/*
+!vendor/.htaccess
 !vendor/tecnickcom/
 !vendor/tecnickcom/tcpdf/
 !vendor/tecnickcom/tcpdf/composer.json
