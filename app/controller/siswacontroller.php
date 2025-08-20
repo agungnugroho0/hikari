@@ -421,11 +421,10 @@ public function downloadfile($get)
         $lg['a_meta_language'] = 'ja';
         $lg['w_page'] = 'page';
         $pdf->setLanguageArray($lg);
-        $pdf->SetPDFVersion('1.4');
-        $pdf->SetCompression(true);
+            
         // set font
-        $pdf->setFontSubsetting(false);
-        $pdf->SetFont('dfminchoub', '', 28,'', false);
+        
+        $pdf->SetFont('dfminchoub', '', 28);
         
         // add a page
         $pdf->AddPage();
