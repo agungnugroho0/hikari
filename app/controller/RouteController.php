@@ -113,4 +113,8 @@ class RouteController{
     public function profil(){
         include __DIR__."/../view/guru/profil.php";  
     }
+
+    public function laporan_guru(){
+        include __DIR__."/../view/guru/laporan_guru.php"; 
+    }
 }

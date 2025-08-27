@@ -8,6 +8,7 @@ AuthMiddleware::checkRole('guru');
 
 $nama = $_SESSION['username'] ?? 'guest';
 $foto = $_SESSION['foto'] ?? null;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@ $foto = $_SESSION['foto'] ?? null;
 
 </head>
 <body class="bg-[#F5F5F5] dark:bg-gray-900 ">
-    <nav class="fixed z-50 bottom-0 bg-slate-300 dark:bg-black w-full flex justify-evenly pb-4 pt-3">
+    <nav class="fixed z-50 bottom-0 bg-slate-300 dark:bg-black w-full flex justify-evenly pb-4 pt-3 ">
         
         <a href="#" onclick="loadPage(event,'router.php?page=homeguru')" data-menu-id="1" >
             <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
@@ -100,12 +101,12 @@ $foto = $_SESSION['foto'] ?? null;
         <a href="#" onclick="loadPage(event,'router.php?page=presensi_guru')" data-menu-id="3" >
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current text-slate-500 dark:text-slate-700 "><path fill-rule="evenodd" clip-rule="evenodd" d="M5 8a1 1 0 0 1-2 0V5.923c0-.76.082-1.185.319-1.627.223-.419.558-.754.977-.977C4.738 3.082 5.162 3 5.923 3H8a1 1 0 0 1 0 2H5.923c-.459 0-.57.022-.684.082a.364.364 0 0 0-.157.157c-.06.113-.082.225-.082.684V8zm3 11a1 1 0 1 1 0 2H5.923c-.76 0-1.185-.082-1.627-.319a2.363 2.363 0 0 1-.977-.977C3.082 19.262 3 18.838 3 18.077V16a1 1 0 1 1 2 0v2.077c0 .459.022.57.082.684.038.07.087.12.157.157.113.06.225.082.684.082H8zm7-15a1 1 0 0 0 1 1h2.077c.459 0 .57.022.684.082.07.038.12.087.157.157.06.113.082.225.082.684V8a1 1 0 1 0 2 0V5.923c0-.76-.082-1.185-.319-1.627a2.363 2.363 0 0 0-.977-.977C19.262 3.082 18.838 3 18.077 3H16a1 1 0 0 0-1 1zm4 12a1 1 0 1 1 2 0v2.077c0 .76-.082 1.185-.319 1.627a2.364 2.364 0 0 1-.977.977c-.442.237-.866.319-1.627.319H16a1 1 0 1 1 0-2h2.077c.459 0 .57-.022.684-.082a.363.363 0 0 0 .157-.157c.06-.113.082-.225.082-.684V16zM3 11a1 1 0 1 0 0 2h18a1 1 0 1 0 0-2H3z"/></svg>
         </a>
-        <!-- <a href="#" onclick="loadPage(event,'router.php?page=laporan_guru')" data-menu-id="4" >
+        <a href="#" onclick="loadPage(event,'router.php?page=laporan_guru')" data-menu-id="4" >
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current text-slate-500 dark:text-slate-700 ">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.17157 3.17157C3 4.34315 3 6.22876 3 10V14C3 17.7712 3 19.6569 4.17157 20.8284C5.34315 22 7.22876 22 11 22H13C16.7712 22 18.6569 22 19.8284 20.8284C21 19.6569 21 17.7712 21 14V10C21 6.22876 21 4.34315 19.8284 3.17157C18.6569 2 16.7712 2 13 2H11C7.22876 2 5.34315 2 4.17157 3.17157ZM7.25 8C7.25 7.58579 7.58579 7.25 8 7.25H16C16.4142 7.25 16.75 7.58579 16.75 8C16.75 8.41421 16.4142 8.75 16 8.75H8C7.58579 8.75 7.25 8.41421 7.25 8ZM7.25 12C7.25 11.5858 7.58579 11.25 8 11.25H16C16.4142 11.25 16.75 11.5858 16.75 12C16.75 12.4142 16.4142 12.75 16 12.75H8C7.58579 12.75 7.25 12.4142 7.25 12ZM8 15.25C7.58579 15.25 7.25 15.5858 7.25 16C7.25 16.4142 7.58579 16.75 8 16.75H13C13.4142 16.75 13.75 16.4142 13.75 16C13.75 15.5858 13.4142 15.25 13 15.25H8Z" />
             </svg>
-        </a> -->
-        <a href="#" onclick="loadPage(event,'router.php?page=profil_guru')" data-menu-id="4" >
+        </a>
+        <a href="#" onclick="loadPage(event,'router.php?page=profil_guru')" data-menu-id="5" >
         <svg width="800px" height="800px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-5 h-5 fill-current text-slate-500 dark:text-slate-700 ">
         <g id="Page-1" stroke="none" stroke-width="1"  fill-rule="evenodd">
         <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -2159.000000)" >
@@ -117,11 +118,12 @@ $foto = $_SESSION['foto'] ?? null;
                 </g>
             </g>
         </svg>    
-        </a>    
+        </a>
+        
 
         
     </nav>
-    <main id="content-area" class="bg-white dark:bg-gray-800 w-full px-4 py-3 ">
+    <main id="content-area" class="bg-white dark:bg-gray-800 w-full px-4 py-3 mb-10">
         
 
         <!-- Konten awal yang ditampilkan saat halaman dimuat -->

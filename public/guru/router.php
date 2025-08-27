@@ -16,6 +16,9 @@ switch ($page) {
     case 'presensi_guru':
                 $controller->presensi_guru();
     break;
+    case 'laporan_guru':
+                $controller->laporan_guru();
+    break;
     case 'daftar_siswa':
         if      ($act === 'naik' && isset($_GET['nis'])){
                 (new daftar_siswagurucontroller())->naik($_GET['nis']);
