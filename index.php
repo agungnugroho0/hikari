@@ -34,7 +34,7 @@
         <!-- <div class="bg-white"></div> -->
         <div class="md:container mx-auto md:grid bg-white md:max-w-screen-md md:grid-cols-[16rem_auto] md:rounded-xl overflow-hidden">
             <div class="relative">
-                <div class="h-[27rem] md:h-[27rem] md:w-64 bg-cover bg-left-top md:bg-center bg-no-repeat" style="background-image:url(public/image/asset/cover.avif);">
+                <div class="h-[27rem] md:h-[27rem] md:w-64 bg-cover bg-left-top md:bg-center bg-no-repeat" style="background-image:url(public/image/asset/cover.jpeg);">
                 </div>
                 <p class="absolute top-5 right-4 writing-vertical-rl text-upright text-4xl font-DF">光学校</p>
             </div>
