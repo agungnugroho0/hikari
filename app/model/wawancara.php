@@ -181,6 +181,12 @@ class wawancara{
                 // hapus dari tabel wawancara
                 $stmtHapusW = $this->db->prepare("DELETE FROM wawancara WHERE nis = :nis");
                 $stmtHapusW->execute([':nis' => $data['nis']]);
+                // hapus dari tabel keluarga
+                $stmtHapusK = $this->db->prepare("DELETE FROM kk WHERE nis = :nis");  
+                $stmtHapusK->execute([':nis' => $data['nis']]);
+                // hapus dari tabel pendidikan
+                $stmtHapusP = $this->db->prepare("DELETE FROM pendidikan WHERE nis = :nis");
+                $stmtHapusP->execute([':nis' => $data['nis']]); 
                 $this->db->commit();
                 return true;
         } catch (\Exception $e) {
