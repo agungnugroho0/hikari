@@ -47,7 +47,7 @@ class Siswa{
                   JOIN so ON j.id_so = so.id_so 
                   WHERE s.nis = :nis",
 
-        'keluarga' => "SELECT * FROM kk WHERE nis = :nis ORDER BY urutan",
+        'keluarga' => "SELECT * FROM kk WHERE nis = :nis",
 
         'pendidikan' => "SELECT * FROM pendidikan WHERE nis = :nis"
     ];
@@ -64,8 +64,8 @@ class Siswa{
     }
 
     public function insertsiswa($data){
-    $query = "INSERT INTO siswa (nis, nama, panggilan, id_kelas, tempat_lhr, gender, tgl, provinsi, kabupaten, kecamatan,kelurahan,  rt, rw, wa, agama, status, darah, bb, tb, merokok, alkohol, tangan, hobi, tujuan, kelebihan, kekurangan, no_rumah, foto) 
-              VALUES (:nis, :nama, :panggilan, :id_kelas, :tempat_lhr, :gender, :tgl, :provinsi, :kabupaten, :kecamatan,:kelurahan, :rt, :rw, :wa, :agama, :status, :darah, :bb, :tb, :merokok, :alkohol, :tangan, :hobi, :tujuan, :kelebihan, :kekurangan, :no_rumah, :foto)";
+    $query = "INSERT INTO siswa (nis, nama, panggilan, id_kelas, tempat_lhr, gender, tgl, provinsi, kabupaten, kecamatan,kelurahan,  rt, rw, wa, agama, status, darah, bb, tb, merokok, alkohol, tangan, no_rumah, foto) 
+              VALUES (:nis, :nama, :panggilan, :id_kelas, :tempat_lhr, :gender, :tgl, :provinsi, :kabupaten, :kecamatan,:kelurahan, :rt, :rw, :wa, :agama, :status, :darah, :bb, :tb, :merokok, :alkohol, :tangan, :no_rumah, :foto)";
     $stmt = $this->db->prepare($query);
     foreach ($data as $key => $val) {
         echo "$key = $val <br>"; // Debugging
@@ -101,10 +101,6 @@ class Siswa{
         merokok = :merokok,
         alkohol = :alkohol,
         tangan = :tangan,
-        hobi = :hobi,
-        tujuan = :tujuan,
-        kelebihan = :kelebihan,
-        kekurangan = :kekurangan,
         no_rumah = :no_rumah
         ".(!empty($data['foto']) ? ", foto = :foto": "")." WHERE nis = :nis";
         $query = preg_replace('/,(\s*WHERE)/', ' $1', $query);
@@ -132,10 +128,6 @@ class Siswa{
         $stmt->bindParam(':merokok', $data['merokok']);
         $stmt->bindParam(':alkohol', $data['alkohol']);
         $stmt->bindParam(':tangan', $data['tangan']);
-        $stmt->bindParam(':hobi', $data['hobi']);
-        $stmt->bindParam(':tujuan', $data['tujuan']);
-        $stmt->bindParam(':kelebihan', $data['kelebihan']);
-        $stmt->bindParam(':kekurangan', $data['kekurangan']);
         $stmt->bindParam(':no_rumah', $data['no_rumah']);
         if (!empty($data['foto'])) $stmt->bindParam(':foto', $data['foto']);
         $stmt->bindParam(':nis', $data['nis']);
