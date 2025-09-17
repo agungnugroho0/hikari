@@ -166,7 +166,7 @@ foreach($siswa as $s){
                 </select>
 
             </div>
-            <div>
+            <!-- <div>
                 <label for="hobi" class="text-sm font-medium text-gray-900 dark:text-white">Hobi</label>
                 <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="hobi" name="hobi" value="<?= $hobi ?>" >
             </div>
@@ -181,7 +181,7 @@ foreach($siswa as $s){
             <div>
                 <label for="kekurangan" class="text-sm font-medium text-gray-900 dark:text-white">Kekurangan</label>
                 <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="kekurangan" name="kekurangan" value="<?= $kekurangan ?>" >
-            </div>
+            </div> -->
             <div>
                 <label for="no_rumah" class="text-sm font-medium text-gray-900 dark:text-white">No Wali</label>
                 <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="no_rumah" name="no_rumah" value="<?= $no_rumah ?>" >
