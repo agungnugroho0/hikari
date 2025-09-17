@@ -28,10 +28,10 @@ foreach($siswa as $s){
     $merokok = $s['merokok'];
     $alkohol = $s['alkohol'];
     $tangan = $s['tangan'];
-    $hobi = $s['hobi'];
-    $tujuan = $s['tujuan'];
-    $kelebihan = $s['kelebihan'];
-    $kekurangan = $s['kekurangan'];
+    // $hobi = $s['hobi'];
+    // $tujuan = $s['tujuan'];
+    // $kelebihan = $s['kelebihan'];
+    // $kekurangan = $s['kekurangan'];
     $foto = $s['foto'];
     $no_rumah = $s['no_rumah'];
 }
