@@ -198,7 +198,7 @@ async function loadMensetsuCalendar() {
     height: 350,
     events: data,
     eventClick: function(info) {
-      const { so, status,nama_job } = info.event.extendedProps;
+      const { so, status,nama_job,interview } = info.event.extendedProps;
         const tanggal = info.event.start.toLocaleDateString('id-ID', {
         weekday: 'long',
         year: 'numeric',
