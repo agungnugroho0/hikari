@@ -441,19 +441,23 @@ public function downloadfile($get)
         // $pdf->Cell(90, 0, $panggilan, 0, 0, 'C'); // Nama pertama di tengah
         
                 
-        
+        // nama katakana
         $pdf->SetFont('dfminchoub', '', 28);
         $pdf->SetXY(37, 29); // Set posisi
         $pdf->MultiCell(70, 12, $panggilan, 0, 'L'); // Menulis teks
         
+        // nis
         $pdf->SetFont('', '', 10);
         $pdf->SetXY(18, 45); // Set posisi
+        $pdf->settextColor(217,217,217);
         $pdf->MultiCell(70, 12, $nis, 0, 'L'); // Menulis teks
         
+        // nama katakana
         $pdf->SetFont('dfminchoub', '', 28);
         $pdf->SetXY(129, 29); // Set posisi
         $pdf->settextColor(255,255,255);
         $pdf->MultiCell(70, 12, $panggilan, 0,'L'); // Menulis teks
+
         // set content print
         $html =  <<<EOD
         
