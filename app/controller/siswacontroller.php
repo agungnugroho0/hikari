@@ -449,7 +449,7 @@ public function downloadfile($get)
         // nis
         $pdf->SetFont('', '', 10);
         $pdf->SetXY(18, 45); // Set posisi
-        $pdf->settextColor(217,217,217);
+        $pdf->settextColor(196,196,196);
         $pdf->MultiCell(70, 12, $nis, 0, 'L'); // Menulis teks
         
         // nama katakana
