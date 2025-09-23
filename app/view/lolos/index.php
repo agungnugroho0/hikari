@@ -76,7 +76,7 @@ $i = ($page - 1) * $limit + 1;
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <div class="flex justify-center mt-4 space-x-2" id="pagination-lolos">
+        <div class="flex flex-wrap justify-center mt-4 space-x-2" id="pagination-lolos">
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                 <button 
                     class="px-3 py-1 border rounded <?= $i == $page ? 'bg-blue-800 text-white' : 'bg-gray-100 hover:bg-gray-200' ?>"
