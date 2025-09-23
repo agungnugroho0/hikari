@@ -448,7 +448,7 @@ public function downloadfile($get)
         
         $pdf->SetXY(18, 45); // Set posisi
         $pdf->MultiCell(70, 12, $nis, 0, 'L'); // Menulis teks
-        $pdf->SetFont('Arial', '', 10);
+        $pdf->SetFont('', '', 10);
         
         
         $pdf->SetXY(129, 29); // Set posisi
