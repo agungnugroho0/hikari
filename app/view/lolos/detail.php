@@ -58,8 +58,8 @@ $dokumen = $objek->lihatdokumen($nis);
                         'Rokok' => $s['merokok'],
                         'Alkohol' => $s['alkohol'],
                         'Dominan Tangan' => $s['tangan'],
-                        'Hobi' => $s['hobi'],
-                        'Tujuan Ke Jepang' => $s['tujuan'],
+                        // 'Hobi' => $s['hobi'],
+                        // 'Tujuan Ke Jepang' => $s['tujuan'],
                     ];
                     $labelt ='Tempat Tinggal';
                     $valuet = "DESA {$s['kelurahan']}, RT. 00{$s['rt']} / RW. 00{$s['rw']}, {$s['kecamatan']}, {$s['kabupaten']}, {$s['provinsi']}";
