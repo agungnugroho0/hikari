@@ -422,9 +422,7 @@ public function downloadfile($get)
         $lg['w_page'] = 'page';
         $pdf->setLanguageArray($lg);
             
-        // set font
-        
-        $pdf->SetFont('dfminchoub', '', 28);
+
         
         // add a page
         $pdf->AddPage();
@@ -442,15 +440,17 @@ public function downloadfile($get)
         // Kolom untuk nama pertama
         // $pdf->Cell(90, 0, $panggilan, 0, 0, 'C'); // Nama pertama di tengah
         
+                
         
+        $pdf->SetFont('dfminchoub', '', 28);
         $pdf->SetXY(37, 29); // Set posisi
         $pdf->MultiCell(70, 12, $panggilan, 0, 'L'); // Menulis teks
         
+        $pdf->SetFont('', '', 10);
         $pdf->SetXY(18, 45); // Set posisi
         $pdf->MultiCell(70, 12, $nis, 0, 'L'); // Menulis teks
-        $pdf->SetFont('', '', 10);
         
-        
+        $pdf->SetFont('dfminchoub', '', 28);
         $pdf->SetXY(129, 29); // Set posisi
         $pdf->settextColor(255,255,255);
         $pdf->MultiCell(70, 12, $panggilan, 0,'L'); // Menulis teks
