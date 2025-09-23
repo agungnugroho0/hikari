@@ -79,6 +79,7 @@ class grafikcontroller{
                 "so" => $row['nama_so'],
                 "backgroundColor" => "#999999",
                 "nama_job" => $row['nama_job'],
+                "interview"=>$row['interview'],
             ];
         } else {
             $data_chart[] = [
@@ -88,6 +89,7 @@ class grafikcontroller{
                 "so" => $row['nama_so'],
                 "backgroundColor" => $color,
                 "nama_job" => $row['nama_job'],
+                "interview"=>$row['interview'],
             ];
         }
     }

@@ -205,7 +205,7 @@ async function loadMensetsuCalendar() {
         month: 'long',
         day: 'numeric'
       });
-      alert(` ${so}\nJob : ${nama_job}\nTanggal : ${tanggal}`);
+      alert(` ${so}\nJob : ${nama_job}\nTanggal : ${tanggal} \nInterview : ${interview}`);
     }
   });
 
