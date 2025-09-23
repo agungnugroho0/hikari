@@ -79,7 +79,7 @@ $i = ($page - 1) * $limit + 1;
         <div class="flex flex-wrap justify-center mt-4 space-x-2" id="pagination-lolos">
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                 <button 
-                    class="px-3 py-1 border rounded <?= $i == $page ? 'bg-blue-800 text-white' : 'bg-gray-100 hover:bg-gray-200' ?>"
+                    class="px-3 py-1 my-2 border rounded <?= $i == $page ? 'bg-blue-800 text-white' : 'bg-gray-100 hover:bg-gray-200' ?>"
                     onclick="loadPageFromMenu('router.php?page=lolos&halaman=<?= $i ?>', '5')">
                     <?= $i ?>
                 </button>
