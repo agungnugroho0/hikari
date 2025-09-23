@@ -446,6 +446,10 @@ public function downloadfile($get)
         $pdf->SetXY(37, 29); // Set posisi
         $pdf->MultiCell(70, 12, $panggilan, 0, 'L'); // Menulis teks
         
+        $pdf->SetXY(18, 29); // Set posisi
+        $pdf->MultiCell(70, 12, $nis, 0, 'L'); // Menulis teks
+        
+        
         $pdf->SetXY(129, 29); // Set posisi
         $pdf->settextColor(255,255,255);
         $pdf->MultiCell(70, 12, $panggilan, 0,'L'); // Menulis teks
