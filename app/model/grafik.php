@@ -55,7 +55,7 @@ class grafik{
                     job.id_job,
                     job.tgl_job,
                     job.job AS nama_job,
-                    so.so AS nama_so
+                    so.so AS nama_so,
                     job.interview AS interview
                 FROM job
                 LEFT JOIN so ON job.id_so = so.id_so
