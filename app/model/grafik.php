@@ -56,6 +56,7 @@ class grafik{
                     job.tgl_job,
                     job.job AS nama_job,
                     so.so AS nama_so
+                    job.interview AS interview
                 FROM job
                 LEFT JOIN so ON job.id_so = so.id_so
                 ORDER BY job.tgl_job IS NULL, job.tgl_job ASC";
