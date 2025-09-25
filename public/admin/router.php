@@ -140,6 +140,9 @@ case 'lolos':
                 $controller->so();
         }        
         break;
+        case 'finance':
+                $controller->finance();
+        break;
 
     default:
         http_response_code(404);

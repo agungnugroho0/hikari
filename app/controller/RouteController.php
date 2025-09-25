@@ -117,4 +117,7 @@ class RouteController{
     public function laporan_guru(){
         include __DIR__."/../view/guru/laporan_guru.php"; 
     }
+    public function finance(){
+        include __DIR__."/../view/finance/index.php";  
+    }
 }
