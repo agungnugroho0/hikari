@@ -127,12 +127,13 @@ class wawancara{
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
-    public function datasensei($id_kelas){
-        $stmt = $this->db->prepare("SELECT nama,no FROM staff WHERE id_kelas = :id_kelas");
-        $stmt->bindParam(':id_kelas',$id_kelas);
-        $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
-    }
+    
+    // public function datasensei($id_kelas){
+    //     $stmt = $this->db->prepare("SELECT nama,no FROM staff WHERE id_kelas = :id_kelas");
+    //     $stmt->bindParam(':id_kelas',$id_kelas);
+    //     $stmt->execute();
+    //     return $stmt->fetch(\PDO::FETCH_ASSOC);
+    // }
 
     public function simpanlolos($data,$tagihanList){
         try{

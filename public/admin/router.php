@@ -20,7 +20,12 @@ $act = $_GET['act'] ?? null;
 
 switch ($page) {
     case 'home':
-        $controller->dashboard(); // akan load view/dashboard/index.php
+        if ($act === 'finance'){
+                $controller->finance();
+        }else{
+                $controller->dashboard();// akan load view/dashboard/index.php
+        }
+        
         break;
     case 'staff':
         if      ($act === 'tambah'){
@@ -140,7 +145,7 @@ case 'lolos':
                 $controller->so();
         }        
         break;
-        case 'finance':
+case 'finance':
                 $controller->finance();
         break;
 

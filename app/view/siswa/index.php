@@ -23,12 +23,13 @@ $kelas = $model->daftarkelas();
         
         <?php $i=1;?>
         <?php $delay=0; foreach ($siswa as $s) : ?>
-        <a href="#"<?=$s['nis']?> class="border-2 <?= $s['id_job'] ? 'bg-green-300 dark:bg-red-600 dark:text-white' : 'bg-white dark:bg-slate-700 dark:text-white' ?> rounded p-2 flex flex-col group hover:bg-slate-200 fade-in-up border-slate-600 dark:hover:bg-black" style="--delay: <?=$delay?>s;" onclick="loadPageFromMenu('router.php?page=siswa&act=detail&nis=<?= $s['nis']?>','4')">
+        <!-- <a href="#"<?php //$s['nis']?> class="border-2 <?php // $s['id_job'] ? 'bg-green-300 dark:bg-red-600 dark:text-white' : 'bg-white dark:bg-slate-700 dark:text-white' ?> rounded p-2 flex flex-col group hover:bg-slate-200 fade-in-up border-slate-600 dark:hover:bg-black" style="--delay: <?php //$delay?>s;" onclick="loadPageFromMenu('router.php?page=siswa&act=detail&nis=<?//= $s['nis']?>','4')"> -->
+        <a href="#"<?=$s['nis']?> class="border-2 <?= $s['id_job'] ? 'bg-green-300 dark:bg-red-600 dark:text-white' : 'bg-white dark:bg-slate-700 dark:text-white' ?> rounded p-2 flex flex-col group hover:bg-slate-200 fade-in-up border-slate-600 dark:hover:bg-black"  onclick="loadPageFromMenu('router.php?page=siswa&act=detail&nis=<?= $s['nis']?>','4')">
             <p class="font-normal overflow-hidden w-32 mt-0.5"><span><?= $i ?>. </span><?= $s['nama']?></p>
             <p class="font-normal overflow-hidden text-ellipsis whitespace-nowrap w-32 mt-0.5 text-red-900 dark:text-inherit"><?= umur($s['tgl'])?> 歳</p>
             <?php if (!empty($s['tgl_job'])) : ?>
             <p class="text-xs text-slate-700 dark:text-slate-200">
-              Job: <?= $s['tgl_job'] === '0000-00-00' ? 'Belum ada jadwal ' : date('d-m-Y', strtotime($s['tgl_job'])) ?>
+              Mensetsu : <?= $s['tgl_job'] === '0000-00-00' ? 'Belum ada jadwal ' : date('d-m-Y', strtotime($s['tgl_job'])) ?>
             </p>
             <?php endif; ?>
       </a>
