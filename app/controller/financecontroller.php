@@ -8,9 +8,10 @@ class financecontroller{
         $this->model = new finance();
     }
 
-    public function index($search = ''){
-        $search = isset($_GET['search']) ? $_GET['search'] : '';
-        $data = $this->model->gettagihan($search);
+    public function index($search = '',$filter){
+        // $search = isset($_GET['search']) ? $_GET['search'] : '';
+        // $filter = isset($_GET['filter']) ? $_GET['filter'] : 'semua';
+        $data = $this->model->gettagihan($search,$filter);
         header('Content-Type: application/json');
         echo json_encode($data);
     }

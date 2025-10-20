@@ -7,6 +7,11 @@ session_start();
     
 <div class="relative overflow-x-auto">
     <input id="searchInput" type="search" placeholder="Cek Tagihan" class="focus:border-2 border-gray-300 px-5 py-3 rounded-lg w-36 sm:w-56 h-9 transition-all focus:w-56 sm:focus:w-80 outline-none font-[Lato] duration-700 ease-in-out placeholder:font-medium mb-2">
+    <select id="filterSelect" class="rounded border p-1">
+        <option value="semua">Semua</option>
+        <option value="siswa">Siswa</option>
+        <option value="lolos">Lolos</option>
+    </select>
     <table class="shadow-md dark:text-white text-wrap w-full">
         <thead class="bg-gray-300 dark:bg-gray-700">
             <tr class="*:p-2 ">

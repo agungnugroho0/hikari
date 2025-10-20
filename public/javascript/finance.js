@@ -1,29 +1,42 @@
 function initfinance() {
   let timeout = null;
-  loadData();
+  const searchInput = document.getElementById('searchInput');
+  const filterSelect = document.getElementById('filterSelect');
+  loadData('', 'semua');
 
-  document.getElementById('searchInput').addEventListener('input', e => {
+  // 🎚️ Filter Siswa / Lolos / Semua
+  filterSelect.addEventListener('change', () => {
+    const keyword = searchInput ? searchInput.value.trim() : '';
+    const filter = filterSelect.value;
+    loadData(keyword, filter);
+  });
+
+    // 🔍 Pencarian otomatis
+  searchInput.addEventListener('input', e => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       const keyword = e.target.value.trim();
-      loadData(keyword);
-    }, 200);
+      const filter = filterSelect.value;
+      loadData(keyword, filter);
+    }, 100);
   });
 
-  function loadData(keyword = '') {
-    const url = keyword 
-      ? `/public/api/api_finance.php?search=${encodeURIComponent(keyword)}`
-      : '/public/api/api_finance.php';
+
+  function loadData(keyword = '', filter='semua') {
+   const url = `/public/api/api_finance.php?search=${keyword}&filter=${filter}`;
 
     fetch(url)
       .then(res => res.json())
       .then(data => {
         // console.log('✅ Data fetched:', data);
-        renderTable(data)})
+        renderTable(data)}
+      )
       .catch(err => console.error('⚠️ Gagal fetch data:', err));
   }
 
   function renderTable(data) {
+    const tbody = document.getElementById('bodyTagihan');
+    tbody.innerHTML = '';
     const defaultTagihan = {
       "Pra-MCU": 0,
       "Pendidikan 1": 0,
@@ -33,10 +46,20 @@ function initfinance() {
       total: 0,
       status: ""
     };
+      // 🚨 Kalau data kosong
+    if (!data || data.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="9" class="text-center py-4 text-gray-500 dark:text-gray-400">
+            Siswa tidak ditemukan
+          </td>
+        </tr>`;
+      return; // stop eksekusi fungsi
+    }
 
     const grup = {};
 
-const centang =`<svg
+    const centang =`<svg
             xmlns:dc="http://purl.org/dc/elements/1.1/"
             xmlns:cc="http://creativecommons.org/ns#"
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -437,7 +460,7 @@ const centang =`<svg
     // Kelompokkan data per NIS
     // ================================
     data.forEach(item => {
-      const nis = item.nis;
+      const nis = String(item.nis);;
       if (!grup[nis]) {
         grup[nis] = { ...defaultTagihan, nis, nama: item.nama, asal_data: item.asal_data, _statusList: [] };
       }
@@ -486,8 +509,7 @@ const centang =`<svg
     // ================================
     // Render tabel HTML
     // ================================
-    const tbody = document.getElementById('bodyTagihan');
-    tbody.innerHTML = '';
+    
     let no = 1;
 
     for (const nis in grup) {
