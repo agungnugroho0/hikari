@@ -39,7 +39,7 @@ class finance{
         }
 
         $whereSql = count($conditions) ? 'WHERE ' . implode(' AND ', $conditions) : '';
-        $sql = "$baseQuery $whereSql ORDER BY s.nis ASC LIMIT :limit";
+        $sql = "$baseQuery $whereSql ORDER BY LENGTH(s.nis), s.nis DESC LIMIT :limit";
 
         $stmt = $this->db->prepare($sql);
 
