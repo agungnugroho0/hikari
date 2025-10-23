@@ -23,21 +23,18 @@ Sistem ini dirancang untuk mempermudah pengelolaan data siswa, kelas, wawancara 
 - 📂 **Upload ke NAS** — Upload dokumen langsung ke network storage `/mnt/nas`.  
 - 🧾 **Cetak Dokumen PDF (mPDF)** — Mendukung karakter Jepang (Katakana/Hiragana).
 
----
-
 Struktur berbasis **MVC (Model–View–Controller)** ini memungkinkan integrasi yang fleksibel dan mudah di-scale ke sistem produksi.
 
 ---
 
 ## 🧩 Teknologi yang Digunakan
-Komponen	Teknologi
-Backend	PHP 8 (OOP)
-Frontend	Tailwind CSS, JavaScript (AJAX)
-Database	MySQL / MariaDB
-Visualisasi	ApexCharts
-Server	Apache (Ubuntu Server)
-API	Fonnte (WhatsApp API)
-PDF Engine	mPDF
+Backend	[PHP 8+],
+Frontend	[Tailwind CSS, JavaScript],
+Database	[MySQL / MariaDB],
+Visualisasi	[ApexCharts],
+Server	[Apache (Ubuntu Server)],
+API	Fonnte [(WhatsApp API)],
+PDF Engine	[mPDF]
 
 ---
 ## 👨‍💻 Developer
