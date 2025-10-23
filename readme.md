@@ -3,6 +3,7 @@
 [![MySQL](https://img.shields.io/badge/MySQL-8.x-4479A1?logo=mysql&logoColor=white)]()
 [![Status](https://img.shields.io/badge/Status-Production-blue)]()
 [![License](https://img.shields.io/badge/License-Private-red)]()
+[![Version](https://img.shields.io/badge/version-v1.9-green)]()
 
 ---
 
@@ -20,7 +21,6 @@ Sistem ini dirancang untuk mempermudah pengelolaan data siswa, kelas, wawancara 
 - 🗓️ **Jadwal Mensetsu & Log** — Kelola wawancara dan catatan kelulusan (log_lolos).  
 - 📊 **Grafik & Kalender** — Integrasi dengan ApexCharts dan tampilan kalender interaktif.  
 - 💬 **Notifikasi WhatsApp (Fonnte API)** — Kirim pesan otomatis ke siswa atau staff.  
-- 📂 **Upload ke NAS** — Upload dokumen langsung ke network storage `/mnt/nas`.  
 - 🧾 **Cetak Dokumen PDF (mPDF)** — Mendukung karakter Jepang (Katakana/Hiragana).
 
 Struktur berbasis **MVC (Model–View–Controller)** ini memungkinkan integrasi yang fleksibel dan mudah di-scale ke sistem produksi.
