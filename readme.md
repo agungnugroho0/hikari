@@ -3,7 +3,7 @@
 [![MySQL](https://img.shields.io/badge/MySQL-8.x-4479A1?logo=mysql&logoColor=white)]()
 [![Status](https://img.shields.io/badge/Status-Production-blue)]()
 [![License](https://img.shields.io/badge/License-Private-red)]()
-[![Version](https://img.shields.io/badge/version-v1.9-green)]()
+[![Version](https://img.shields.io/badge/version-v1.9.x-green)]()
 
 ---
 
