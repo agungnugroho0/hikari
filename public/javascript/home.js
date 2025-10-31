@@ -20,7 +20,7 @@ async function fetchdata(bulan) {
     const options = {
       chart: {
         type: 'bar',
-        height: 300,
+        // height: 300,
         toolbar: {
           show: false
         },
@@ -32,16 +32,21 @@ async function fetchdata(bulan) {
       dataLabels: {
         enabled: false
       },
-      stroke: {
-        curve: 'smooth',
-        width: 2
-      },
+      // stroke: {
+      //   curve: 'smooth',
+      //   width: 2
+      // },
       plotOptions: {
         bar: {
-          borderRadius: 100, // Radius sudut bar
-          borderRadiusApplication: 'end', // Hanya atas (ujung bar)
-          columnWidth: '80%', // Ukuran bar
-        }
+          borderRadius: 4, // Radius sudut bar
+          // borderRadiusApplication: 'end', // Hanya atas (ujung bar)
+          columnWidth: '60%', // Ukuran bar
+        },
+        
+      },
+      fill:{
+          opacity: 1,
+          type: 'solid'
       },
       series: [{
         name: 'Siswa Lolos',

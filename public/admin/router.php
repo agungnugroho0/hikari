@@ -141,6 +141,8 @@ case 'lolos':
                 $controller->tambahso();
         }elseif ($act ==='simpan' && $_SERVER['REQUEST_METHOD'] === 'POST'){
                 (new socontroller())->simpanso();
+        }elseif ($act ==='edit'  && isset($_GET['id_so'])){
+                $controller->editso($_GET['id_so']);
         }else{
                 $controller->so();
         }        

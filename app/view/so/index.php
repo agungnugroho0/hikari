@@ -50,10 +50,11 @@ $data = (new socontroller())->tampilsocontroller();
                         &nbsp;
                     </td>                    
                     <td class="px-6 py-4">
-                        <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="loadPageFromMenu('router.php?page=so&act=edit&id_so=<?//= $d['id_so'] ?>', '8')">Edit</a>
+                        
+                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="loadPageFromMenu('router.php?page=so&act=edit&id_so=<?= $d['id_so'] ?>', '8')">Edit</a>
                         <span> | </span>
-                        <a href="#" class="font-medium text-red-600 dark:text-red-400 hover:underline" onclick="loadPageFromMenu('router.php?page=so&act=hapus&id_so=<?//= $d['id_so'] ?>', '8')">Delete</a> -->
-                        <p>Coming Soon</p>
+                        <a href="#" class="font-medium text-red-600 dark:text-red-400 hover:underline" onclick="loadPageFromMenu('router.php?page=so&act=hapus&id_so=<?= $d['id_so'] ?>', '8')">Delete</a>
+                        <!-- <p>Coming Soon</p> -->
                     </td>
                 </tr>
                 <?php endforeach; ?>

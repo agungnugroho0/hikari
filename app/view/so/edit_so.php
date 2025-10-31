@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__."/../../../autoloader.php";
-use app\controller\staffcontroller;
-use app\model\staff;
-$staff = new staff();
-$cari_staff = $staff->findById($id_staff);
-$kelas = (new staffcontroller())->kelas();
-
+use app\controller\socontroller;
+use app\model\so;
+$so_id = $_GET['id_so'];
+$so = new so();
+$cari_so = $so->findById($so_id);
+// $kelas = (new staffcontroller())->kelas();
+var_dump($cari_so);
 ?>
 <!DOCTYPE html>
 <html lang="en">
