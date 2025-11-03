@@ -136,6 +136,8 @@ case 'lolos':
         case 'presensi':
                 $controller->presensi();        
         break;
+
+
         case 'so':
         if      ( $act ==='tambah'){
                 $controller->tambahso();
@@ -143,6 +145,12 @@ case 'lolos':
                 (new socontroller())->simpanso();
         }elseif ($act ==='edit'  && isset($_GET['id_so'])){
                 $controller->editso($_GET['id_so']);
+        }elseif ($act ==='update' && $_SERVER['REQUEST_METHOD'] === 'POST'){
+                (new socontroller())->update($_POST,$_FILES);
+        }elseif ($act === 'hapus' && isset($_GET['id_so'])){
+                $controller->hapusso($_GET['id_so']);
+        }elseif ($act === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST'){
+            (new socontroller())->hapus($_POST['id_so']);
         }else{
                 $controller->so();
         }        

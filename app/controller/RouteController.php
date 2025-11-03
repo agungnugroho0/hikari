@@ -105,6 +105,9 @@ class RouteController{
     public function editso($id_so){
         include __DIR__."/../view/so/edit_so.php";  
     }
+    public function hapusso($id_so){
+        include __DIR__."/../view/so/hapus_so.php";  
+    }
     public function homeguru(){
         include __DIR__."/../view/guru/index.php";  
     }
