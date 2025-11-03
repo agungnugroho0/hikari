@@ -6,7 +6,7 @@ $so_id = $_GET['id_so'];
 $so = new so();
 $cari_so = $so->findById($so_id);
 // $kelas = (new staffcontroller())->kelas();
-var_dump($cari_so);
+// var_dump($cari_so);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +27,10 @@ var_dump($cari_so);
             <div>
                 <label for="noted" class="text-sm font-medium text-gray-900 dark:text-white">Notulen</label>
                 <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="noted" name="noted" value="<?= $cari_so['noted'] ?>">
+            </div>
+            <div>
+                <label for="pj" class="text-sm font-medium text-gray-900 dark:text-white">Penanggung Jawab</label>
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 mt-1 font-[Lato]" id="pj" name="pj" value="<?= $cari_so['pj'] ?>">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-900 dark:text-white" for="file_input">Ganti Logo</label>

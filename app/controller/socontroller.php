@@ -59,7 +59,8 @@ class socontroller{
                 'id_so' => $post['id_so'],
                 'so' => $post['so'],
                 'lokasi' => $post['lokasi'],
-                'noted' => $post['noted']
+                'noted' => $post['noted'],
+                'pj' => $post['pj']
             ];
             $foto_so =$_FILES['foto_so'];
 

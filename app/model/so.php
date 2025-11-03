@@ -33,7 +33,7 @@ class so{
     }
 
     public function update($data){
-        $query = "UPDATE so SET so = :so, lokasi = :lokasi, noted = :noted";
+        $query = "UPDATE so SET so = :so, lokasi = :lokasi, noted = :noted, pj = :pj";
         if (!empty($data['foto_so'])) {
             $query .= ", foto_so = :foto_so";
         }
@@ -44,6 +44,7 @@ class so{
         $stmt->bindParam(':so', $data['so']);
         $stmt->bindParam(':lokasi', $data['lokasi']);
         $stmt->bindParam(':noted', $data['noted']);
+        $stmt->bindParam(':pj', $data['pj']);
         if (!empty($data['foto_so'])) $stmt->bindParam(':foto_so', $data['foto_so']);
 
         return $stmt->execute();

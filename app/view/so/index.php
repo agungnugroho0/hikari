@@ -47,7 +47,7 @@ $data = (new socontroller())->tampilsocontroller();
                         <?= $d['lokasi']?>
                     </td>                    
                     <td class="px-6 py-4">
-                        &nbsp;
+                        <?= $d['pj']?>
                     </td>                    
                     <td class="px-6 py-4">
                         
