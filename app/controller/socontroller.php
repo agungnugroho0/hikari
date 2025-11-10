@@ -62,7 +62,6 @@ class socontroller{
                 'noted' => $post['noted'],
                 'pj' => $post['pj']
             ];
-            $foto_so =$_FILES['foto_so'];
 
                     // jika upload foto baru
         if ($files['foto_so']['error'] === 0) {
@@ -86,7 +85,7 @@ class socontroller{
         $data['foto_so'] = $fotoName;
      }
             $this->db->update($data);
-        ob_clean();
+        // ob_clean();
          header('Content-Type: application/json');
             echo json_encode([
                 'success' => true,
@@ -121,7 +120,7 @@ class socontroller{
             header('Content-Type: application/json');
             echo json_encode([
                 'success' => true,
-                'message' => 'Data staff berhasil dihapus.'
+                'message' => 'Data SO berhasil dihapus.'
             ]);
             exit;
         } catch (\Exception $e) {

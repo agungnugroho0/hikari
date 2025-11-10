@@ -16,12 +16,13 @@ class so{
     }
 
     public function simpan($data){
-        $stmt = $this->db->prepare("INSERT INTO so (id_so, so, foto_so, lokasi) 
-        VALUES (:id_so, :so, :foto_so, :lokasi)");
+        $stmt = $this->db->prepare("INSERT INTO so (id_so, so, foto_so, lokasi, pj) 
+        VALUES (:id_so, :so, :foto_so, :lokasi, :pj)");
         $stmt->bindParam(':id_so',$data['id_so']); 
         $stmt->bindParam(':so', $data['so']);
         $stmt->bindParam(':foto_so', $data['foto_so']);
         $stmt->bindParam(':lokasi', $data['lokasi']);
+        $stmt->bindParam(':pj', $data['pj']);
         return $stmt->execute();
     }
 
